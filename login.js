@@ -17,5 +17,19 @@ formLogin.addEventListener("submit", function(event) {
         return;
     }
 
-    alert("Formulário preenchido com sucesso!");
+    // Recupera os usuários cadastrados
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    // Procura um usuário com o e-mail e a senha informados
+    const usuarioEncontrado = usuarios.find(function(usuario) {
+        return usuario.email === email && usuario.senha === senha;
+    });
+
+    // Verifica se encontrou o usuário
+    if (usuarioEncontrado) {
+        alert("Login realizado com sucesso! Bem-vindo(a), " + usuarioEncontrado.nome + "!");
+    } else {
+        alert("E-mail ou senha incorretos!");
+    }
+
 });
