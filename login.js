@@ -25,11 +25,11 @@ formLogin.addEventListener("submit", function(event) {
         return usuario.email === email && usuario.senha === senha;
     });
 
-    // Verifica se encontrou o usuário
     if (usuarioEncontrado) {
-        alert("Login realizado com sucesso! Bem-vindo(a), " + usuarioEncontrado.nome + "!");
-    } else {
-        alert("E-mail ou senha incorretos!");
-    }
+    alert("Login realizado com sucesso! Bem-vindo(a), " + usuarioEncontrado.nome + "!");
 
+    window.location.href = "index.html";
+} else {
+    alert("E-mail ou senha incorretos!");
+}
 });
