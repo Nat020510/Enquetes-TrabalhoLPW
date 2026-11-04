@@ -49,3 +49,60 @@ main {
     gap: 12px;
 }
 
+
+
+#formCadastro label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#formCadastro input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#formCadastro input:focus {
+    border-color: #F47721;
+    box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.12);
+}
+
+/* BOTÃO */
+#formCadastro button {
+    background-color: #F47721;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: 0.3s;
+}
+
+#formCadastro button:hover {
+    background-color: #D95F10;
+}
+
+/* LINK DE LOGIN */
+.cadastro-container a {
+    color: #F47721;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cadastro-container a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 480px) {
+    .cadastro-container {
+        padding: 28px 22px;
+    }
+}
