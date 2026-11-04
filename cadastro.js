@@ -13,10 +13,10 @@ formCadastro.addEventListener("submit", function(event) {
         return;
     }
 
-    // Recupera os usuários já cadastrados
+    
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    // Verifica se o e-mail já está cadastrado
+    
     const usuarioExiste = usuarios.some(function(usuario) {
         return usuario.email === email;
     });
@@ -26,14 +26,14 @@ formCadastro.addEventListener("submit", function(event) {
         return;
     }
 
-    // Adiciona o novo usuário
+ 
     usuarios.push({
         nome: nome,
         email: email,
         senha: senha
     });
 
-    // Salva a lista no navegador
+   
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
     alert("Cadastro realizado com sucesso!");
