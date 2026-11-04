@@ -1,13 +1,13 @@
-// Seleciona o formulário de login
+
 const formLogin = document.getElementById("formLogin");
 
-// Detecta quando o usuário clica em Entrar
+
 formLogin.addEventListener("submit", function(event) {
 
-    // Impede o recarregamento da página
+    
     event.preventDefault();
 
-    // Captura os valores digitados
+   
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
 
@@ -17,10 +17,10 @@ formLogin.addEventListener("submit", function(event) {
         return;
     }
 
-    // Recupera os usuários cadastrados
+   
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    // Procura um usuário com o e-mail e a senha informados
+    
     const usuarioEncontrado = usuarios.find(function(usuario) {
         return usuario.email === email && usuario.senha === senha;
     });
