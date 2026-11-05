@@ -129,3 +129,13 @@
   font-size: var(--texto-lg);
   color: var(--cor-texto);
 }
+
+
+/* ==========================================================================
+   3. CATEGORIAS (chips) - gerados por js/index.js
+   ========================================================================== */
+.lista-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+}
