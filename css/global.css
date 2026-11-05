@@ -244,3 +244,57 @@ h4 {
 .btn--fantasma:hover {
   background: var(--cor-borda);
 }
+
+
+/* ==========================================================================
+   5. CHIPS E ETIQUETAS DE CATEGORIA
+   ========================================================================== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: 0.6rem 1.1rem;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color var(--transicao), background-color var(--transicao),
+    color var(--transicao);
+}
+
+.chip::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--cor-cat, var(--cor-primaria));
+}
+
+.chip:hover {
+  border-color: var(--cor-cat, var(--cor-primaria));
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--cor-cat, var(--cor-primaria));
+  border-color: var(--cor-cat, var(--cor-primaria));
+  color: #0a0a0a;
+}
+
+.chip[aria-pressed="true"]::before {
+  background: #0a0a0a;
+}
+
+/* Etiqueta pequena (usada dentro dos cards) */
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--raio-pilula);
+  background: color-mix(in srgb, var(--cor-cat, var(--cor-primaria)) 18%, transparent);
+  color: var(--cor-cat, var(--cor-primaria));
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
