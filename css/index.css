@@ -99,3 +99,33 @@
   border-radius: var(--raio-pilula);
   transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+
+/* ==========================================================================
+   2. DIFERENCIAIS
+   ========================================================================== */
+.diferenciais {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+}
+
+.diferencial {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-4);
+  padding: var(--espaco-5);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.diferencial + .diferencial {
+  border-left: 1px solid var(--cor-borda);
+}
+
+.diferencial__titulo {
+  font-size: var(--texto-lg);
+  color: var(--cor-texto);
+}
