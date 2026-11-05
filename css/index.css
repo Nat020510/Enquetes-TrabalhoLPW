@@ -132,10 +132,57 @@
 
 
 /* ==========================================================================
-   3. CATEGORIAS (chips) - gerados por js/index.js
+   3. CATEGORIAS (chips) 
    ========================================================================== */
 .lista-chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--espaco-3);
 }
+
+
+/* ==========================================================================
+   4. ENQUETES EM DESTAQUE 
+   ========================================================================== */
+.grade-enquetes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-5);
+}
+
+.enquete-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  height: 100%;
+  /* Faixa lateral na cor da categoria */
+  border-left: 6px solid var(--cor-cat, var(--cor-primaria));
+}
+
+.enquete-card__titulo {
+  font-size: var(--texto-lg);
+}
+
+.enquete-card__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-top: auto;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.enquete-card__ir {
+  padding: 0.35rem 1rem;
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-radius: var(--raio-pilula);
+  font-weight: 700;
+  transition: background-color var(--transicao);
+}
+
+.enquete-card:hover .enquete-card__ir {
+  background: var(--cor-primaria-hover);
+}
+
