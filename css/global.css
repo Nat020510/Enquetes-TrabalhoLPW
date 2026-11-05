@@ -298,3 +298,19 @@ h4 {
   font-size: var(--texto-sm);
   font-weight: 600;
 }
+
+/* ==========================================================================
+   6. CARDS
+   ========================================================================== */
+.card {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-5);
+  transition: border-color var(--transicao), transform var(--transicao);
+}
+
+.card--interativo:hover {
+  border-color: var(--cor-primaria);
+  transform: translateY(-3px);
+}
