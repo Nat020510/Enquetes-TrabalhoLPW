@@ -1,1 +1,68 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px;
+    gap: 0;
+}
 
+/* DISCO */
+.coluna-esquerda {
+    flex: 0 0 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coluna-esquerda img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+}
+
+/* CONTEÚDO */
+.coluna-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+/* PALETA */
+.direita-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 0 0 70px;
+}
+
+.conteudo-enquete {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+}
+
+#listaOpcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.paleta-cores button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+}
+
+#Laranja { background-color: #F47721; }
+#Roxo    { background-color: #8956B8; }
+#Azul    { background-color: #3979B9; }
+#Verde   { background-color: #648B70; }
+#Rosa    { background-color: #E58BAF; }
+#Amarelo { background-color: #E8B94F; }
