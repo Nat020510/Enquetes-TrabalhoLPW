@@ -360,8 +360,6 @@ h4 {
 }
 /* ==========================================================================
    8. CABEÇALHO E NAVEGAÇÃO
-   O HTML do cabeçalho é gerado por js/global.js (UI.renderizarLayout),
-   assim todas as páginas ficam idênticas sem copiar e colar.
    ========================================================================== */
 .cabecalho {
   position: sticky;
@@ -474,5 +472,36 @@ h4 {
 
 .cabecalho__menu-btn[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   9. RODAPÉ
+   ========================================================================== */
+.rodape {
+  margin-top: var(--espaco-8);
+  padding-block: var(--espaco-6);
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.rodape__interno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+}
+
+.rodape__link {
+  background: none;
+  border: 0;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+.rodape__link:hover {
+  color: var(--cor-destaque);
 }
 
