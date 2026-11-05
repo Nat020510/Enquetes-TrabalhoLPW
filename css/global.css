@@ -124,3 +124,65 @@ h4 {
   outline: 3px solid var(--cor-destaque);
   outline-offset: 3px;
 }
+
+/* ==========================================================================
+   3. UTILITÁRIOS E LAYOUT
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding-inline: var(--espaco-5);
+}
+
+.secao {
+  padding-block: var(--espaco-7);
+}
+
+.secao__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-5);
+}
+
+.secao__titulo {
+  font-size: var(--texto-xl);
+}
+
+.link-ver-todas {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color var(--transicao);
+}
+
+.link-ver-todas:hover {
+  color: var(--cor-destaque);
+}
+
+/* Texto visível apenas para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+.pular-conteudo:focus {
+  top: var(--espaco-2);
+}
+
+/* Estado vazio: convida o usuário a agir */
+.estado-vazio {
+  grid-column: 1 / -1;
+  padding: var(--espaco-6);
+  text-align: center;
+  border: 2px dashed var(--cor-borda);
+  border-radius: var(--raio-md);
+  color: var(--cor-texto-suave);
+}
