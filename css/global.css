@@ -186,3 +186,61 @@ h4 {
   border-radius: var(--raio-md);
   color: var(--cor-texto-suave);
 }
+
+
+
+/* ==========================================================================
+   4. BOTÕES
+   Uso: <button class="btn btn--primario">  |  btn--contorno  |  btn--fantasma
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--raio-pilula);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform var(--transicao), background-color var(--transicao),
+    border-color var(--transicao), color var(--transicao);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primario {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+}
+
+.btn--primario:hover {
+  background: var(--cor-primaria-hover);
+}
+
+.btn--contorno {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  background: transparent;
+}
+
+.btn--contorno:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+}
+
+.btn--fantasma {
+  background: var(--cor-superficie-2);
+  color: var(--cor-texto);
+}
+
+.btn--fantasma:hover {
+  background: var(--cor-borda);
+}
