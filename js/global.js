@@ -381,6 +381,26 @@
         }
       });
 
+      /* ========================================================================
+     7. INICIALIZAÇÃO
+     ======================================================================== */
+  function iniciar() {
+    Categorias.listar();
+    Enquetes.carregarDemo(); /* REMOVER quando a criação de enquetes existir */
+    UI.renderizarLayout();
+    UI.registrarEventos();
+  }
+
+  /* Expõe a API para os scripts de cada página */
+  window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, CHAVES };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})(window, document);
+
       document.addEventListener("vocify:sessao", () => UI.atualizarConta());
     },
   };
