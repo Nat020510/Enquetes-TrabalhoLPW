@@ -100,3 +100,72 @@
     },
   };
 
+ /* ========================================================================
+     4. ENQUETES
+     Modelo: { id, titulo, categoriaId, autor, criadaEm,
+               
+     ======================================================================== */
+  const Enquetes = {
+    listar() {
+      return Armazenamento.ler(CHAVES.enquetes, []);
+    },
+
+    salvar(lista) {
+      return Armazenamento.gravar(CHAVES.enquetes, lista);
+    },
+
+    obter(id) {
+      return this.listar().find((enquete) => enquete.id === id) || null;
+    },
+
+    adicionar(dados) {
+      const lista = this.listar();
+      const nova = { id: gerarId(), criadaEm: Date.now(), ...dados };
+      lista.push(nova);
+      this.salvar(lista);
+      return nova;
+    },
+
+    totalVotos(enquete) {
+      return enquete.opcoes.reduce((soma, opcao) => soma + opcao.votos, 0);
+    },
+
+    /* DADOS DE DEMONSTRAÇÃO */
+    carregarDemo() {
+      if (Armazenamento.ler(CHAVES.demoCarregada, false)) return;
+      if (this.listar().length > 0) return;
+
+      const demo = [
+        {
+          titulo: "Qual seu gênero de filme favorito?",
+          categoriaId: "entretenimento",
+          opcoes: [
+            { texto: "Ação", votos: 482 },
+            { texto: "Comédia", votos: 391 },
+            { texto: "Terror", votos: 375 },
+          ],
+        },
+        {
+          titulo: "Qual estilo de música você mais escuta?",
+          categoriaId: "musica",
+          opcoes: [
+            { texto: "Rock", votos: 410 },
+            { texto: "Sertanejo", votos: 302 },
+            { texto: "Hip hop", votos: 270 },
+          ],
+        },
+        {
+          titulo: "Qual seu jogo favorito?",
+          categoriaId: "entretenimento",
+          opcoes: [
+            { texto: "Minecraft", votos: 300 },
+            { texto: "Zelda", votos: 233 },
+            { texto: "FIFA", votos: 210 },
+          ],
+        },
+      ];
+
+      demo.forEach((enquete) => this.adicionar({ autor: "Vocify", ...enquete }));
+      Armazenamento.gravar(CHAVES.demoCarregada, true);
+    },
+  };
