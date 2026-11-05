@@ -358,3 +358,121 @@ h4 {
   font-size: var(--texto-sm);
   color: var(--cor-erro);
 }
+/* ==========================================================================
+   8. CABEÇALHO E NAVEGAÇÃO
+   O HTML do cabeçalho é gerado por js/global.js (UI.renderizarLayout),
+   assim todas as páginas ficam idênticas sem copiar e colar.
+   ========================================================================== */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--altura-cabecalho);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho__interno {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-5);
+}
+
+/* Marca: ícone circular */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-right: auto;
+}
+
+.marca__icone {
+  width: 44px;
+  height: 44px;
+}
+
+.marca__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--cor-destaque);
+  text-shadow: 2px 2px 0 var(--cor-primaria);
+}
+
+.menu__lista {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-1);
+}
+
+.menu__link {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  background: transparent;
+  border-radius: var(--raio-pilula);
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  transition: color var(--transicao), background-color var(--transicao);
+}
+
+.menu__link:hover {
+  color: var(--cor-texto);
+  background: var(--cor-superficie-2);
+}
+
+.menu__link[aria-current="page"] {
+  color: var(--cor-primaria);
+  background: rgba(255, 106, 19, 0.12);
+}
+
+.cabecalho__conta {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+}
+
+.conta__nome {
+  font-weight: 600;
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Botão hambúrguer (telinha pequena) */
+.cabecalho__menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 11px;
+  background: var(--cor-superficie-2);
+  border: 0;
+  border-radius: var(--raio-sm);
+}
+
+.cabecalho__menu-btn span {
+  height: 2px;
+  background: var(--cor-texto);
+  border-radius: 2px;
+  transition: transform var(--transicao), opacity var(--transicao);
+}
+
+.cabecalho__menu-btn[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.cabecalho__menu-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.cabecalho__menu-btn[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
