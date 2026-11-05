@@ -66,3 +66,33 @@ main {
 }
 
 
+/* FILTROS */
+.filtros {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.filtros input,
+.filtros select {
+    padding: 14px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #FFFFFF;
+}
+
+.filtros input {
+    flex: 1;
+}
+
+.filtros select {
+    width: 230px;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+    border-color: #F47721;
+}
+
