@@ -1,1 +1,101 @@
 
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--espaco-7);
+
+  background:
+    radial-gradient(circle at 85% 40%, rgba(255, 106, 19, 0.28), transparent 55%),
+    repeating-radial-gradient(circle at 100% 100%,
+      transparent 0 14px, rgba(255, 255, 255, 0.035) 14px 15px);
+}
+
+.hero__grade {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: var(--espaco-6);
+}
+
+
+.hero__titulo {
+  font-size: clamp(2.6rem, 6vw + 0.5rem, 5rem);
+  font-weight: 800;
+  text-shadow: 4px 4px 0 var(--cor-primaria);
+}
+
+.hero__descricao {
+  max-width: 44ch;
+  margin-top: var(--espaco-5);
+  font-size: var(--texto-lg);
+  color: var(--cor-texto-suave);
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-6);
+}
+
+/* ---- Arte do hero ---- */
+.hero__arte {
+  position: relative;
+  padding-bottom: var(--espaco-7);
+}
+
+/* Cartaz claro*/
+.cartaz {
+  padding: var(--espaco-5);
+  background: var(--cor-papel);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-card), 10px 10px 0 var(--cor-primaria);
+  transform: rotate(-3deg);
+}
+
+.resultado-mini {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(78%, 320px);
+  padding: var(--espaco-4);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  box-shadow: var(--sombra-card);
+}
+
+.resultado-mini__pergunta {
+  margin-bottom: var(--espaco-3);
+  font-weight: 700;
+  font-size: var(--texto-sm);
+}
+
+.barra {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: center;
+  gap: var(--espaco-2);
+  margin-top: var(--espaco-2);
+  font-size: var(--texto-sm);
+}
+
+.barra__trilho {
+  height: 10px;
+  overflow: hidden;
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio-pilula);
+}
+
+/* Largura  definida  */
+.barra__preenchimento {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cor-primaria), var(--cor-destaque));
+  border-radius: var(--raio-pilula);
+  transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
