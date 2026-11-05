@@ -78,3 +78,25 @@
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   }
 
+  /* ========================================================================
+     3. CATEGORIAS  ({ id, nome, cor })
+     ======================================================================== */
+  const Categorias = {
+    listar() {
+      const salvas = Armazenamento.ler(CHAVES.categorias, null);
+      if (salvas) return salvas;
+
+      /* Primeira visita: grava as categorias padrão */
+      Armazenamento.gravar(CHAVES.categorias, CATEGORIAS_PADRAO);
+      return CATEGORIAS_PADRAO.slice();
+    },
+
+    salvar(lista) {
+      return Armazenamento.gravar(CHAVES.categorias, lista);
+    },
+
+    obter(id) {
+      return this.listar().find((categoria) => categoria.id === id) || null;
+    },
+  };
+
