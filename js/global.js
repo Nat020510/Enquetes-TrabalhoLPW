@@ -38,3 +38,43 @@
     { id: "estilo-de-vida", nome: "Estilo de vida", cor: "#e5457d" },
     { id: "outros", nome: "Outros", cor: "#9a9a9a" },
   ];
+
+
+ /* ========================================================================
+    2. ARMAZENAMENTO
+     ======================================================================== */
+  const Armazenamento = {
+    ler(chave, valorPadrao) {
+      try {
+        const bruto = window.localStorage.getItem(chave);
+        return bruto === null ? valorPadrao : JSON.parse(bruto);
+      } catch (erro) {
+        console.error("[Vocify] Erro ao ler", chave, erro);
+        return valorPadrao;
+      }
+    },
+
+    gravar(chave, valor) {
+      try {
+        window.localStorage.setItem(chave, JSON.stringify(valor));
+        return true;
+      } catch (erro) {
+        console.error("[Vocify] Erro ao gravar", chave, erro);
+        return false;
+      }
+    },
+
+    remover(chave) {
+      try {
+        window.localStorage.removeItem(chave);
+      } catch (erro) {
+        console.error("[Vocify] Erro ao remover", chave, erro);
+      }
+    },
+  };
+
+  /* Gera um id único simples  */
+  function gerarId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
