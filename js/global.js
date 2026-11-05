@@ -169,3 +169,33 @@
       Armazenamento.gravar(CHAVES.demoCarregada, true);
     },
   };
+
+ /* ========================================================================
+     5. AUTENTICAÇÃO / SESSÃO
+     
+     ======================================================================== */
+  const Autenticacao = {
+  
+    sessaoAtual() {
+      return Armazenamento.ler(CHAVES.sessao, null);
+    },
+
+    
+    iniciarSessao(usuario) {
+      Armazenamento.gravar(CHAVES.sessao, { id: usuario.id, nome: usuario.nome });
+      document.dispatchEvent(new CustomEvent("vocify:sessao"));
+    },
+
+    sair() {
+      Armazenamento.remover(CHAVES.sessao);
+      document.dispatchEvent(new CustomEvent("vocify:sessao"));
+      UI.toast("Você saiu da sua conta.");
+    },
+
+    /* >>> PONTO DE INTEGRAÇÃO <<<
+       Quem fizer o login/cadastro deve SUBSTITUIR esta função para abrir
+       o modal/tela de login. Ex.: Vocify.Autenticacao.abrirLogin = () => {...} */
+    abrirLogin() {
+      UI.toast("O login será liberado em breve.");
+    },
+  };
