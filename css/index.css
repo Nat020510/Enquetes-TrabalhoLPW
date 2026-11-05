@@ -186,3 +186,65 @@
   background: var(--cor-primaria-hover);
 }
 
+/* ==========================================================================
+   5. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .grade-enquetes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .diferenciais {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Remove a divisória lateral do 3º item (início da 2ª linha) e adiciona a superior */
+  .diferencial:nth-child(3) {
+    border-left: 0;
+  }
+
+  .diferencial:nth-child(n + 3) {
+    border-top: 1px solid var(--cor-borda);
+  }
+}
+
+@media (max-width: 800px) {
+  .hero__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__arte {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-block: var(--espaco-6);
+  }
+
+  .hero__titulo {
+    text-shadow: 3px 3px 0 var(--cor-primaria);
+  }
+
+  .hero__acoes .btn {
+    flex: 1 1 100%;
+  }
+
+  .grade-enquetes,
+  .diferenciais {
+    grid-template-columns: 1fr;
+  }
+
+  .diferencial + .diferencial {
+    border-left: 0;
+    border-top: 1px solid var(--cor-borda);
+  }
+
+  .secao__cabecalho {
+    flex-wrap: wrap;
+  }
+}
+
+
