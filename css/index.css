@@ -187,7 +187,24 @@
 }
 
 /* ==========================================================================
-   5. RESPONSIVIDADE
+   5. ÁREAS RESERVADAS (outros integrantes)
+   Ficam ocultas enquanto estiverem vazias.
+   ========================================================================== */
+.area-reservada:empty {
+  display: none;
+}
+
+/*  estilos do login / cadastro na index: escreva abaixo */
+
+
+/* estilos da criação de enquetes na index: escreva abaixo */
+
+
+/* estilos dos resultados / gráficos na index: escreva abaixo */
+
+
+/* ==========================================================================
+   6. RESPONSIVIDADE
    ========================================================================== */
 @media (max-width: 1024px) {
   .grade-enquetes {
