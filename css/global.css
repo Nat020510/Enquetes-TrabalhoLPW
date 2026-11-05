@@ -626,3 +626,75 @@ h4 {
 .toast--visivel {
   transform: translate(-50%, 0);
 }
+
+
+/* ==========================================================================
+   12. RESPONSIVIDADE (mínimo 320px)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .cabecalho__menu-btn {
+    display: flex;
+  }
+
+  /* Menu vira um painel abaixo do cabeçalho */
+  .menu {
+    position: absolute;
+    top: var(--altura-cabecalho);
+    left: 0;
+    right: 0;
+    padding: var(--espaco-4) var(--espaco-5);
+    background: var(--cor-fundo);
+    border-bottom: 1px solid var(--cor-borda);
+    display: none;
+  }
+
+  .menu--aberto {
+    display: block;
+  }
+
+  .menu__lista {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu__link {
+    width: 100%;
+    text-align: left;
+  }
+
+  .marca {
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --altura-cabecalho: 64px;
+  }
+
+  .container {
+    padding-inline: var(--espaco-4);
+  }
+
+  .marca__nome {
+    font-size: 1.4rem;
+  }
+
+  .marca__icone {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cabecalho__interno {
+    gap: var(--espaco-3);
+  }
+
+  .conta__nome {
+    display: none;
+  }
+
+  .btn {
+    padding: 0.7rem 1.1rem;
+  }
+}
+
