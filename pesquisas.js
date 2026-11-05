@@ -12,4 +12,21 @@ campoPesquisa.addEventListener("input", function() {
     
     const cards = document.querySelectorAll(".card-pesquisa");
 
+
+
     
+    cards.forEach(function(card) {
+
+       
+        const titulo = card.querySelector("h2").textContent.toLowerCase();
+
+       
+        if (titulo.includes(texto)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+});
