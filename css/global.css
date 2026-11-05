@@ -314,3 +314,47 @@ h4 {
   border-color: var(--cor-primaria);
   transform: translateY(-3px);
 }
+
+
+/* ==========================================================================
+   7. FORMULÁRIOS
+   Reutilizável nas páginas de login, criação de enquete, categorias etc.
+   ========================================================================== */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-4);
+}
+
+.campo__rotulo {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.campo__entrada {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--cor-superficie-2);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.campo__entrada::placeholder {
+  color: var(--cor-texto-suave);
+  opacity: 0.7;
+}
+
+.campo__entrada:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: var(--sombra-brilho);
+}
+
+.campo__erro {
+  min-height: 1.2em;
+  font-size: var(--texto-sm);
+  color: var(--cor-erro);
+}
