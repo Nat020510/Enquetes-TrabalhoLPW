@@ -602,3 +602,27 @@ h4 {
   color: var(--cor-texto-suave);
   font-size: var(--texto-sm);
 }
+
+/* ==========================================================================
+   11. TOAST (avisos rápidos)
+   ========================================================================== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--espaco-5);
+  z-index: 300;
+  max-width: min(90vw, 420px);
+  padding: var(--espaco-3) var(--espaco-5);
+  background: var(--cor-papel);
+  color: #0a0a0a;
+  border-left: 6px solid var(--cor-primaria);
+  border-radius: var(--raio-sm);
+  font-weight: 600;
+  box-shadow: var(--sombra-card);
+  transform: translate(-50%, 150%);
+  transition: transform 0.3s ease;
+}
+
+.toast--visivel {
+  transform: translate(-50%, 0);
+}
