@@ -505,3 +505,100 @@ h4 {
   color: var(--cor-destaque);
 }
 
+/* ==========================================================================
+   10. MODAL (<dialog>)
+   ========================================================================== */
+.modal {
+  width: min(92vw, 520px);
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-card);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* Animação só quando o modal abre (resposta a uma ação do usuário) */
+.modal[open] {
+  animation: modal-entrada 0.25s ease;
+}
+
+@keyframes modal-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  padding: var(--espaco-5);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.modal__titulo {
+  font-size: var(--texto-xl);
+}
+
+.modal__fechar {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: var(--cor-superficie-2);
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background-color var(--transicao);
+}
+
+.modal__fechar:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+}
+
+.modal__corpo {
+  padding: var(--espaco-5);
+}
+
+.modal__corpo p + p,
+.modal__corpo p + h3,
+.modal__corpo ul + p {
+  margin-top: var(--espaco-4);
+}
+
+.autores {
+  margin-top: var(--espaco-3);
+  display: grid;
+  gap: var(--espaco-2);
+}
+
+.autores__item {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  padding: var(--espaco-3) var(--espaco-4);
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio-sm);
+}
+
+.autores__funcao {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
