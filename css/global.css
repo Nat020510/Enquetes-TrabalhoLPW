@@ -1,1 +1,52 @@
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+:root {
 
+  --cor-fundo: #0a0a0a;
+  --cor-superficie: #151515;
+  --cor-superficie-2: #1e1e1e;
+  --cor-borda: #2c2c2c;
+  --cor-texto: #f4efe6;
+  --cor-texto-suave: #a9a399;
+  --cor-papel: #f4efe6;            /* tom "papel" usado em cartazes/adesivos */
+  --cor-primaria: #ff6a13;         /* laranja principal */
+  --cor-primaria-hover: #ff8434;
+  --cor-destaque: #ffb400;         /* amarelo-âmbar do logo */
+  --cor-sucesso: #2fbf71;
+  --cor-erro: #ff4d4d;
+
+  /* Tipografia */
+  --fonte-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --fonte-corpo: "DM Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* Escala de tamanhos */
+  --texto-sm: 0.875rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.125rem;
+  --texto-xl: 1.5rem;
+  --texto-2xl: clamp(2rem, 4vw + 1rem, 3.5rem);
+
+  /* Espaçamentos */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.5rem;
+  --espaco-6: 2rem;
+  --espaco-7: 3rem;
+  --espaco-8: 4.5rem;
+
+  /* Bordas, sombras, transições */
+  --raio-sm: 0.5rem;
+  --raio-md: 1rem;
+  --raio-lg: 1.5rem;
+  --raio-pilula: 999px;
+  --sombra-card: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --sombra-brilho: 0 0 0 3px rgba(255, 106, 19, 0.35);
+  --transicao: 0.2s ease;
+
+  /* Medidas de layout */
+  --largura-max: 1200px;
+  --altura-cabecalho: 72px;
+}
