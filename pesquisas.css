@@ -96,3 +96,44 @@ main {
     border-color: #F47721;
 }
 
+
+/* LISTA DE PESQUISAS */
+.lista-pesquisas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    .filtros {
+        flex-direction: column;
+    }
+
+    .filtros select {
+        width: 100%;
+    }
+
+    .lista-pesquisas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .lista-pesquisas {
+        grid-template-columns: 1fr;
+    }
+
+    .introducao h1 {
+        font-size: 26px;
+    }
+}
