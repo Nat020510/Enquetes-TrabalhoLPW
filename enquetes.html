@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar | VOCIFY</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="enquetes.css">
+    <link rel="icon" type="image/png" href="imgs/Favicon.png">
+</head>
+<body>
 
+    <main>
+        <section class="coluna-direita">
+            <h1>Crie sua enquete!</h1>
+
+            <form id="formEnquete">
+
+                <div class="conteudo-enquete">
+
+                    <input type="text" id="titulo" placeholder="Título da enquete" maxlength="80" required>
+
+                    <textarea id="descricao" placeholder="Adicione uma descrição (opcional)" maxlength="200"></textarea>
+
+                    <div id="listaOpcoes">
+                        <input type="text" class="opcoes" placeholder="Alternativa 1" required>
+
+                        <input type="text" class="opcoes" placeholder="Alternativa 2" required>
+                    </div>
+
+                    <button type="button" id="adicionarOpcao">+ Adicionar alternativa</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="direita-direita">
+             <div class="paleta-cores">
+
+                <button type="button" data-cor="#F47721" id="Laranja"></button>
+
+                <button type="button" data-cor="#222222" id="Preto"></button>
+
+                <button type="button" data-cor="#3979B9" id="Azul"></button>
+
+                <button type="button" data-cor="#648B70" id="Verde"></button>
+ 
+                <button type="button" data-cor="#E58BAF" id="Rosa"></button>
+
+                <button type="button" data-cor="#E8B94F" id="Amarelo"></button>
+            </div>
+        </section>
+
+        <section class="coluna-esquerda">
+            <img src="imgs/DiscoDeVinil.png">
+        </section>
+    </main>
+
+</body>
+</html>
