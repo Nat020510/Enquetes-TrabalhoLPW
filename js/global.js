@@ -103,7 +103,6 @@
  /* ========================================================================
      4. ENQUETES
      Modelo: { id, titulo, categoriaId, autor, criadaEm,
-               
      ======================================================================== */
   const Enquetes = {
     listar() {
@@ -172,7 +171,6 @@
 
  /* ========================================================================
      5. AUTENTICAÇÃO / SESSÃO
-     
      ======================================================================== */
   const Autenticacao = {
   
@@ -197,5 +195,192 @@
        o modal/tela de login. Ex.: Vocify.Autenticacao.abrirLogin = () => {...} */
     abrirLogin() {
       UI.toast("O login será liberado em breve.");
+    },
+  };
+
+ /* ========================================================================
+     6. UI
+     ======================================================================== */
+  const UI = {
+    criar(tag, opcoes = {}, filhos = []) {
+      const elemento = document.createElement(tag);
+      if (opcoes.classe) elemento.className = opcoes.classe;
+      if (opcoes.texto !== undefined) elemento.textContent = opcoes.texto;
+      if (opcoes.atributos) {
+        Object.entries(opcoes.atributos).forEach(([nome, valor]) => {
+          elemento.setAttribute(nome, valor);
+        });
+      }
+      filhos.forEach((filho) => elemento.append(filho));
+      return elemento;
+    },
+
+     /* ---------- Layout compartilhado (cabeçalho, rodapé, modal Sobre) ---------- */
+    renderizarLayout() {
+      const paginaAtual = document.body.dataset.pagina;
+      const cabecalho = document.getElementById("cabecalho-site");
+      const rodape = document.getElementById("rodape-site");
+
+      if (cabecalho) {
+        cabecalho.className = "cabecalho";
+        cabecalho.innerHTML = this.modeloCabecalho(paginaAtual);
+      }
+
+      if (rodape) {
+        rodape.className = "rodape";
+        rodape.innerHTML = `
+          <div class="container rodape__interno">
+            <p>&copy; ${new Date().getFullYear()} Vocify. Projeto acadêmico de Web.</p>
+            <button class="rodape__link" type="button" data-acao="abrir-sobre">Sobre o projeto</button>
+          </div>`;
+      }
+
+      document.body.append(this.criarModalSobre());
+      this.atualizarConta();
+    },
+
+    modeloCabecalho(paginaAtual) {
+      const links = MENU.map((item) => {
+        const atual = item.id === paginaAtual ? ' aria-current="page"' : "";
+        return `<li><a class="menu__link" href="${item.href}"${atual}>${item.rotulo}</a></li>`;
+      }).join("");
+
+      return `
+        <div class="container cabecalho__interno">
+          <a class="marca" href="index.html" aria-label="Vocify - página inicial">
+            <img class="marca__icone" src="assets/img/favicon.png" alt="" width="44" height="44">
+            <span class="marca__nome">Vocify</span>
+          </a>
+
+          <nav class="menu" id="menu-principal" aria-label="Principal">
+            <ul class="menu__lista">
+              ${links}
+              <li><button class="menu__link" type="button" data-acao="abrir-sobre">Sobre</button></li>
+            </ul>
+          </nav>
+
+          <div class="cabecalho__conta">
+            <span class="conta__nome" id="conta-nome" hidden></span>
+            <button class="btn btn--primario" type="button" id="conta-botao" data-acao="entrar">Entrar</button>
+          </div>
+
+          <button class="cabecalho__menu-btn" type="button" aria-expanded="false"
+                  aria-controls="menu-principal" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>`;
+    },
+
+    /* Mostra "Entrar" ou "nome + Sair" conforme a sessão */
+    atualizarConta() {
+      const nome = document.getElementById("conta-nome");
+      const botao = document.getElementById("conta-botao");
+      if (!nome || !botao) return;
+
+      const sessao = Autenticacao.sessaoAtual();
+      nome.hidden = !sessao;
+      nome.textContent = sessao ? sessao.nome : "";
+      botao.textContent = sessao ? "Sair" : "Entrar";
+      botao.dataset.acao = sessao ? "sair" : "entrar";
+    },
+
+    /* ---------- Modal "Sobre" (obrigatório no enunciado) ---------- */
+    criarModalSobre() {
+      const listaAutores = UI.criar("ul", { classe: "autores" });
+      AUTORES.forEach((autor) => {
+        listaAutores.append(
+          UI.criar("li", { classe: "autores__item" }, [
+            UI.criar("span", { texto: autor.nome }),
+            UI.criar("span", { classe: "autores__funcao", texto: autor.funcao }),
+          ])
+        );
+      });
+
+      const modal = UI.criar("dialog", {
+        classe: "modal",
+        atributos: { id: "modal-sobre", "aria-labelledby": "modal-sobre-titulo" },
+      });
+
+      modal.innerHTML = `
+        <div class="modal__cabecalho">
+          <h2 class="modal__titulo" id="modal-sobre-titulo">Sobre o Vocify</h2>
+          <button class="modal__fechar" type="button" data-acao="fechar-modal" aria-label="Fechar">&times;</button>
+        </div>
+        <div class="modal__corpo">
+          <p>O Vocify é uma plataforma de enquetes: crie perguntas, organize por categorias
+             coloridas e acompanhe os resultados em gráficos.</p>
+          <p>Trabalho Prático 2 da disciplina de Web, desenvolvido por:</p>
+        </div>`;
+      modal.querySelector(".modal__corpo").append(listaAutores);
+      return modal;
+    },
+
+    abrirModal(id) {
+      const modal = document.getElementById(id);
+      if (modal && !modal.open) modal.showModal();
+    },
+
+    fecharModal(id) {
+      const modal = document.getElementById(id);
+      if (modal && modal.open) modal.close();
+    },
+
+    /* ---------- Toast (aviso rápido) ---------- */
+    toast(mensagem) {
+      let toast = document.getElementById("toast");
+      if (!toast) {
+        toast = UI.criar("div", {
+          classe: "toast",
+          atributos: { id: "toast", role: "status", "aria-live": "polite" },
+        });
+        document.body.append(toast);
+      }
+
+      toast.textContent = mensagem;
+      toast.classList.add("toast--visivel");
+      clearTimeout(UI.temporizadorToast);
+      UI.temporizadorToast = setTimeout(() => toast.classList.remove("toast--visivel"), 3000);
+    },
+
+    /* ---------- Eventos globais (delegação) ---------- */
+    registrarEventos() {
+      document.addEventListener("click", (evento) => {
+        const alvo = evento.target;
+
+        if (alvo instanceof HTMLDialogElement) {
+          alvo.close();
+          return;
+        }
+
+        const botao = alvo.closest("[data-acao]");
+
+        /* Menu hambúrguer */
+        const menuBtn = alvo.closest(".cabecalho__menu-btn");
+        if (menuBtn) {
+          const aberto = menuBtn.getAttribute("aria-expanded") === "true";
+          menuBtn.setAttribute("aria-expanded", String(!aberto));
+          document.getElementById("menu-principal").classList.toggle("menu--aberto", !aberto);
+          return;
+        }
+
+        if (!botao) return;
+
+        switch (botao.dataset.acao) {
+          case "abrir-sobre":
+            UI.abrirModal("modal-sobre");
+            break;
+          case "fechar-modal":
+            botao.closest("dialog").close();
+            break;
+          case "entrar":
+            Autenticacao.abrirLogin();
+            break;
+          case "sair":
+            Autenticacao.sair();
+            break;
+        }
+      });
+
+      document.addEventListener("vocify:sessao", () => UI.atualizarConta());
     },
   };
