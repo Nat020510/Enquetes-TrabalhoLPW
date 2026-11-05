@@ -29,3 +29,45 @@
       });
     });
   }
+
+
+ /* ========================================================================
+     3. CATEGORIAS: chips com a cor de cada categoria + filtro
+     ======================================================================== */
+  function criarChip(rotulo, id, cor) {
+    const chip = UI.criar("button", {
+      classe: "chip",
+      texto: rotulo,
+      atributos: {
+        type: "button",
+        "aria-pressed": String(id === categoriaSelecionada),
+        "data-categoria": id,
+      },
+    });
+
+   
+    if (cor) chip.style.setProperty("--cor-cat", cor);
+    return chip;
+  }
+
+  function renderizarCategorias() {
+    listaCategorias.replaceChildren(
+      criarChip("Todas", "todas", null),
+      ...Categorias.listar().map((categoria) =>
+        criarChip(categoria.nome, categoria.id, categoria.cor)
+      )
+    );
+  }
+
+
+  function aoClicarCategoria(evento) {
+    const chip = evento.target.closest(".chip");
+    if (!chip) return;
+
+    categoriaSelecionada = chip.dataset.categoria;
+
+    listaCategorias.querySelectorAll(".chip").forEach((item) => {
+      item.setAttribute("aria-pressed", String(item === chip));
+    });
+    renderizarDestaques();
+  }
