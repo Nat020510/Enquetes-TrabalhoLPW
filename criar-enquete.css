@@ -1,68 +1,179 @@
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 30px;
-    gap: 0;
+/* =================================
+   ESTRUTURA GERAL
+================================= */
+
+body {
+    margin: 0;
+    width: 100%;
 }
 
-/* DISCO */
+main {
+    display: grid;
+    grid-template-columns: 360px 500px 55px;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+/* =================================
+   DISCO DE VINIL
+================================= */
+
 .coluna-esquerda {
-    flex: 0 0 28%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 0;
 }
 
 .coluna-esquerda img {
-    width: 100%;
-    max-width: 420px;
+    width: 360px;
+    max-width: none;
     height: auto;
+    object-fit: contain;
+    transform: translateX(15px);
 }
 
-/* CONTEÚDO */
+
+/* =================================
+   COLUNA CENTRAL
+================================= */
+
 .coluna-direita {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    position: relative;
+    z-index: 1;
 }
 
-/* PALETA */
-.direita-direita {
+
+/* =================================
+   FORMULÁRIO
+================================= */
+
+#formEnquete {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    flex: 0 0 70px;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 500px;
 }
+
+
+/* =================================
+   PAINEL LARANJA
+================================= */
 
 .conteudo-enquete {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 18px;
+
     width: 100%;
-    max-width: 450px;
+    max-width: 500px;
+    box-sizing: border-box;
+
+    background-color: var(--cor-primaria);
+    padding: 40px;
+    border-radius: 18px;
 }
+
+
+/* =================================
+   CAMPOS DE TEXTO
+================================= */
+
+.conteudo-enquete input,
+.conteudo-enquete textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 16px;
+}
+
+
+/* =================================
+   ALTERNATIVAS
+================================= */
 
 #listaOpcoes {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    width: 100%;
+}
+
+
+/* =================================
+   BOTÃO ADICIONAR ALTERNATIVA
+================================= */
+
+#adicionarOpcao {
+    background: none;
+    border: none;
+    color: var(--cor-fundo);
+    text-decoration: underline;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px;
+    align-self: flex-start;
+    transition: 0.15s;
+}
+
+#adicionarOpcao:hover {
+    color: white;
+}
+
+#adicionarOpcao:active {
+    transform: translateY(2px);
+}
+
+
+/* =================================
+   PALETA DE CORES
+================================= */
+
+.direita-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .paleta-cores button {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
 }
 
-#Laranja { background-color: #F47721; }
-#Roxo    { background-color: #8956B8; }
-#Azul    { background-color: #3979B9; }
-#Verde   { background-color: #648B70; }
-#Rosa    { background-color: #E58BAF; }
-#Amarelo { background-color: #E8B94F; }
+/* CORES */
+
+#Laranja { background-color: var(--cor-primaria);}
+
+#Roxo    { background-color: #8956B8;}
+
+#Azul    { background-color: #3979B9;}
+
+#Verde   { background-color: #648B70;}
+
+#Rosa    { background-color: #E58BAF;}
+
+#Amarelo { background-color: #E8B94F;}
