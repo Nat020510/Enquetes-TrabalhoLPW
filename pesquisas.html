@@ -1,66 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Pesquisas | VOCIFY</title>
 
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- CSS DA PÁGINA -->
     <link rel="stylesheet" href="pesquisas.css">
-     <link rel="stylesheet" href="css/global.css">
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="imgs/LogoVocify.png" alt="Logo VOCIFY">
-        </div>
+    <!-- CABEÇALHO -->
+    <header class="cabecalho">
+        <div class="cabecalho__interno container">
 
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="pesquisas.html">Pesquisas</a>
-            <a href="login.html">Entrar</a>
-        </nav>
+            <a href="index.html" class="marca">
+                <img src="imgs/logo.png"
+                     alt="Logo VOCIFY"
+                     class="marca__icone">
+            </a>
+
+            <nav class="menu">
+                <ul class="menu__lista">
+
+                    <li>
+                        <a href="index.html" class="menu__link">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pesquisas.html"
+                           class="menu__link"
+                           aria-current="page">
+                            Pesquisas
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="login.html" class="menu__link">
+                            Entrar
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
 
-        <section class="introducao">
-            <h1>Pesquisas disponíveis</h1>
-            <p>Participe das enquetes e compartilhe sua opinião!</p>
+        <!-- INTRODUÇÃO -->
+        <section class="secao">
+            <div class="container">
+
+                <div class="secao__cabecalho">
+                    <div>
+                        <h1 class="secao__titulo">
+                            Pesquisas disponíveis
+                        </h1>
+
+                        <p>
+                            Participe das enquetes e compartilhe sua opinião!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FILTROS -->
+                <section class="filtros">
+
+                    <div class="campo">
+                        <label for="campoPesquisa"
+                               class="campo__rotulo">
+                            Pesquisar enquete
+                        </label>
+
+                        <input
+                            type="text"
+                            id="campoPesquisa"
+                            class="campo__entrada"
+                            placeholder="Digite o nome da enquete..."
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="filtroCategoria"
+                               class="campo__rotulo">
+                            Categoria
+                        </label>
+
+                        <select
+                            id="filtroCategoria"
+                            class="campo__entrada"
+                        >
+                            <option value="">
+                                Todas as categorias
+                            </option>
+                        </select>
+                    </div>
+
+                </section>
+
+                <!-- LISTA DE PESQUISAS -->
+                <section class="lista-pesquisas"
+                         id="listaPesquisas">
+
+                    <div class="card-pesquisa">
+
+                        <span class="categoria">
+                            Entretenimento
+                        </span>
+
+                        <h2>Qual é sua série favorita?</h2>
+
+                        <p>
+                            Vote na sua série favorita e compartilhe sua opinião!
+                        </p>
+
+                        <button>Participar</button>
+
+                    </div>
+
+                </section>
+
+            </div>
         </section>
-
-        <section class="filtros">
-
-            <input
-                type="text"
-                id="campoPesquisa"
-                placeholder="Pesquisar enquete..."
-            >
-
-            <select id="filtroCategoria">
-                <option value="">Todas as categorias</option>
-            </select>
-
-        </section>
-
-        <section class="lista-pesquisas" id="listaPesquisas">
-
-    <div class="card-pesquisa">
-        <span class="categoria">Entretenimento</span>
-
-        <h2>Qual é sua série favorita?</h2>
-
-        <p>Vote na sua série favorita e compartilhe sua opinião!</p>
-
-        <button>Participar</button>
-    </div>
-
-</section>
 
     </main>
 
+    <!-- JAVASCRIPT -->
     <script src="pesquisas.js"></script>
 
 </body>
