@@ -92,12 +92,12 @@ main {
 
 .categoria {
     display: inline-block;
-    background-color: #FFF0E5;
-    color: #F47721;
+    background-color: rgba(255, 106, 19, 0.15);
+    color: var(--cor-primaria);
     padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
+    border-radius: var(--raio-pilula);
+    font-size: var(--texto-sm);
+    font-weight: 600;
     margin-bottom: 15px;
 }
 
@@ -114,15 +114,19 @@ main {
 }
 
 .card-pesquisa button {
-    background-color: #F47721;
-    color: #FFFFFF;
+    background-color: var(--cor-primaria);
+    color: #0a0a0a;
     border: none;
     padding: 11px 20px;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: var(--raio-pilula);
+    font-size: var(--texto-sm);
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color var(--transicao);
+}
+
+.card-pesquisa button:hover {
+    background-color: var(--cor-primaria-hover);
 }
 
 .card-pesquisa button:hover {
