@@ -132,3 +132,10 @@ main {
 .card-pesquisa button:hover {
     background-color: #D95F10;
 }
+
+
+.marca__icone {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
