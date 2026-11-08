@@ -7,6 +7,9 @@ const listaPesquisas = document.getElementById("listaPesquisas");
 const filtroCategoria = document.getElementById("filtroCategoria");
 
 
+const cards = document.querySelectorAll(".card-pesquisa");
+
+
 campoPesquisa.addEventListener("input", function() {
 
    
@@ -31,5 +34,23 @@ campoPesquisa.addEventListener("input", function() {
         }
 
     });
+
+});
+
+
+
+cards.forEach(function(card) {
+
+   
+    const categoria = card.querySelector(".categoria").dataset.categoria;
+
+    
+    const opcao = document.createElement("option");
+
+    opcao.value = categoria;
+    opcao.textContent = categoria;
+
+    
+    filtroCategoria.appendChild(opcao);
 
 });
