@@ -62,4 +62,15 @@ function filtrarPesquisas() {
         }
 
     });
+
+
+    // Verifica se existe algum card visível
+const algumVisivel = Array.from(cards).some(function(card) {
+    return card.style.display !== "none";
+});
+
+// Mostra ou esconde a mensagem
+const mensagemVazia = document.getElementById("mensagemVazia");
+
+mensagemVazia.hidden = algumVisivel;
 }
