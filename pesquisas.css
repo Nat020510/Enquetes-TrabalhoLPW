@@ -7,32 +7,24 @@ main {
 }
 
 
-
 /* FILTROS */
 .filtros {
     display: flex;
-    gap: 15px;
-    margin-bottom: 35px;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: var(--espaco-6);
 }
 
-.filtros input,
-.filtros select {
-    padding: 14px;
-    border: 1px solid #DDDDDD;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    background-color: #FFFFFF;
-}
-
-.filtros input {
+.filtros .campo:first-child {
     flex: 1;
 }
 
-.filtros select {
-    width: 200px;
-    padding: 14px 10px;
-    cursor: pointer;
+.filtros .campo:last-child {
+    width: 220px;
+}
+
+.filtros .campo {
+    margin-bottom: 0;
 }
 
 .filtros input:focus,
