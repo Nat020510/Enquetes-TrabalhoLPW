@@ -77,17 +77,17 @@ main {
 
 /* CARDS DAS PESQUISAS */
 .card-pesquisa {
-    background-color: #FFFFFF;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    border: 1px solid #EEEEEE;
-    transition: 0.3s;
+    background: var(--cor-superficie);
+    padding: var(--espaco-5);
+    border-radius: var(--raio-md);
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-card);
+    transition: transform var(--transicao), border-color var(--transicao);
 }
 
 .card-pesquisa:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+    transform: translateY(-3px);
+    border-color: var(--cor-primaria);
 }
 
 .categoria {
