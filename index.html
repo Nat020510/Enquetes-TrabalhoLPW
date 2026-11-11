@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <title>Vocify | Enquetes com a sua voz</title>
 
-  <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
+  <link rel="icon" type="image/png" href="img/favicon-64.png">
 
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,19 +16,21 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
 
-  <!-- CSS -->
+  <!-- CSS: global primeiro (base), depois o exclusivo da página -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
 
-  <body data-pagina="inicio">
+<!-- data-pagina define qual item do menu fica ativo (ver MENU em js/global.js) -->
+<body data-pagina="inicio">
   <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
 
+  <!-- Cabeçalho gerado por js/global.js -->
   <header id="cabecalho-site"></header>
 
   <main id="conteudo">
 
-    <!--  HERO-->
+    <!-- ================= HERO ================= -->
     <section class="hero">
       <div class="container hero__grade">
         <div class="hero__texto">
@@ -44,25 +46,30 @@
               Ver enquetes
             </a>
           </div>
+
+          <!-- Números reais, calculados do WebStorage por js/index.js -->
+          <ul class="estatisticas" aria-label="Números do Vocify">
+            <li class="estatistica"><strong class="estatistica__numero" data-estatistica="enquetes">0</strong><span>enquetes</span></li>
+            <li class="estatistica"><strong class="estatistica__numero" data-estatistica="votos">0</strong><span>votos</span></li>
+            <li class="estatistica"><strong class="estatistica__numero" data-estatistica="categorias">0</strong><span>categorias</span></li>
+          </ul>
         </div>
 
-        <!-- Arte e barras animadas -->
+        <!-- Arte: logo em "cartaz" + cartão de resultado com barras animadas -->
         <div class="hero__arte" aria-hidden="true">
           <div class="cartaz">
-            <img src="assets/img/logo.png" alt="" width="450" height="445">
+            <img src="img/logo.png" alt="" width="450" height="445">
           </div>
-          <div class="resultado-mini">
-            <p class="resultado-mini__pergunta">Melhor trilha para o fim de semana?</p>
-            <div class="barra"><span class="barra__rotulo">Rock</span><span class="barra__trilho"><span class="barra__preenchimento" data-largura="72"></span></span></div>
-            <div class="barra"><span class="barra__rotulo">Samba</span><span class="barra__trilho"><span class="barra__preenchimento" data-largura="54"></span></span></div>
-            <div class="barra"><span class="barra__rotulo">Pop</span><span class="barra__trilho"><span class="barra__preenchimento" data-largura="31"></span></span></div>
+          <div class="resultado-mini" id="hero-resultado" hidden>
+            <p class="resultado-mini__rotulo">Mais votada agora</p>
+            <p class="resultado-mini__pergunta" id="hero-pergunta"></p>
+            <div id="hero-barras"></div>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- DIFERENCIAIS -->
+    <!-- ================= DIFERENCIAIS ================= -->
     <section class="container" aria-label="Diferenciais do Vocify">
       <ul class="diferenciais">
         <li class="diferencial">
@@ -92,16 +99,16 @@
       </ul>
     </section>
 
-    <!--  CATEGORIAS -->
+    <!-- ================= CATEGORIAS  ================= -->
     <section class="secao container" aria-labelledby="titulo-categorias">
       <div class="secao__cabecalho">
         <h2 class="secao__titulo" id="titulo-categorias">Explore por categorias</h2>
-        <a class="link-ver-todas" href="categorias.html">Ver todas</a>
+        <a class="link-ver-todas" href="enquetes.html">Ver todas</a>
       </div>
       <div class="lista-chips" id="lista-categorias" role="group" aria-label="Filtrar por categoria"></div>
     </section>
 
-    <!-- ENQUETES EM DESTAQUE -->
+    <!-- ================= ENQUETES EM DESTAQUE ================= -->
     <section class="secao container" aria-labelledby="titulo-destaques">
       <div class="secao__cabecalho">
         <h2 class="secao__titulo" id="titulo-destaques">Enquetes em destaque</h2>
@@ -110,20 +117,53 @@
       <div class="grade-enquetes" id="lista-destaques" aria-live="polite"></div>
     </section>
 
-     <!--  Login / cadastro  -->
-    <div class="area-reservada" id="area-login"></div>
 
-    <!-- Criação de enquetes  -->
-    <div class="area-reservada" id="area-criacao-enquetes"></div>
+    <section class="secao container" aria-labelledby="titulo-como-funciona">
+      <div class="secao__cabecalho">
+        <h2 class="secao__titulo" id="titulo-como-funciona">Como funciona</h2>
+      </div>
+      <ol class="passos">
+        <li class="passo card">
+          <span class="passo__numero">1</span>
+          <h3 class="passo__titulo">Crie sua conta</h3>
+          <p>Cadastre-se em segundos para guardar as suas enquetes.</p>
+        </li>
+        <li class="passo card">
+          <span class="passo__numero">2</span>
+          <h3 class="passo__titulo">Monte sua enquete</h3>
+          <p>Escreva a pergunta, adicione as alternativas e escolha uma categoria com cor.</p>
+        </li>
+        <li class="passo card">
+          <span class="passo__numero">3</span>
+          <h3 class="passo__titulo">Acompanhe os votos</h3>
+          <p>Veja os resultados em gráfico e descubra o que a galera pensa.</p>
+        </li>
+      </ol>
+    </section>
 
-    <!--  Resultados / gráficos  -->
+    <!-- ================= CHAMADA FINAL (ajustada por js/index.js conforme o login) ================= -->
+    <section class="secao container" aria-labelledby="cta-titulo">
+      <div class="cta">
+        <h2 class="cta__titulo" id="cta-titulo">Sua opinião merece um palco.</h2>
+        <p class="cta__texto">Crie uma enquete agora e veja os votos chegando.</p>
+        <div class="cta__acoes">
+          <a class="btn btn--primario" href="criar-enquete.html">Criar enquete</a>
+          <a class="btn btn--fantasma" id="cta-cadastro" href="cadastro.html">Criar conta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [RESERVADO] Resultados / gráficos na index (ex.: gráfico da enquete mais votada).
+         Oculto enquanto estiver vazio (.area-reservada:empty). Login, cadastro e criação
+         de enquetes têm páginas próprias (login.html, cadastro.html, criar-enquete.html). -->
     <div class="area-reservada" id="area-resultados"></div>
 
   </main>
 
-    <footer id="rodape-site"></footer>
+  <!-- Rodapé gerado por js/global.js -->
+  <footer id="rodape-site"></footer>
 
-  <!-- Scripts-->
+
   <script src="js/global.js" defer></script>
   <script src="js/index.js" defer></script>
 </body>
