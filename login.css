@@ -11,15 +11,22 @@
 
 /* CONTAINER DO LOGIN */
 .login-container {
-    background-color: #FFFFFF;
+    background-color: var(--cor-superficie);
     width: 100%;
     max-width: 430px;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    padding: var(--espaco-6);
+    border-radius: var(--raio-lg);
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-card);
 }
 
 
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--espaco-6) var(--espaco-4);
+}
 
 /* LOGO */
 .login-logo {
