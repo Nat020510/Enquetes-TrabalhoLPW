@@ -45,9 +45,9 @@
     object-fit: contain;
 }
 .login-logo p {
-    color: #888888;
-    font-size: 13px;
-    margin-top: 5px;
+    color: var(--cor-texto-suave);
+    font-size: var(--texto-sm);
+    margin-top: var(--espaco-2);
 }
 
 /* CONTEÚDO */
