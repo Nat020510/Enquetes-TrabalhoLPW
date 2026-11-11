@@ -41,39 +41,49 @@ main {
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 20px;
+
+/* Computadores e telas maiores */
+@media (min-width: 1200px) {
+    .lista-pesquisas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    nav {
-        gap: 18px;
+    .secao__cabecalho {
+        margin-bottom: 30px;
     }
+}
 
+/* Tablets e notebooks menores */
+@media (max-width: 900px) {
     .filtros {
         flex-direction: column;
+        align-items: stretch;
     }
 
-    .filtros select {
+    .filtros .campo:last-child {
         width: 100%;
     }
 
     .lista-pesquisas {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 480px) {
+/* Celulares */
+@media (max-width: 600px) {
     .lista-pesquisas {
         grid-template-columns: 1fr;
     }
 
-    .introducao h1 {
-        font-size: 26px;
+    .secao__cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtros {
+        gap: 12px;
     }
 }
-
 
 /* CARDS DAS PESQUISAS */
 .card-pesquisa {
