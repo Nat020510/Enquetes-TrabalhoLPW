@@ -29,9 +29,20 @@
 
                     <textarea id="descricao" placeholder="Adicione uma descrição (opcional)" maxlength="200"></textarea>
 
-                    <label for="imagem" class="area-imagem">
-                        + Adicionar imagem
-                    </label>
+                    <div class="imagem-container">
+
+                        <label for="imagem" class="area-imagem">
+                            <span id="textoImagem">+ Adicionar imagem</span>
+                            <img id="previaImagem" alt="Prévia da imagem" hidden>
+                        </label>
+
+                        <input type="file" id="imagem" accept="image/*">
+
+                        <button type="button" id="removerImagem" hidden>
+                            Remover imagem
+                        </button>
+
+                    </div>
 
                     <input
                         type="file"

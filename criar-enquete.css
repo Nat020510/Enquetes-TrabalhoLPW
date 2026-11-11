@@ -149,7 +149,7 @@ main {
    INPUTS
 ================================= */
 
-input, textarea {
+input, textarea, #removerImagem {
     color: black;
 }
 
@@ -183,6 +183,51 @@ input, textarea {
     background-color: rgba(255, 255, 255, 0.35);
 }
 
+.imagem-container {
+    width: 100%;
+}
+
+#imagem {
+    display: none;
+}
+
+.area-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    width: 100%;
+    height: 180px;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    border: 2px dashed var(--cor-fundo);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.area-imagem img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+#removerImagem {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+[hidden] {
+    display: none !important;
+}
+
 
 /* =================================
    PALETA DE CORES
@@ -204,6 +249,14 @@ input, textarea {
     border-radius: 50%;
     cursor: pointer;
     padding: -50px;
+}
+
+.paleta-cores button {
+    transition: transform 0.15s;
+}
+
+.paleta-cores button:hover {
+    transform: scale(1.1);
 }
 
 /* CORES */
