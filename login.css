@@ -52,8 +52,10 @@
 
 /* CONTEÚDO */
 .login-conteudo h2 {
-    font-size: 25px;
-    margin-bottom: 8px;
+    color: var(--cor-texto);
+    font-family: var(--fonte-titulo);
+    font-size: var(--texto-xl);
+    margin-bottom: var(--espaco-2);
 }
 
 .login-conteudo > p {
@@ -61,6 +63,7 @@
     font-size: var(--texto-sm);
     margin-bottom: var(--espaco-5);
 }
+
 /* FORMULÁRIO */
 #formLogin {
     display: flex;
