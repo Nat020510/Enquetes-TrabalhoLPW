@@ -2,12 +2,11 @@
 
 
 /* ÁREA PRINCIPAL */
-main {
-    min-height: 100vh;
+.login-main {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: var(--espaco-6) var(--espaco-4);
 }
 
 /* CONTAINER DO LOGIN */
