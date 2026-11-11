@@ -81,12 +81,15 @@
 #formLogin input {
     width: 100%;
     padding: 13px;
-    border: 1px solid #DDDDDD;
-    border-radius: 8px;
-    font-size: 14px;
+    background-color: var(--cor-superficie-2);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-sm);
+    font-size: var(--texto-sm);
     outline: none;
-    transition: 0.3s;
+    transition: var(--transicao);
 }
+
 
 #formLogin input:focus {
     border-color: #F47721;
