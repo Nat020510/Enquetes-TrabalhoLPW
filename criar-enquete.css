@@ -39,6 +39,7 @@ main {
     height: auto;
     object-fit: contain;
     transform: translateX(15px);
+    margin-top: 70px;
 }
 
 
@@ -192,6 +193,8 @@ input, textarea {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    padding: 40px;
+    margin-top: 70px;
 }
 
 .paleta-cores button {
@@ -200,6 +203,7 @@ input, textarea {
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    padding: -50px;
 }
 
 /* CORES */
