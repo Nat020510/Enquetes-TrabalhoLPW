@@ -144,6 +144,44 @@ main {
     transform: translateY(2px);
 }
 
+/* =================================
+   INPUTS
+================================= */
+
+input, textarea {
+    color: black;
+}
+
+/* =================================
+   ÁREA DE IMAGEM
+================================= */
+
+#imagem {
+    display: none;
+}
+
+.area-imagem {
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px dashed var(--cor-fundo);
+    border-radius: 10px;
+
+    color: var(--cor-fundo);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.area-imagem:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
 
 /* =================================
    PALETA DE CORES
