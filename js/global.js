@@ -1,35 +1,45 @@
+
+
 (function (window, document) {
   "use strict";
 
   /* ========================================================================
      1. CONFIGURAÇÕES
      ======================================================================== */
-
-  const CHAVES = {
-    usuarios: "vocify:usuarios",
+ const CHAVES = {
+    usuarios: "usuarios", 
     sessao: "vocify:sessao",
     enquetes: "vocify:enquetes",
     categorias: "vocify:categorias",
     demoCarregada: "vocify:demo-carregada",
   };
 
-  /* Autores exibidos no modal "Sobre". */
+
   const AUTORES = [
-    { nome: "Autor 1", funcao: "Página inicial e base do site" },
-    { nome: "Autor 2", funcao: "Criação de enquetes" },
-    { nome: "Autor 3", funcao: "Login e cadastro" },
-    { nome: "Autor 4", funcao: "Resultados e gráficos" },
+    { nome: "Rodrigo Cesar", funcao: "Página inicial e base do site" },
+    { nome: "Natalia", funcao: "Criação de enquetes" },
+    { nome: "yasmin", funcao: "Login e cadastro" },
+    { nome: "Vinicius", funcao: "Resultados e gráficos" },
   ];
 
-  /* Itens do menu. */
+  const PAGINAS = {
+    inicio: "index.html",
+    login: "login.html",
+    cadastro: "cadastro.html",
+    criar: "criar-enquete.html",
+    enquetes: "enquetes.html",
+  };
+
+
+  const PASTA_IMG = "img/";
+
   const MENU = [
-    { id: "inicio", rotulo: "Início", href: "index.html" },
-    { id: "enquetes", rotulo: "Enquetes", href: "enquetes.html" },
-    { id: "criar", rotulo: "Criar enquete", href: "criar-enquete.html" },
-    { id: "categorias", rotulo: "Categorias", href: "categorias.html" },
+    { id: "inicio", rotulo: "Início", href: PAGINAS.inicio },
+    { id: "enquetes", rotulo: "Enquetes", href: PAGINAS.enquetes },
+    { id: "criar", rotulo: "Criar enquete", href: PAGINAS.criar },
   ];
 
-  /* Categorias criadas na primeira visita */
+
   const CATEGORIAS_PADRAO = [
     { id: "entretenimento", nome: "Entretenimento", cor: "#ff6a13" },
     { id: "musica", nome: "Música", cor: "#ffb400" },
@@ -40,8 +50,8 @@
   ];
 
 
- /* ========================================================================
-    2. ARMAZENAMENTO
+  /* ========================================================================
+     2. ARMAZENAMENTO
      ======================================================================== */
   const Armazenamento = {
     ler(chave, valorPadrao) {
@@ -73,10 +83,11 @@
     },
   };
 
-  /* Gera um id único simples  */
+
   function gerarId() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   }
+
 
   /* ========================================================================
      3. CATEGORIAS  ({ id, nome, cor })
@@ -100,9 +111,9 @@
     },
   };
 
- /* ========================================================================
+
+  /* ========================================================================
      4. ENQUETES
-     Modelo: { id, titulo, categoriaId, autor, criadaEm,
      ======================================================================== */
   const Enquetes = {
     listar() {
@@ -126,10 +137,10 @@
     },
 
     totalVotos(enquete) {
-      return enquete.opcoes.reduce((soma, opcao) => soma + opcao.votos, 0);
+      return (enquete.opcoes || []).reduce((soma, opcao) => soma + (Number(opcao.votos) || 0), 0);
     },
 
-    /* DADOS DE DEMONSTRAÇÃO */
+    /* DADOS DE DEMONSTRAÇÃO: servem só para visualizar o layout. */
     carregarDemo() {
       if (Armazenamento.ler(CHAVES.demoCarregada, false)) return;
       if (this.listar().length > 0) return;
@@ -169,7 +180,8 @@
     },
   };
 
- /* ========================================================================
+
+  /* ========================================================================
      5. AUTENTICAÇÃO / SESSÃO
      ======================================================================== */
   const Autenticacao = {
@@ -178,7 +190,7 @@
       return Armazenamento.ler(CHAVES.sessao, null);
     },
 
-    
+ 
     iniciarSessao(usuario) {
       Armazenamento.gravar(CHAVES.sessao, { id: usuario.id, nome: usuario.nome });
       document.dispatchEvent(new CustomEvent("vocify:sessao"));
@@ -190,18 +202,17 @@
       UI.toast("Você saiu da sua conta.");
     },
 
-    /* >>> PONTO DE INTEGRAÇÃO <<<
-       Quem fizer o login/cadastro deve SUBSTITUIR esta função para abrir
-       o modal/tela de login. Ex.: Vocify.Autenticacao.abrirLogin = () => {...} */
     abrirLogin() {
-      UI.toast("O login será liberado em breve.");
+      window.location.href = PAGINAS.login;
     },
   };
 
- /* ========================================================================
+
+  /* ========================================================================
      6. UI
      ======================================================================== */
   const UI = {
+    
     criar(tag, opcoes = {}, filhos = []) {
       const elemento = document.createElement(tag);
       if (opcoes.classe) elemento.className = opcoes.classe;
@@ -215,7 +226,7 @@
       return elemento;
     },
 
-     /* ---------- Layout compartilhado (cabeçalho, rodapé, modal Sobre) ---------- */
+    /* ---------- Layout compartilhado (cabeçalho, rodapé, modal Sobre) ---------- */
     renderizarLayout() {
       const paginaAtual = document.body.dataset.pagina;
       const cabecalho = document.getElementById("cabecalho-site");
@@ -248,7 +259,7 @@
       return `
         <div class="container cabecalho__interno">
           <a class="marca" href="index.html" aria-label="Vocify - página inicial">
-            <img class="marca__icone" src="assets/img/favicon.png" alt="" width="44" height="44">
+            <img class="marca__icone" src="${PASTA_IMG}favicon-64.png" alt="" width="44" height="44">
             <span class="marca__nome">Vocify</span>
           </a>
 
@@ -261,6 +272,7 @@
 
           <div class="cabecalho__conta">
             <span class="conta__nome" id="conta-nome" hidden></span>
+            <a class="btn btn--fantasma conta__cadastro" id="conta-cadastro" href="${PAGINAS.cadastro}">Cadastrar</a>
             <button class="btn btn--primario" type="button" id="conta-botao" data-acao="entrar">Entrar</button>
           </div>
 
@@ -271,20 +283,22 @@
         </div>`;
     },
 
-    /* Mostra "Entrar" ou "nome + Sair" conforme a sessão */
+  
     atualizarConta() {
       const nome = document.getElementById("conta-nome");
       const botao = document.getElementById("conta-botao");
-      if (!nome || !botao) return;
+      const cadastro = document.getElementById("conta-cadastro");
+      if (!nome || !botao || !cadastro) return;
 
       const sessao = Autenticacao.sessaoAtual();
+      cadastro.hidden = Boolean(sessao);
       nome.hidden = !sessao;
       nome.textContent = sessao ? sessao.nome : "";
       botao.textContent = sessao ? "Sair" : "Entrar";
       botao.dataset.acao = sessao ? "sair" : "entrar";
     },
 
-    /* ---------- Modal "Sobre" (obrigatório no enunciado) ---------- */
+    /* ---------- Modal "Sobre" ---------- */
     criarModalSobre() {
       const listaAutores = UI.criar("ul", { classe: "autores" });
       AUTORES.forEach((autor) => {
@@ -325,7 +339,7 @@
       if (modal && modal.open) modal.close();
     },
 
-    /* ---------- Toast (aviso rápido) ---------- */
+    /* ---------- Toast ---------- */
     toast(mensagem) {
       let toast = document.getElementById("toast");
       if (!toast) {
@@ -354,7 +368,6 @@
 
         const botao = alvo.closest("[data-acao]");
 
-        /* Menu hambúrguer */
         const menuBtn = alvo.closest(".cabecalho__menu-btn");
         if (menuBtn) {
           const aberto = menuBtn.getAttribute("aria-expanded") === "true";
@@ -381,18 +394,22 @@
         }
       });
 
-      /* ========================================================================
+      document.addEventListener("vocify:sessao", () => UI.atualizarConta());
+    },
+  };
+
+
+  /* ========================================================================
      7. INICIALIZAÇÃO
      ======================================================================== */
   function iniciar() {
-    Categorias.listar();
-    Enquetes.carregarDemo(); /* REMOVER quando a criação de enquetes existir */
+    Categorias.listar(); 
+    Enquetes.carregarDemo(); 
     UI.renderizarLayout();
     UI.registrarEventos();
   }
 
-  /* Expõe a API para os scripts de cada página */
-  window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, CHAVES };
+  window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, CHAVES, PAGINAS };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", iniciar);
@@ -400,7 +417,3 @@
     iniciar();
   }
 })(window, document);
-
-      document.addEventListener("vocify:sessao", () => UI.atualizarConta());
-    },
-  };
