@@ -72,10 +72,11 @@
 }
 
 #formLogin label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #444444;
+    color: var(--cor-texto);
+    font-size: var(--texto-sm);
+    font-weight: 600;
 }
+
 
 #formLogin input {
     width: 100%;
