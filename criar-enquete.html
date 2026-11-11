@@ -10,6 +10,8 @@
 </head>
 <body>
 
+    <header id="cabecalho-site"></header>
+
     <main>
         <section class="coluna-esquerda">
             <img src="imgs/DiscoDeVinil.png">
@@ -25,6 +27,16 @@
                     <input type="text" id="titulo" placeholder="Título da enquete" maxlength="80" required>
 
                     <textarea id="descricao" placeholder="Adicione uma descrição (opcional)" maxlength="200"></textarea>
+
+                    <label for="imagem" class="area-imagem">
+                        + Adicionar imagem
+                    </label>
+
+                    <input
+                        type="file"
+                        id="imagem"
+                        accept="image/*"
+                    >
 
                     <div id="listaOpcoes">
                         <input type="text" class="opcoes" placeholder="Alternativa 1" required>
