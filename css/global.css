@@ -1,5 +1,10 @@
+
+
+
+
 /* ==========================================================================
    1. TOKENS
+   Mude as cores/medidas aqui e o site inteiro acompanha.
    ========================================================================== */
 :root {
 
@@ -9,10 +14,10 @@
   --cor-borda: #2c2c2c;
   --cor-texto: #f4efe6;
   --cor-texto-suave: #a9a399;
-  --cor-papel: #f4efe6;            /* tom "papel" usado em cartazes/adesivos */
-  --cor-primaria: #ff6a13;         /* laranja principal */
+  --cor-papel: #f4efe6;            
+  --cor-primaria: #ff6a13;         
   --cor-primaria-hover: #ff8434;
-  --cor-destaque: #ffb400;         /* amarelo-âmbar do logo */
+  --cor-destaque: #ffb400;         
   --cor-sucesso: #2fbf71;
   --cor-erro: #ff4d4d;
 
@@ -50,6 +55,7 @@
   --largura-max: 1200px;
   --altura-cabecalho: 72px;
 }
+
 
 /* ==========================================================================
    2. RESET E BASE
@@ -120,10 +126,16 @@ h4 {
 }
 
 
+[hidden] {
+  display: none !important;
+}
+
+
 :focus-visible {
   outline: 3px solid var(--cor-destaque);
   outline-offset: 3px;
 }
+
 
 /* ==========================================================================
    3. UTILITÁRIOS E LAYOUT
@@ -162,7 +174,7 @@ h4 {
   color: var(--cor-destaque);
 }
 
-/* Texto visível apenas para leitores de tela */
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -173,11 +185,23 @@ h4 {
 }
 
 
+.pular-conteudo {
+  position: absolute;
+  top: -100px;
+  left: var(--espaco-4);
+  z-index: 200;
+  padding: var(--espaco-2) var(--espaco-4);
+  background: var(--cor-primaria);
+  color: #000;
+  border-radius: var(--raio-sm);
+  font-weight: 700;
+}
+
 .pular-conteudo:focus {
   top: var(--espaco-2);
 }
 
-/* Estado vazio: convida o usuário a agir */
+
 .estado-vazio {
   grid-column: 1 / -1;
   padding: var(--espaco-6);
@@ -188,10 +212,8 @@ h4 {
 }
 
 
-
 /* ==========================================================================
    4. BOTÕES
-   Uso: <button class="btn btn--primario">  |  btn--contorno  |  btn--fantasma
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -246,6 +268,7 @@ h4 {
 }
 
 
+
 /* ==========================================================================
    5. CHIPS E ETIQUETAS DE CATEGORIA
    ========================================================================== */
@@ -286,7 +309,6 @@ h4 {
   background: #0a0a0a;
 }
 
-/* Etiqueta pequena (usada dentro dos cards) */
 .etiqueta {
   display: inline-flex;
   align-items: center;
@@ -298,6 +320,7 @@ h4 {
   font-size: var(--texto-sm);
   font-weight: 600;
 }
+
 
 /* ==========================================================================
    6. CARDS
@@ -358,6 +381,8 @@ h4 {
   font-size: var(--texto-sm);
   color: var(--cor-erro);
 }
+
+
 /* ==========================================================================
    8. CABEÇALHO E NAVEGAÇÃO
    ========================================================================== */
@@ -378,7 +403,6 @@ h4 {
   gap: var(--espaco-5);
 }
 
-/* Marca: ícone circular */
 .marca {
   display: flex;
   align-items: center;
@@ -441,7 +465,6 @@ h4 {
   white-space: nowrap;
 }
 
-/* Botão hambúrguer (telinha pequena) */
 .cabecalho__menu-btn {
   display: none;
   flex-direction: column;
@@ -505,8 +528,9 @@ h4 {
   color: var(--cor-destaque);
 }
 
+
 /* ==========================================================================
-   10. MODAL (<dialog>)
+   10. MODAL 
    ========================================================================== */
 .modal {
   width: min(92vw, 520px);
@@ -526,7 +550,6 @@ h4 {
   backdrop-filter: blur(4px);
 }
 
-/* Animação só quando o modal abre (resposta a uma ação do usuário) */
 .modal[open] {
   animation: modal-entrada 0.25s ease;
 }
@@ -603,6 +626,7 @@ h4 {
   font-size: var(--texto-sm);
 }
 
+
 /* ==========================================================================
    11. TOAST (avisos rápidos)
    ========================================================================== */
@@ -636,7 +660,6 @@ h4 {
     display: flex;
   }
 
-  /* Menu vira um painel abaixo do cabeçalho */
   .menu {
     position: absolute;
     top: var(--altura-cabecalho);
@@ -689,7 +712,8 @@ h4 {
     gap: var(--espaco-3);
   }
 
-  .conta__nome {
+  .conta__nome,
+  .conta__cadastro {
     display: none;
   }
 
@@ -698,8 +722,9 @@ h4 {
   }
 }
 
+
 /* ==========================================================================
-   13. ACESSIBILIDADE - respeita quem desativa animações no sistema
+   13. ACESSIBILIDADE -
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -711,4 +736,3 @@ h4 {
     scroll-behavior: auto !important;
   }
 }
-
