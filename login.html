@@ -5,61 +5,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="login.css">
+
     <title>Login | VOCIFY</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- CSS DO LOGIN -->
+    <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
 
-    <main>
+    <main class="login-main">
 
-<section class="login-container">
+        <section class="login-container">
 
-    <div class="login-logo">
-    <img src="imgs/LogoVocify.png" alt="Logo VOCIFY">
-    <p>Sua voz. Sua opinião. Sua escolha.</p>
-   </div>
+            <!-- LOGO -->
+            <div class="login-logo">
+                <img src="imgs/LogoVocify.png" alt="Logo VOCIFY">
 
-    <h2>Bem-vindo de volta!</h2>
-
-    <p>Entre na sua conta para continuar.</p>
-
-    <form id="formLogin">
-
-
-  <label for="email">E-mail</label>
-
-    <input
-      type="email"
-      id="email"
-     placeholder="Digite seu e-mail"
-     required
-        >
-
-   <label for="senha">Senha</label>
-
-    <input
-        type="password"
-        id="senha"
-        placeholder="Digite sua senha"
-        required
-    >
-
-    <button type="submit">Entrar</button>
-   </form>
-
-    <p class="cadastro">
-    Ainda não tem uma conta?
-    <a href="cadastro.html">Cadastre-se</a>
-                </p>
-
+                <p>Sua voz. Sua opinião. Sua escolha.</p>
             </div>
 
-        </section>
+            <!-- INTRODUÇÃO -->
+            <div class="login-conteudo">
+                <h2>Bem-vindo de volta!</h2>
 
-    </main>
-    <script src="login.js"></script>
+                <p>Entre na sua conta para continuar.</p>
+            </div>
 
-</body>
-</html>
+            <!-- FORMULÁRIO -->
+            <form id="formLogin">
+
+                <div class="campo">
+                    <label for="email" class="campo__rotulo">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="campo__entrada"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+                </div>
+
+               
