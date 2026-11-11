@@ -57,11 +57,10 @@
 }
 
 .login-conteudo > p {
-    color: #888888;
-    font-size: 14px;
-    margin-bottom: 25px;
+    color: var(--cor-texto-suave);
+    font-size: var(--texto-sm);
+    margin-bottom: var(--espaco-5);
 }
-
 /* FORMULÁRIO */
 #formLogin {
     display: flex;
