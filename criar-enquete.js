@@ -32,12 +32,14 @@ botaoAdicionar.addEventListener("click", function () {
 
 const botoesCores = document.querySelectorAll(".paleta-cores button");
 const painel = document.querySelector(".conteudo-enquete");
+let corSelecionada = "#ff6a13";
 
 botoesCores.forEach(function (botao) {
 
     botao.addEventListener("click", function () {
 
         const corEscolhida = botao.dataset.cor;
+        corSelecionada = corEscolhida;
 
         painel.style.backgroundColor = corEscolhida;
 
@@ -174,5 +176,82 @@ discoBotao.addEventListener("click", function () {
 
     tocarSom();
     criarNota();
+
+});
+
+// =====================================
+// SALVAR ENQUETE
+// =====================================
+
+const formulario = document.getElementById("formEnquete");
+
+formulario.addEventListener("submit", function (evento) {
+
+    evento.preventDefault();
+
+    const titulo = document.getElementById("titulo").value.trim();
+    const descricao = document.getElementById("descricao").value.trim();
+    const categoria = document.getElementById("categoria").value.trim();
+
+    const camposOpcoes = document.querySelectorAll(".opcoes");
+
+    const opcoes = [];
+
+    camposOpcoes.forEach(function (campo) {
+        opcoes.push({
+            texto: campo.value.trim(),
+            votos: 0
+        });
+    });
+
+    const arquivoImagem = campoImagem.files[0];
+
+    function salvarDados(imagem) {
+
+        const novaEnquete = {
+            id: Date.now(),
+            titulo: titulo,
+            descricao: descricao,
+            imagem: imagem,
+
+            categoria: {
+                nome: categoria,
+                cor: corSelecionada
+            },
+
+            cor: corSelecionada,
+            opcoes: opcoes
+        };
+
+        const enquetesSalvas =
+            JSON.parse(localStorage.getItem("vocify_enquetes")) || [];
+
+        enquetesSalvas.push(novaEnquete);
+
+        localStorage.setItem(
+            "vocify_enquetes",
+            JSON.stringify(enquetesSalvas)
+        );
+
+        alert("Enquete publicada com sucesso!");
+
+        window.location.href = "enquetes.html";
+    }
+
+    if (arquivoImagem) {
+
+        const leitor = new FileReader();
+
+        leitor.onload = function () {
+            salvarDados(leitor.result);
+        };
+
+        leitor.readAsDataURL(arquivoImagem);
+
+    } else {
+
+        salvarDados(null);
+
+    }
 
 });
