@@ -334,3 +334,43 @@ main {
     background-color: #E8B94F;
 }
 
+/* =================================
+   NOTAS MUSICAIS
+================================= */
+
+#efeitosNotas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.nota-flutuante {
+    position: absolute;
+
+    width: 75px;
+    height: auto;
+
+    object-fit: contain;
+
+    animation: notaFlutuando 1.5s ease-out forwards;
+}
+
+@keyframes notaFlutuando {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.5) rotate(-15deg);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(10deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-110px) scale(0.8) rotate(25deg);
+    }
+}
