@@ -399,3 +399,91 @@ main {
     background-color: var(--cor-primaria-hover);
     transform: translateY(-2px);
 }
+
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+/* TABLETS E TELAS MENORES */
+
+@media (max-width: 900px) {
+
+    main {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .coluna-esquerda {
+        justify-content: center;
+    }
+
+    .disco-botao {
+        width: min(40vw, 300px);
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .coluna-direita {
+        width: 100%;
+    }
+
+    .direita-direita {
+        align-items: center;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .paleta-cores {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .disco-botao {
+        width: 220px;
+    }
+
+    .coluna-direita {
+        gap: 15px;
+    }
+
+    .coluna-direita h1 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .conteudo-enquete {
+        padding: 22px;
+        gap: 15px;
+    }
+
+    .conteudo-enquete input,
+    .conteudo-enquete textarea {
+        font-size: 14px;
+    }
+
+    .area-imagem {
+        height: 150px;
+    }
+
+    .paleta-cores button {
+        width: 42px;
+        height: 42px;
+    }
+
+}
