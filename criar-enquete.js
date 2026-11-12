@@ -109,3 +109,70 @@ removerImagem.addEventListener("click", function () {
         imagemAnterior = null;
     }
 });
+
+// =====================================
+// EASTER EGG DO DISCO
+// =====================================
+
+const discoBotao = document.getElementById("discoBotao");
+const efeitosNotas = document.getElementById("efeitosNotas");
+
+const imagensNotas = [
+    "imgs/notaMusical.png",
+    "imgs/notaMusicalunica.png",
+    "imgs/notaMusicaldupla.png"
+];
+
+function tocarSom() {
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audio = new AudioContext();
+
+    const oscilador = audio.createOscillator();
+    const volume = audio.createGain();
+
+    oscilador.type = "sine";
+    oscilador.frequency.value = 659.25;
+
+    volume.gain.setValueAtTime(0.2, audio.currentTime);
+    volume.gain.exponentialRampToValueAtTime(
+        0.001,
+        audio.currentTime + 0.35
+    );
+
+    oscilador.connect(volume);
+    volume.connect(audio.destination);
+
+    oscilador.start();
+    oscilador.stop(audio.currentTime + 0.35);
+
+    oscilador.onended = function () {
+        audio.close();
+    };
+}
+
+function criarNota() {
+
+    const nota = document.createElement("img");
+
+    const indice = Math.floor(Math.random() * imagensNotas.length);
+
+    nota.src = imagensNotas[indice];
+    nota.classList.add("nota-flutuante");
+
+    nota.style.left = (40 + Math.random() * 40) + "%";
+    nota.style.top = (15 + Math.random() * 50) + "%";
+
+    efeitosNotas.appendChild(nota);
+
+    nota.addEventListener("animationend", function () {
+        nota.remove();
+    });
+}
+
+discoBotao.addEventListener("click", function () {
+
+    tocarSom();
+    criarNota();
+
+});
