@@ -1,3 +1,4 @@
+
 // =====================================
 // ADICIONAR ALTERNATIVAS
 // =====================================
@@ -24,6 +25,7 @@ botaoAdicionar.addEventListener("click", function () {
     listaOpcoes.appendChild(novaOpcao);
 });
 
+
 // =====================================
 // ALTERAR COR DO PAINEL
 // =====================================
@@ -39,16 +41,19 @@ botoesCores.forEach(function (botao) {
 
         painel.style.backgroundColor = corEscolhida;
 
-        // Destaca a cor selecionada
+        document.documentElement.style.setProperty("--cor-enquete", corEscolhida);
+
         botoesCores.forEach(function (outroBotao) {
             outroBotao.style.outline = "none";
         });
 
         botao.style.outline = "3px solid white";
         botao.style.outlineOffset = "3px";
+
     });
 
 });
+
 
 // =====================================
 // SELECIONAR, EXIBIR E REMOVER IMAGEM
@@ -75,12 +80,10 @@ campoImagem.addEventListener("change", function () {
         return;
     }
 
-    // Remove o endereço temporário anterior
     if (imagemAnterior) {
         URL.revokeObjectURL(imagemAnterior);
     }
 
-    // Cria a prévia
     imagemAnterior = URL.createObjectURL(arquivo);
 
     previaImagem.src = imagemAnterior;
@@ -92,20 +95,15 @@ campoImagem.addEventListener("change", function () {
 
 removerImagem.addEventListener("click", function () {
 
-    // Limpa o campo de arquivo
     campoImagem.value = "";
 
-    // Remove a prévia
     previaImagem.src = "";
     previaImagem.hidden = true;
 
-    // Restaura o texto
     textoImagem.hidden = false;
 
-    // Esconde o botão
     removerImagem.hidden = true;
 
-    // Libera o endereço temporário
     if (imagemAnterior) {
         URL.revokeObjectURL(imagemAnterior);
         imagemAnterior = null;
