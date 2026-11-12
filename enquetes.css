@@ -1,1 +1,215 @@
 
+/* =====================================
+   ESTRUTURA GERAL
+===================================== */
+
+.pagina-enquetes {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 50px 30px;
+    box-sizing: border-box;
+}
+
+/* =====================================
+   CABEÇALHO
+===================================== */
+
+.cabecalho-enquetes {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cabecalho-enquetes h1 {
+    color: var(--cor-texto);
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.cabecalho-enquetes p {
+    color: var(--cor-texto-suave);
+    font-size: 16px;
+}
+
+/* =====================================
+   FILTROS
+===================================== */
+
+.filtros-enquetes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.filtros-enquetes label {
+    color: var(--cor-texto);
+    font-size: 14px;
+}
+
+#filtroCategoria {
+    padding: 10px 14px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto);
+    cursor: pointer;
+}
+
+/* =====================================
+   LISTA DE ENQUETES
+===================================== */
+
+.lista-enquetes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* =====================================
+   CARTÕES
+===================================== */
+
+.cartao-enquete {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 14px;
+
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.cartao-enquete:hover {
+    transform: translateY(-5px);
+    border-color: var(--cor-primaria);
+}
+
+.cartao-enquete img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.conteudo-cartao {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+.conteudo-cartao h2 {
+    color: var(--cor-texto);
+    font-size: 20px;
+    margin: 0;
+}
+
+.conteudo-cartao p {
+    color: var(--cor-texto-suave);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* =====================================
+   CATEGORIA
+===================================== */
+
+.categoria-enquete {
+    display: inline-block;
+    align-self: flex-start;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* =====================================
+   BOTÃO
+===================================== */
+
+.botao-votar {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--cor-primaria);
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-votar:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   MENSAGEM VAZIA
+===================================== */
+
+.mensagem-vazia {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.mensagem-vazia h2 {
+    color: var(--cor-texto);
+}
+
+.mensagem-vazia p {
+    color: var(--cor-texto-suave);
+}
+
+.mensagem-vazia a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+
+    border-radius: 8px;
+    background-color: var(--cor-primaria);
+    color: white;
+    text-decoration: none;
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .pagina-enquetes {
+        padding: 35px 18px;
+    }
+
+    .cabecalho-enquetes h1 {
+        font-size: 28px;
+    }
+
+    .filtros-enquetes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filtroCategoria {
+        width: 100%;
+    }
+
+    .lista-enquetes {
+        grid-template-columns: 1fr;
+    }
+}
+
