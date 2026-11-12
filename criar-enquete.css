@@ -374,3 +374,28 @@ main {
         transform: translateY(-110px) scale(0.8) rotate(25deg);
     }
 }
+
+/* =================================
+   BOTAO PUBLICAR
+================================= */
+
+#publicarEnquete {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#publicarEnquete:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px);
+}
