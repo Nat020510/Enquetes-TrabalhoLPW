@@ -39,6 +39,16 @@ function mostrarEnquetes() {
     enquetesFiltradas.forEach(function (enquete) {
 
         const cartao = document.createElement("article");
+        cartao.style.cursor = "pointer";
+
+        cartao.addEventListener("click", function () {
+            window.location.href = `Ver-enquete.html?id=${enquete.id}`;
+        });cartao.style.cursor = "pointer";
+
+        cartao.addEventListener("click", function () {
+            window.location.href = `Ver-enquete.html?id=${enquete.id}`;
+        });
+        
         cartao.classList.add("cartao-enquete");
 
         if (enquete.imagem) {
