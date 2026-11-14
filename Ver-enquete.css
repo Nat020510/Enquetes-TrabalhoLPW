@@ -1,0 +1,413 @@
+
+/* =====================================
+   ESTRUTURA GERAL
+===================================== */
+
+:root {
+    --cor-enquete: var(--cor-primaria);
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 500px minmax(0, 1fr);
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100vh;
+
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
+/* =====================================
+   DISCO DE VINIL
+===================================== */
+
+.coluna-esquerda {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    position: relative;
+    z-index: 0;
+}
+
+.disco-botao {
+    position: relative;
+
+    width: 460px;
+    aspect-ratio: 1;
+
+    padding: 0;
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    transform: translateX(50%);
+    margin-top: 70px;
+}
+
+.disco-base {
+    position: absolute;
+    inset: -15px;
+
+    border-radius: 50%;
+    background-color: var(--cor-enquete);
+
+    z-index: 0;
+}
+
+.disco-vinil {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    z-index: 1;
+
+    animation: girarDisco 5s linear infinite;
+}
+
+@keyframes girarDisco {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =====================================
+   NOTAS MUSICAIS
+===================================== */
+
+#efeitosNotas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    pointer-events: none;
+    overflow: visible;
+}
+
+.nota-flutuante {
+    position: absolute;
+
+    width: 75px;
+    height: auto;
+
+    object-fit: contain;
+
+    animation: notaFlutuando 1.5s ease-out forwards;
+}
+
+@keyframes notaFlutuando {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.5) rotate(-15deg);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(10deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-110px) scale(0.8) rotate(25deg);
+    }
+}
+
+
+/* =====================================
+   COLUNA CENTRAL
+===================================== */
+
+.coluna-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    width: 100%;
+    min-width: 0;
+
+    position: relative;
+    z-index: 1;
+}
+
+.coluna-direita h1 {
+    color: var(--cor-texto);
+    text-align: center;
+}
+
+
+/* =====================================
+   PAINEL DA ENQUETE
+===================================== */
+
+.conteudo-enquete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    width: 100%;
+    max-width: 500px;
+
+    box-sizing: border-box;
+
+    background-color: var(--cor-enquete);
+
+    padding: 40px;
+    border-radius: 18px;
+}
+
+.conteudo-enquete h2 {
+    width: 100%;
+    text-align: center;
+    color: var(--cor-fundo);
+    overflow-wrap: anywhere;
+}
+
+#descricaoEnquete {
+    width: 100%;
+    text-align: center;
+    color: var(--cor-fundo);
+    overflow-wrap: anywhere;
+}
+
+#autorEnquete {
+    width: 100%;
+    text-align: right;
+    color: var(--cor-fundo);
+    font-size: 13px;
+}
+
+
+/* =====================================
+   CATEGORIA
+===================================== */
+
+.categoria-enquete {
+    display: inline-block;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   IMAGEM
+===================================== */
+
+.imagem-container {
+    width: 100%;
+}
+
+#imagemEnquete {
+    display: block;
+
+    width: 100%;
+    max-height: 250px;
+
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* =====================================
+   ALTERNATIVAS
+===================================== */
+
+#formVoto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    width: 100%;
+}
+
+#listaOpcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    border: none;
+}
+
+#listaOpcoes legend {
+    margin-bottom: 12px;
+    color: var(--cor-fundo);
+    font-weight: bold;
+}
+
+.opcao-voto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px;
+
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--cor-fundo);
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.opcao-voto:hover {
+    background-color: rgba(255, 255, 255, 0.55);
+    transform: translateY(-2px);
+}
+
+.opcao-voto input {
+    accent-color: var(--cor-fundo);
+}
+
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+#botaoVotar,
+#botaoExcluir {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#botaoVotar:hover,
+#botaoExcluir:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px);
+}
+
+#botaoExcluir {
+    background-color: #a83232;
+}
+
+#botaoExcluir:hover {
+    background-color: #c74444;
+}
+
+
+/* =====================================
+   RESULTADOS
+===================================== */
+
+#resultadosEnquete {
+    width: 100%;
+}
+
+#resultadosEnquete h3 {
+    color: var(--cor-fundo);
+    text-align: center;
+}
+
+#graficoResultados {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+}
+
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 900px) {
+
+    main {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .coluna-esquerda {
+        justify-content: center;
+    }
+
+    .disco-botao {
+        width: min(40vw, 300px);
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .coluna-direita {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .disco-botao {
+        width: 220px;
+    }
+
+    .coluna-direita {
+        gap: 15px;
+    }
+
+    .coluna-direita h1 {
+        font-size: 26px;
+    }
+
+    .conteudo-enquete {
+        padding: 22px;
+        gap: 15px;
+    }
+
+    .opcao-voto {
+        font-size: 14px;
+    }
+
+}
