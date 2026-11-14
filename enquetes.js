@@ -1,15 +1,13 @@
 
 // =====================================
-// CARREGAR ENQUETES
+// CARREGAR ENQUETES DO BANCO DE DADOS
 // =====================================
 
 const listaEnquetes = document.getElementById("listaEnquetes");
 const filtroCategoria = document.getElementById("filtroCategoria");
 const mensagemVazia = document.getElementById("mensagemVazia");
 
-let enquetes = JSON.parse(
-    localStorage.getItem("vocify_enquetes")
-) || [];
+let enquetes = [];
 
 
 // =====================================
@@ -28,9 +26,8 @@ function mostrarEnquetes() {
             return true;
         }
 
-        return enquete.categoria.nome === categoriaEscolhida;
+        return enquete.categoria === categoriaEscolhida;
     });
-
 
     if (enquetesFiltradas.length === 0) {
         mensagemVazia.hidden = false;
@@ -39,12 +36,10 @@ function mostrarEnquetes() {
 
     mensagemVazia.hidden = true;
 
-
     enquetesFiltradas.forEach(function (enquete) {
 
         const cartao = document.createElement("article");
         cartao.classList.add("cartao-enquete");
-
 
         if (enquete.imagem) {
 
@@ -55,25 +50,20 @@ function mostrarEnquetes() {
             cartao.appendChild(imagem);
         }
 
-
         const conteudo = document.createElement("div");
         conteudo.classList.add("conteudo-cartao");
-
 
         const categoria = document.createElement("span");
         categoria.classList.add("categoria-enquete");
 
-        categoria.textContent = enquete.categoria.nome;
-        categoria.style.backgroundColor = enquete.categoria.cor;
-
+        categoria.textContent = enquete.categoria;
+        categoria.style.backgroundColor = enquete.cor_categoria;
 
         const titulo = document.createElement("h2");
         titulo.textContent = enquete.titulo;
 
-
         const descricao = document.createElement("p");
         descricao.textContent = enquete.descricao || "Sem descrição.";
-
 
         conteudo.appendChild(categoria);
         conteudo.appendChild(titulo);
@@ -94,18 +84,29 @@ function mostrarEnquetes() {
 
 function carregarCategorias() {
 
+    const textoTodas =
+        filtroCategoria.querySelector('option[value="todas"]')?.textContent
+        || "Todas as categorias";
+
+    filtroCategoria.innerHTML = "";
+
+    const opcaoTodas = document.createElement("option");
+    opcaoTodas.value = "todas";
+    opcaoTodas.textContent = textoTodas;
+
+    filtroCategoria.appendChild(opcaoTodas);
+
     const categorias = [];
 
     enquetes.forEach(function (enquete) {
 
-        const nome = enquete.categoria.nome;
+        const nome = enquete.categoria;
 
         if (!categorias.includes(nome)) {
             categorias.push(nome);
         }
 
     });
-
 
     categorias.forEach(function (nome) {
 
@@ -117,6 +118,37 @@ function carregarCategorias() {
         filtroCategoria.appendChild(opcao);
 
     });
+
+}
+
+
+// =====================================
+// BUSCAR ENQUETES NA API
+// =====================================
+
+async function carregarEnquetes() {
+
+    try {
+
+        const resposta = await fetch("api/listar-enquetes.php");
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível carregar as enquetes.");
+        }
+
+        enquetes = await resposta.json();
+
+        carregarCategorias();
+        mostrarEnquetes();
+
+    } catch (erro) {
+
+        console.error("Erro ao carregar enquetes:", erro);
+
+        mensagemVazia.hidden = false;
+        mensagemVazia.textContent = "Não foi possível carregar as enquetes.";
+
+    }
 
 }
 
@@ -134,6 +166,4 @@ filtroCategoria.addEventListener("change", function () {
 // INICIALIZAÇÃO
 // =====================================
 
-carregarCategorias();
-mostrarEnquetes();
-
+carregarEnquetes();
