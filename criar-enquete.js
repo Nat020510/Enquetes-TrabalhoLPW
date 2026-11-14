@@ -179,9 +179,10 @@ discoBotao.addEventListener("click", function () {
 
 });
 
-// =====================================
-// SALVAR ENQUETE
-// =====================================
+
+/* =====================================
+   SALVAR ENQUETE NO BANCO DE DADOS
+   ===================================== */
 
 const formulario = document.getElementById("formEnquete");
 
@@ -198,44 +199,50 @@ formulario.addEventListener("submit", function (evento) {
     const opcoes = [];
 
     camposOpcoes.forEach(function (campo) {
-        opcoes.push({
-            texto: campo.value.trim(),
-            votos: 0
-        });
+        opcoes.push(campo.value.trim());
     });
 
     const arquivoImagem = campoImagem.files[0];
 
-    function salvarDados(imagem) {
+    async function salvarDados(imagem) {
 
-        const novaEnquete = {
-            id: Date.now(),
-            titulo: titulo,
-            descricao: descricao,
-            imagem: imagem,
+        try {
+            const resposta = await fetch("api/criar-enquete.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    titulo: titulo,
+                    descricao: descricao,
+                    categoria: categoria,
+                    cor: corSelecionada,
+                    opcoes: opcoes,
+                    imagem: imagem
+                })
+            });
 
-            categoria: {
-                nome: categoria,
-                cor: corSelecionada
-            },
+            const resultado = await resposta.json();
 
-            cor: corSelecionada,
-            opcoes: opcoes
-        };
+            if (resposta.status === 401) {
+                alert("Sua sessão expirou. Faça login novamente.");
+                window.location.href = "login.html";
+                return;
+            }
 
-        const enquetesSalvas =
-            JSON.parse(localStorage.getItem("vocify_enquetes")) || [];
+            if (!resposta.ok) {
+                alert(resultado.mensagem);
+                return;
+            }
 
-        enquetesSalvas.push(novaEnquete);
+            alert(resultado.mensagem);
 
-        localStorage.setItem(
-            "vocify_enquetes",
-            JSON.stringify(enquetesSalvas)
-        );
+            window.location.href = "enquetes.html";
 
-        alert("Enquete publicada com sucesso!");
-
-        window.location.href = "enquetes.html";
+        } catch (erro) {
+            console.error(erro);
+            alert("Não foi possível conectar ao servidor.");
+        }
     }
 
     if (arquivoImagem) {
@@ -244,6 +251,10 @@ formulario.addEventListener("submit", function (evento) {
 
         leitor.onload = function () {
             salvarDados(leitor.result);
+        };
+
+        leitor.onerror = function () {
+            alert("Não foi possível ler a imagem.");
         };
 
         leitor.readAsDataURL(arquivoImagem);
