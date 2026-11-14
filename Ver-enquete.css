@@ -411,3 +411,42 @@ main {
     }
 
 }
+
+
+/* =====================================
+   RESULTADOS DAS ENQUETES
+===================================== */
+
+.resultado-opcao {
+    width: 100%;
+}
+
+.texto-resultado {
+    color: var(--cor-fundo);
+    font-size: 14px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.barra-resultado {
+    width: 100%;
+    height: 13px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.preenchimento-resultado {
+    height: 100%;
+    background-color: var(--cor-destaque);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.total-votos {
+    color: var(--cor-fundo);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
