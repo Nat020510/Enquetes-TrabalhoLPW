@@ -1,42 +1,40 @@
 
 const formCadastro = document.getElementById("formCadastro");
 
-formCadastro.addEventListener("submit", function(event) {
+formCadastro.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("senha").value;
 
-    if (nome === "" || email === "" || senha === "") {
-        alert("Preencha todos os campos!");
-        return;
+    try {
+        const resposta = await fetch("api/cadastrar.php", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                nome: nome,
+                email: email,
+                senha: senha
+            })
+        });
+
+        const resultado = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(resultado.mensagem);
+            return;
+        }
+
+        alert(resultado.mensagem);
+        formCadastro.reset();
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível conectar ao servidor.");
     }
-
-    
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    
-    const usuarioExiste = usuarios.some(function(usuario) {
-        return usuario.email === email;
-    });
-
-    if (usuarioExiste) {
-        alert("Este e-mail já está cadastrado!");
-        return;
-    }
-
- 
-    usuarios.push({
-        nome: nome,
-        email: email,
-        senha: senha
-    });
-
-   
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    alert("Cadastro realizado com sucesso!");
-
-    formCadastro.reset();
 });
