@@ -184,28 +184,65 @@
   /* ========================================================================
      5. AUTENTICAÇÃO / SESSÃO
      ======================================================================== */
-  const Autenticacao = {
-  
+ const Autenticacao = {
+
+    sessao: null,
+
     sessaoAtual() {
-      return Armazenamento.ler(CHAVES.sessao, null);
+        return this.sessao;
     },
 
- 
-    iniciarSessao(usuario) {
-      Armazenamento.gravar(CHAVES.sessao, { id: usuario.id, nome: usuario.nome });
-      document.dispatchEvent(new CustomEvent("vocify:sessao"));
+    async verificarSessao() {
+        try {
+            const resposta = await fetch("api/verificar-sessao.php");
+
+            if (resposta.ok) {
+                const resultado = await resposta.json();
+                this.sessao = resultado.usuario;
+            } else {
+                this.sessao = null;
+            }
+
+            document.dispatchEvent(new CustomEvent("vocify:sessao"));
+
+        } catch (erro) {
+            console.error("Erro ao verificar sessão:", erro);
+            this.sessao = null;
+        }
     },
 
-    sair() {
-      Armazenamento.remover(CHAVES.sessao);
-      document.dispatchEvent(new CustomEvent("vocify:sessao"));
-      UI.toast("Você saiu da sua conta.");
-    },
+    
+      async sair() {
+          try {
+              const resposta = await fetch("api/logout.php", {
+                  method: "POST"
+              });
+
+              if (!resposta.ok) {
+                  throw new Error("Não foi possível encerrar a sessão.");
+              }
+
+              this.sessao = null;
+              document.dispatchEvent(new CustomEvent("vocify:sessao"));
+
+              UI.toast("Você saiu da sua conta.");
+
+              // Se estiver em uma página protegida, redireciona para o login
+              if (document.body.dataset.pagina === "criar") {
+                  window.location.href = PAGINAS.login;
+              }
+
+          } catch (erro) {
+              console.error(erro);
+              UI.toast("Não foi possível sair da conta.");
+          }
+      },
+
 
     abrirLogin() {
-      window.location.href = PAGINAS.login;
+        window.location.href = PAGINAS.login;
     },
-  };
+};
 
 
   /* ========================================================================
@@ -402,12 +439,14 @@
   /* ========================================================================
      7. INICIALIZAÇÃO
      ======================================================================== */
-  function iniciar() {
-    Categorias.listar(); 
-    Enquetes.carregarDemo(); 
+function iniciar() {
+    Categorias.listar();
+    Enquetes.carregarDemo();
     UI.renderizarLayout();
     UI.registrarEventos();
-  }
+
+    Autenticacao.verificarSessao();
+}
 
   window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, CHAVES, PAGINAS };
 
