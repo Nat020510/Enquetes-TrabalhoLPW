@@ -36,3 +36,4 @@ perguntas.forEach(function (pergunta) {
       sinal.textContent = "+";
     }
   });
+});
