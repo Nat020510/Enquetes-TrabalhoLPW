@@ -31,4 +31,5 @@ perguntas.forEach(function (pergunta) {
     item.classList.toggle("aberto");
 
     if (item.classList.contains("aberto")) {
-  
+        sinal.textContent = "-";
+      
