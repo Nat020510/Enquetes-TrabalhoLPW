@@ -34,3 +34,4 @@ perguntas.forEach(function (pergunta) {
         sinal.textContent = "-";
     } else {      
       sinal.textContent = "+";
+    }
