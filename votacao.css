@@ -76,3 +76,16 @@
     accent-color: var(--cor-primaria);
     cursor: pointer;
 }
+
+
+/* CATEGORIA DA ENQUETE */
+.votacao-card .categoria {
+    display: inline-block;
+    padding: var(--espaco-2) var(--espaco-3);
+    background-color: rgba(255, 106, 19, 0.12);
+    color: var(--cor-primaria);
+    border-radius: var(--raio-pilula);
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    margin-bottom: var(--espaco-4);
+}
