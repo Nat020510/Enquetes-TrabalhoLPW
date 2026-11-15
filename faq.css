@@ -58,3 +58,13 @@ body {
 .dica-sair {
   color: #a1a1aa;
   font-size: 13px;
+  text-align: center;
+}
+
+.btn-laranja {
+  background-color: #ff5b00;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: bold;
