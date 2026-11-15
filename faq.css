@@ -298,3 +298,12 @@ body {
   .hero h1 {
     font-size: 30px;
   }
+
+  .hero-botoes {
+    flex-direction: column;
+  }
+
+  .btn-laranja,
+  .btn-borda {
+    width: 100%;
+  }
