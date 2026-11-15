@@ -37,3 +37,5 @@ perguntas.forEach(function (pergunta) {
     }
   });
 });
+
+const campoBusca = document.getElementById("campo-busca");
