@@ -35,10 +35,16 @@ while ($enquete = $resultado->fetch_assoc()) {
 
     $id = $enquete["id"];
 
-    $sqlAlternativas = "SELECT id, texto, ordem
-                        FROM alternativas
-                        WHERE enquete_id = ?
-                        ORDER BY ordem";
+    $sqlAlternativas = "SELECT
+                        a.id,
+                        a.texto,
+                        a.ordem,
+                        COUNT(v.id) AS votos
+                    FROM alternativas a
+                    LEFT JOIN votos v ON v.alternativa_id = a.id
+                    WHERE a.enquete_id = ?
+                    GROUP BY a.id, a.texto, a.ordem
+                    ORDER BY a.ordem";
 
     $comando = $conexao->prepare($sqlAlternativas);
     $comando->bind_param("i", $id);
