@@ -168,3 +168,12 @@ body {
 }
 
 .card-passo {
+  background-color: #141417;
+  border: 1px solid #26262b;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.card-passo:hover {
+  border-color: #ff5b00;
+}
