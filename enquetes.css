@@ -12,6 +12,11 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
+}
+
 /* =====================================
    CABEÇALHO
 ===================================== */
