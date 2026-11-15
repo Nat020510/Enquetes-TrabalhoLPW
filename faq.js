@@ -13,3 +13,4 @@ botoesFiltro.forEach(function (botao) {
     cardsPasso.forEach(function (card) {
       const grupo = card.getAttribute("data-grupo");
       if (filtro === "todos" || filtro === grupo) {
+        card.style.display = "block";
