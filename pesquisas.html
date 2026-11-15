@@ -8,10 +8,7 @@
 
     <title>Pesquisas | VOCIFY</title>
 
-    <!-- CSS GLOBAL -->
     <link rel="stylesheet" href="css/global.css">
-
-    <!-- CSS DA PÁGINA -->
     <link rel="stylesheet" href="pesquisas.css">
 </head>
 
@@ -59,17 +56,17 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main>
 
-        <!-- INTRODUÇÃO -->
         <section class="secao">
             <div class="container">
 
+                <!-- INTRODUÇÃO -->
                 <div class="secao__cabecalho">
                     <div>
                         <h1 class="secao__titulo">
                             Pesquisas disponíveis
                         </h1>
 
-                        <p>
+                        <p class="pesquisas-descricao">
                             Participe das enquetes e compartilhe sua opinião!
                         </p>
                     </div>
@@ -114,24 +111,34 @@
                 <section class="lista-pesquisas"
                          id="listaPesquisas">
 
-                <p id="mensagemVazia" class="estado-vazio" hidden>
-    Nenhuma enquete encontrada. Tente outra pesquisa!
-</p>
+                    <p id="mensagemVazia"
+                       class="estado-vazio"
+                       hidden>
+                        Nenhuma enquete encontrada.
+                        Tente outra pesquisa!
+                    </p>
 
-                    <div class="card-pesquisa">
+                    <!-- ENQUETE DE DEMONSTRAÇÃO -->
+                    <article class="card-pesquisa">
 
-                       <span class="categoria" data-categoria="Entretenimento">
-                                Entretenimento
-                              </span>
+                        <span class="categoria"
+                              data-categoria="Entretenimento">
+                            Entretenimento
+                        </span>
+
                         <h2>Qual é sua série favorita?</h2>
 
                         <p>
-                            Vote na sua série favorita e compartilhe sua opinião!
+                            Vote na sua série favorita e compartilhe
+                            sua opinião com outras pessoas!
                         </p>
 
-                        <button>Participar</button>
+                        <a href="votacao.html"
+                           class="btn btn--primario botao-participar">
+                            Participar
+                        </a>
 
-                    </div>
+                    </article>
 
                 </section>
 
@@ -140,7 +147,6 @@
 
     </main>
 
-    <!-- JAVASCRIPT -->
     <script src="pesquisas.js"></script>
 
 </body>
