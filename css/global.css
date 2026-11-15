@@ -777,3 +777,93 @@ h4 {
   animation: flutuar-nota linear forwards;
 }
 
+
+
+@keyframes flutuar-nota {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.1) rotate(15deg);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translateY(-220px) scale(1) rotate(-15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-340px) scale(0.7) rotate(30deg);
+  }
+}
+
+/* Mini Player do Modo DJ */
+.dj-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-3) var(--espaco-4);
+  background: rgba(21, 21, 21, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--raio-pilula);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 106, 19, 0.35);
+  animation: dj-player-entrada 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes dj-player-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dj-player__capa {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.dj-player__disco {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dj-player__disco--girando {
+  animation: girar-disco 2.5s linear infinite;
+}
+
+@keyframes girar-disco {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dj-player__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.dj-player__rotulo {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--cor-destaque);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
