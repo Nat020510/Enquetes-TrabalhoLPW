@@ -42,3 +42,6 @@ const campoBusca = document.getElementById("campo-busca");
 const itensFaq = document.querySelectorAll(".faq-item");
 
 campoBusca.addEventListener("input", function () {
+  const textoDigitado = campoBusca.value.toLowerCase();
+
+  itensFaq.forEach(function (item) {
