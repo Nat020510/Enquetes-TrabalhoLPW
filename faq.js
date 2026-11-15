@@ -29,3 +29,6 @@ perguntas.forEach(function (pergunta) {
     const sinal = pergunta.querySelector(".sinal");
 
     item.classList.toggle("aberto");
+
+    if (item.classList.contains("aberto")) {
+  
