@@ -6,3 +6,4 @@ botoesFiltro.forEach(function (botao) {
     botoesFiltro.forEach(function (b) {
       b.classList.remove("ativa");
     });
+      botao.classList.add("ativa");
