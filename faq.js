@@ -15,3 +15,4 @@ botoesFiltro.forEach(function (botao) {
       if (filtro === "todos" || filtro === grupo) {
         card.style.display = "block";
       } else {
+        card.style.display = "none";
