@@ -288,3 +288,13 @@ body {
 @media (max-width: 768px) {
   .logo-img {
     height: 95px;
+    max-width: 250px;
+  }
+
+  .hero {
+    padding: 44px 0;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
