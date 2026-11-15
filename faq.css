@@ -18,3 +18,14 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cabecalho {
+  background-color: #0e0e11;
+  border-bottom: 1px solid #26262b;
+  padding: 18px 0;
+}
+
+.topo {
+  
