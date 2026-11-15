@@ -188,3 +188,13 @@ body {
   border-radius: 20px;
   margin-bottom: 12px;
 }
+
+.card-passo h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.card-passo p {
+  color: #a1a1aa;
+  font-size: 15px;
+}
