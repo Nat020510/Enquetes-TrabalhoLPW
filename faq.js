@@ -49,3 +49,4 @@ campoBusca.addEventListener("input", function () {
     if (conteudo.includes(textoDigitado)) {
       item.style.display = "block";
     } else {
+      item.style.display = "none";
