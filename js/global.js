@@ -529,3 +529,95 @@ function iniciar() {
         console.warn("[Vocify] Áudio indisponível:", e);
       }
     },
+
+    /* Sintetizador de batida funk e baixo retrô */
+    tocarPasso(tempo) {
+      const ctx = this.obterContexto();
+      if (!ctx) return;
+
+      const passoAtual = this.passo % 16;
+      this.passo++;
+
+      try {
+        /* Bumbo (Kick) */
+        if (passoAtual === 0 || passoAtual === 6 || passoAtual === 8 || passoAtual === 14) {
+          const osc = ctx.createOscillator();
+          const ganho = ctx.createGain();
+          osc.frequency.setValueAtTime(140, tempo);
+          osc.frequency.exponentialRampToValueAtTime(36, tempo + 0.12);
+          ganho.gain.setValueAtTime(0.48, tempo);
+          ganho.gain.exponentialRampToValueAtTime(0.001, tempo + 0.16);
+          osc.connect(ganho);
+          ganho.connect(ctx.destination);
+          osc.start(tempo);
+          osc.stop(tempo + 0.18);
+        }
+
+        /* Caixa (Snare) */
+        if (passoAtual === 4 || passoAtual === 12) {
+          const tamanho = Math.floor(ctx.sampleRate * 0.12);
+          const buffer = ctx.createBuffer(1, tamanho, ctx.sampleRate);
+          const dados = buffer.getChannelData(0);
+          for (let i = 0; i < tamanho; i++) dados[i] = Math.random() * 2 - 1;
+          const fonte = ctx.createBufferSource();
+          fonte.buffer = buffer;
+          const filtro = ctx.createBiquadFilter();
+          filtro.type = "highpass";
+          filtro.frequency.setValueAtTime(950, tempo);
+          const ganho = ctx.createGain();
+          ganho.gain.setValueAtTime(0.28, tempo);
+          ganho.gain.exponentialRampToValueAtTime(0.01, tempo + 0.12);
+          fonte.connect(filtro);
+          filtro.connect(ganho);
+          ganho.connect(ctx.destination);
+          fonte.start(tempo);
+        }
+
+        /* Chimbal (Hi-Hat) */
+        if (passoAtual % 2 === 1) {
+          const tamanho = Math.floor(ctx.sampleRate * 0.04);
+          const buffer = ctx.createBuffer(1, tamanho, ctx.sampleRate);
+          const dados = buffer.getChannelData(0);
+          for (let i = 0; i < tamanho; i++) dados[i] = Math.random() * 2 - 1;
+          const fonte = ctx.createBufferSource();
+          fonte.buffer = buffer;
+          const filtro = ctx.createBiquadFilter();
+          filtro.type = "highpass";
+          filtro.frequency.setValueAtTime(6500, tempo);
+          const ganho = ctx.createGain();
+          ganho.gain.setValueAtTime(0.12, tempo);
+          ganho.gain.exponentialRampToValueAtTime(0.001, tempo + 0.04);
+          fonte.connect(filtro);
+          filtro.connect(ganho);
+          ganho.connect(ctx.destination);
+          fonte.start(tempo);
+        }
+
+        /* Linha de baixo funk */
+        const notas = [82.41, 82.41, 98.0, 98.0, 110.0, 110.0, 146.83, 123.47];
+        if (passoAtual % 2 === 0) {
+          const freq = notas[(passoAtual / 2) % notas.length];
+          const osc = ctx.createOscillator();
+          const filtro = ctx.createBiquadFilter();
+          const ganho = ctx.createGain();
+
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(freq, tempo);
+
+          filtro.type = "lowpass";
+          filtro.frequency.setValueAtTime(450, tempo);
+          filtro.frequency.exponentialRampToValueAtTime(170, tempo + 0.15);
+
+          ganho.gain.setValueAtTime(0.24, tempo);
+          ganho.gain.exponentialRampToValueAtTime(0.001, tempo + 0.17);
+
+          osc.connect(filtro);
+          filtro.connect(ganho);
+          ganho.connect(ctx.destination);
+          osc.start(tempo);
+          osc.stop(tempo + 0.18);
+        }
+      } catch (e) {
+        // Ignora pequenos erros de contexto
+      }
+    },
