@@ -104,18 +104,19 @@
 /* LINK DE CADASTRO */
 .cadastro {
     text-align: center;
-    margin-top: 25px;
-    font-size: 13px;
-    color: #777777;
+    margin-top: var(--espaco-5);
+    font-size: var(--texto-sm);
+    color: var(--cor-texto-suave);
 }
 
 .cadastro a {
-    color: #F47721;
+    color: var(--cor-primaria);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .cadastro a:hover {
+    color: var(--cor-primaria-hover);
     text-decoration: underline;
 }
 
