@@ -830,3 +830,42 @@
 .link-destaque:hover {
   color: var(--cor-destaque);
 }
+
+
+/* ==========================================================================
+   13. BOTÃO VOLTAR AO TOPO
+   ========================================================================== */
+.btn-topo {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-primaria);
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-topo--visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-topo:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+}
+
