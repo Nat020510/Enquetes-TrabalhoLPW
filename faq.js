@@ -6,8 +6,8 @@ botoesFiltro.forEach(function (botao) {
     botoesFiltro.forEach(function (b) {
       b.classList.remove("ativa");
     });
-      botao.classList.add("ativa");
-    
+    botao.classList.add("ativa");
+
     const filtro = botao.getAttribute("data-filtro");
 
     cardsPasso.forEach(function (card) {
@@ -31,8 +31,8 @@ perguntas.forEach(function (pergunta) {
     item.classList.toggle("aberto");
 
     if (item.classList.contains("aberto")) {
-        sinal.textContent = "-";
-    } else {      
+      sinal.textContent = "-";
+    } else {
       sinal.textContent = "+";
     }
   });
