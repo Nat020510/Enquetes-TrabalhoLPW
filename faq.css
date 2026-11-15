@@ -278,3 +278,13 @@ body {
 }
 
 .rodape {
+  border-top: 1px solid #26262b;
+  padding: 24px 0;
+  text-align: center;
+  color: #71717a;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 95px;
