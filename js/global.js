@@ -621,3 +621,139 @@ function iniciar() {
         // Ignora pequenos erros de contexto
       }
     },
+
+     iniciarLoop() {
+      if (this.tempoLoop) return;
+      this.passo = 0;
+      const intervaloMs = (60 / this.bpm / 4) * 1000;
+      this.tempoLoop = setInterval(() => {
+        const ctx = this.obterContexto();
+        if (ctx) {
+          this.tocarPasso(ctx.currentTime);
+        }
+      }, intervaloMs);
+    },
+
+    pararLoop() {
+      if (this.tempoLoop) {
+        clearInterval(this.tempoLoop);
+        this.tempoLoop = null;
+      }
+    },
+
+    lancarNotas() {
+      const icones = [
+        "imgs/notaMusical.png",
+        "imgs/notaMusicaldupla.png",
+        "imgs/notaMusicalunica.png"
+      ];
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          const nota = document.createElement("img");
+          nota.src = icones[Math.floor(Math.random() * icones.length)];
+          nota.className = "easteregg-nota-flutuante";
+          nota.style.left = `${Math.random() * 85 + 5}vw`;
+          nota.style.bottom = `${Math.random() * 20 + 10}vh`;
+          nota.style.animationDuration = `${Math.random() * 2 + 2.5}s`;
+          document.body.append(nota);
+          setTimeout(() => nota.remove(), 4500);
+        }, i * 220);
+      }
+    },
+
+    ativar(origem = "geral") {
+      this.obterContexto();
+      this.tocarScratch();
+
+      const disco = document.getElementById("disco-vinil");
+
+      if (this.ativo) {
+        this.desativar();
+        return;
+      }
+
+      this.ativo = true;
+      if (disco) disco.classList.add("disco-vinil--girando");
+
+      setTimeout(() => {
+        if (this.ativo) {
+          this.iniciarLoop();
+          this.lancarNotas();
+        }
+      }, 350);
+
+      this.renderizarPlayer();
+      UI.toast("🎧 Easter Egg Desbloqueado: Modo DJ Vocify Ativado!");
+    },
+
+    desativar() {
+      this.tocarScratch();
+      this.pararLoop();
+      this.ativo = false;
+
+      const disco = document.getElementById("disco-vinil");
+      if (disco) disco.classList.remove("disco-vinil--girando");
+
+      const player = document.getElementById("dj-player");
+      if (player) player.remove();
+
+      UI.toast("Modo DJ pausado.");
+    },
+
+    renderizarPlayer() {
+      let player = document.getElementById("dj-player");
+      if (player) return;
+
+      player = document.createElement("div");
+      player.id = "dj-player";
+      player.className = "dj-player";
+      player.innerHTML = `
+        <div class="dj-player__capa">
+          <img src="imgs/DiscoVinil.png" alt="Vinil" class="dj-player__disco ${this.ativo ? "dj-player__disco--girando" : ""}">
+        </div>
+        <div class="dj-player__info">
+          <span class="dj-player__rotulo">Modo DJ Vocify</span>
+          <span class="dj-player__faixa">Groove das Enquetes (118 BPM)</span>
+        </div>
+        <div class="dj-player__acoes">
+          <button type="button" class="dj-player__btn" id="dj-btn-scratch" title="Fazer scratch manual">💿 Scratch</button>
+          <button type="button" class="dj-player__btn dj-player__btn--destaque" id="dj-btn-toggle" title="Pausar / Retomar">⏸️</button>
+          <button type="button" class="dj-player__btn dj-player__fechar" id="dj-btn-fechar" title="Fechar">✕</button>
+        </div>
+      `;
+
+      document.body.append(player);
+
+      document.getElementById("dj-btn-scratch")?.addEventListener("click", () => {
+        this.tocarScratch();
+        this.lancarNotas();
+      });
+
+      document.getElementById("dj-btn-toggle")?.addEventListener("click", () => {
+        if (this.ativo) {
+          this.pararLoop();
+          this.ativo = false;
+          const btn = document.getElementById("dj-btn-toggle");
+          if (btn) btn.textContent = "▶️";
+          const discoP = player.querySelector(".dj-player__disco");
+          if (discoP) discoP.classList.remove("dj-player__disco--girando");
+          const discoHero = document.getElementById("disco-vinil");
+          if (discoHero) discoHero.classList.remove("disco-vinil--girando");
+        } else {
+          this.tocarScratch();
+          this.iniciarLoop();
+          this.ativo = true;
+          const btn = document.getElementById("dj-btn-toggle");
+          if (btn) btn.textContent = "⏸️";
+          const discoP = player.querySelector(".dj-player__disco");
+          if (discoP) discoP.classList.add("dj-player__disco--girando");
+          const discoHero = document.getElementById("disco-vinil");
+          if (discoHero) discoHero.classList.add("disco-vinil--girando");
+          this.lancarNotas();
+        }
+      });
+
+      document.getElementById("dj-btn-fechar")?.addEventListener("click", () => {
+        this.desativar();
+      });
+    },
