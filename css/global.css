@@ -867,3 +867,57 @@ h4 {
   letter-spacing: 0.05em;
 }
 
+
+.dj-player__faixa {
+  font-size: 0.8rem;
+  color: var(--cor-texto);
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dj-player__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dj-player__btn {
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--raio-pilula);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transicao);
+}
+
+.dj-player__btn:hover {
+  background: var(--cor-borda);
+  transform: translateY(-1px);
+}
+
+.dj-player__btn--destaque {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-color: var(--cor-primaria);
+}
+
+.dj-player__btn--destaque:hover {
+  background: var(--cor-primaria-hover);
+}
+
+.dj-player__fechar {
+  background: transparent;
+  border: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.dj-player__fechar:hover {
+  color: var(--cor-texto);
+}
