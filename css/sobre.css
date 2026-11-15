@@ -1,1 +1,57 @@
+/* ==========================================================================
+   VOCIFY - SOBRE O PROJETO & CRÉDITOS STAR WARS (css/sobre.css)
+   Combina a identidade visual do Vocify com a clássica abertura 3D Star Wars
+   ========================================================================== */
+
+ 
+:root {
+  --sw-amarelo: #ffb400;
+  --sw-amarelo-brilho: #feda4a;
+  --sw-azul-intro: #4da3ff;
+  --sw-cinema-bg: #060608;
+  --sw-duracao-crawl: 75s;
+}
+
+/* Espaçamento geral da página sobre */
+.pagina-sobre {
+  padding-bottom: var(--espaco-8);
+}
+
+/* Hero da página Sobre */
+.sobre-hero {
+  padding-block: var(--espaco-7) var(--espaco-5);
+  text-align: center;
+}
+
+.sobre-hero .container {
+  max-width: 860px;
+}
+
+.sobre-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: 0.4rem 1rem;
+  margin-bottom: var(--espaco-4);
+  background: rgba(255, 106, 19, 0.12);
+  border: 1px solid rgba(255, 106, 19, 0.35);
+  border-radius: var(--raio-pilula);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  color: var(--cor-destaque);
+}
+
+.sobre-hero__titulo {
+  font-size: clamp(2.4rem, 5vw + 0.5rem, 4.2rem);
+  font-weight: 800;
+  text-shadow: 3px 3px 0 var(--cor-primaria);
+  line-height: 1.15;
+}
+
+.sobre-hero__sub {
+  margin-top: var(--espaco-4);
+  font-size: var(--texto-lg);
+  color: var(--cor-texto-suave);
+  line-height: 1.6;
+}
 
