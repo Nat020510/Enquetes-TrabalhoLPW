@@ -335,3 +335,81 @@
   letter-spacing: 0.1em;
   text-shadow: 0 0 20px rgba(255, 106, 19, 0.8);
 }
+
+/* ==========================================================================
+   BARRA DE CONTROLES DO TEATRO
+   ========================================================================== */
+.holo-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.controle-btn {
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--raio-pilula);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all var(--transicao);
+}
+
+.controle-btn:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-color: var(--cor-primaria);
+  transform: translateY(-2px);
+}
+
+.controle-btn--ativo {
+  background: rgba(255, 106, 19, 0.15);
+  border-color: var(--cor-primaria);
+  color: var(--cor-destaque);
+}
+
+/* MODO LEITURA PLANA (Acessibilidade) */
+.holo-projetor.modo-plano-ativo {
+  height: auto;
+  min-height: 400px;
+  padding-block: var(--espaco-6);
+  background: var(--cor-superficie-2);
+}
+
+.holo-projetor.modo-plano-ativo .sw-viewport {
+  perspective: none;
+  overflow: visible;
+  height: auto;
+}
+
+.holo-projetor.modo-plano-ativo .sw-crawl {
+  position: relative;
+  top: auto;
+  transform: none;
+  opacity: 1;
+  animation: none;
+  color: var(--cor-texto);
+  padding-inline: var(--espaco-4);
+}
+
+.holo-projetor.modo-plano-ativo .fade-topo-cosmos,
+.holo-projetor.modo-plano-ativo .sw-intro,
+.holo-projetor.modo-plano-ativo .sw-logo-zoom {
+  display: none !important;
+}
+
+.holo-projetor.modo-plano-ativo .sw-crawl p {
+  color: var(--cor-texto-suave);
+  text-shadow: none;
+}
