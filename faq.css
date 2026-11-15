@@ -228,3 +228,13 @@ body {
   flex-direction: column;
   gap: 12px;
 }
+
+.faq-item {
+  background-color: #141417;
+  border: 1px solid #26262b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-pergunta {
+  width: 100%;
