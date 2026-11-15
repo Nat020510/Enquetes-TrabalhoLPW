@@ -105,3 +105,29 @@
 #formVotacao button {
     width: 100%;
 }
+
+
+
+/* ÁREA DE RESULTADOS */
+.resultados {
+    max-width: 650px;
+    margin: var(--espaco-6) auto 0;
+    padding: var(--espaco-6);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-lg);
+    box-shadow: var(--sombra-card);
+}
+
+.resultados h2 {
+    color: var(--cor-texto);
+    font-family: var(--fonte-titulo);
+    font-size: var(--texto-xl);
+    margin-bottom: var(--espaco-2);
+}
+
+.resultados-descricao {
+    color: var(--cor-texto-suave);
+    font-size: var(--texto-sm);
+    margin-bottom: var(--espaco-5);
+}
