@@ -101,3 +101,7 @@
 }
 
 
+/* BOTÃO DE VOTAÇÃO */
+#formVotacao button {
+    width: 100%;
+}
