@@ -45,3 +45,4 @@ campoBusca.addEventListener("input", function () {
   const textoDigitado = campoBusca.value.toLowerCase();
 
   itensFaq.forEach(function (item) {
+    const conteudo = item.textContent.toLowerCase();
