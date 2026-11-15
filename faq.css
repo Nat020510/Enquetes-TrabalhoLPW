@@ -258,3 +258,13 @@ body {
 
 .sinal {
   color: #ff5b00;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.faq-resposta {
+  display: none;
+  padding: 0 20px 18px 20px;
+  color: #a1a1aa;
+  font-size: 15px;
+}
