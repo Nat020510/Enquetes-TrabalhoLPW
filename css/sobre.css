@@ -413,3 +413,90 @@
   color: var(--cor-texto-suave);
   text-shadow: none;
 }
+
+
+/* ==========================================================================
+   CARDS DA EQUIPE (PADRÃO VOCIFY)
+   ========================================================================== */
+.secao-equipe {
+  margin-top: var(--espaco-8);
+}
+
+.grade-autores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaco-5);
+  margin-top: var(--espaco-6);
+}
+
+.card-autor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5);
+  border-top: 4px solid var(--cor-cat, var(--cor-primaria));
+  transition: transform var(--transicao), border-color var(--transicao);
+}
+
+.card-autor:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-card), 0 0 20px rgba(255, 106, 19, 0.2);
+}
+
+.card-autor__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-autor__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  background: rgba(255, 106, 19, 0.12);
+  border: 1px solid rgba(255, 106, 19, 0.35);
+}
+
+.card-autor__badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--cor-destaque);
+}
+
+.card-autor__nome {
+  font-size: var(--texto-lg);
+  font-weight: 700;
+}
+
+.card-autor__funcao {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.card-autor__bio {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+  line-height: 1.5;
+}
+
+.card-autor__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: var(--espaco-3);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.card-autor__tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--cor-superficie-2);
+  border-radius: var(--raio-sm);
+  color: var(--cor-texto-suave);
+}
