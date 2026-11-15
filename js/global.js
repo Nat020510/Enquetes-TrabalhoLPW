@@ -387,7 +387,7 @@
       clearTimeout(UI.temporizadorToast);
       UI.temporizadorToast = setTimeout(() => toast.classList.remove("toast--visivel"), 3000);
     },
-
+    
     /* ---------- Eventos globais (delegação) ---------- */
     registrarEventos() {
       document.addEventListener("click", (evento) => {
@@ -429,7 +429,6 @@
       document.addEventListener("vocify:sessao", () => UI.atualizarConta());
     },
   };
-
 
   /* ========================================================================
      8. EASTER EGG: MODO DJ VOCIFY (Web Audio API Synthesizer & Vinil Player)
