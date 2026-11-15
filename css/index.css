@@ -869,3 +869,49 @@
   color: #0a0a0a;
 }
 
+
+/* ==========================================================================
+   14. RESPONSIVIDADE DAS ADIÇÕES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .grade-beneficios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .voto-relampago__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .disco-vinil-hero {
+    width: 200px;
+    height: 200px;
+    right: -25px;
+  }
+
+  .cartaz-cenario:hover .disco-vinil-hero {
+    right: -50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grade-beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  .disco-vinil-hero {
+    width: 160px;
+    height: 160px;
+    right: -15px;
+  }
+
+  .btn-topo {
+    left: 14px;
+    bottom: 14px;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
+
