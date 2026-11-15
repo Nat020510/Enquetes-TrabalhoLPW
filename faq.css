@@ -138,3 +138,13 @@ body {
 }
 
 .filtros-tutorial {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.pill {
+  background-color: #18181c;
+  color: #a1a1aa;
+  border: 1px solid #26262b;
