@@ -41,15 +41,3 @@ perguntas.forEach(function (pergunta) {
 const campoBusca = document.getElementById("campo-busca");
 const itensFaq = document.querySelectorAll(".faq-item");
 
-campoBusca.addEventListener("input", function () {
-  const textoDigitado = campoBusca.value.toLowerCase();
-
-  itensFaq.forEach(function (item) {
-    const conteudo = item.textContent.toLowerCase();
-    if (conteudo.includes(textoDigitado)) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
-    }
-  });
-});
