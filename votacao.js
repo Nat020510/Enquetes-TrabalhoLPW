@@ -1,3 +1,4 @@
+
 const formVotacao = document.getElementById("formVotacao");
 const areaResultados = document.getElementById("resultados");
 const graficoResultados = document.getElementById("graficoResultados");
@@ -12,6 +13,7 @@ opcoes.forEach(function(opcao) {
     votos[opcao.value] = 0;
 });
 
+// REGISTRAR VOTO
 formVotacao.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -32,6 +34,13 @@ formVotacao.addEventListener("submit", function(event) {
     areaResultados.hidden = false;
 });
 
+// BOTÃO VER RESULTADOS
+btnVerResultados.addEventListener("click", function() {
+    mostrarResultados();
+    areaResultados.hidden = false;
+});
+
+// EXIBIR RESULTADOS
 function mostrarResultados() {
     const totalVotos = Object.values(votos).reduce(
         function(total, quantidade) {
@@ -41,6 +50,14 @@ function mostrarResultados() {
 
     graficoResultados.innerHTML = "";
 
+    // Verificar se existem votos
+    if (totalVotos === 0) {
+        graficoResultados.innerHTML =
+            "<p>Ainda não há votos nesta enquete.</p>";
+        return;
+    }
+
+    // Calcular porcentagens
     for (const opcao in votos) {
         const quantidade = votos[opcao];
         const porcentagem = (quantidade / totalVotos) * 100;
@@ -50,8 +67,11 @@ function mostrarResultados() {
 
         resultado.innerHTML = `
             <p>${opcao} - ${quantidade} voto(s) (${porcentagem.toFixed(0)}%)</p>
+
             <div class="barra-fundo">
-                <div class="barra-preenchida" style="width: ${porcentagem}%"></div>
+                <div class="barra-preenchida"
+                     style="width: ${porcentagem}%">
+                </div>
             </div>
         `;
 
