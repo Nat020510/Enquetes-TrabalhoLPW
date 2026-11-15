@@ -5,3 +5,4 @@ botoesFiltro.forEach(function (botao) {
   botao.addEventListener("click", function () {
     botoesFiltro.forEach(function (b) {
       b.classList.remove("ativa");
+    });
