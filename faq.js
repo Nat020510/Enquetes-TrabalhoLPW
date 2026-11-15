@@ -18,4 +18,4 @@ botoesFiltro.forEach(function (botao) {
         card.style.display = "none";
       }
     });
-    
+  });
