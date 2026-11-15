@@ -334,3 +334,51 @@
     iniciar();
 
 })(document, window.Vocify);
+
+
+    // VOTO RELÂMPAGO (DEMO INTERATIVA)
+    function iniciarDemoVotoRelampago() {
+        const CHAVE_DEMO = "vocify:demo-voto";
+        const gradeOpcoes = document.getElementById("demo-opcoes");
+        const statusEl = document.getElementById("demo-status");
+        const contagemEl = document.getElementById("demo-total-contagem");
+        if (!gradeOpcoes) return;
+
+        let votosDemo = [652, 474, 267, 89];
+        let votoSalvo = null;
+
+        try {
+            const salvo = JSON.parse(localStorage.getItem(CHAVE_DEMO));
+            if (salvo && Array.isArray(salvo.votos)) {
+                votosDemo = salvo.votos;
+                votoSalvo = salvo.escolha;
+            }
+        } catch (e) {}
+
+        function atualizarBarras() {
+            const total = votosDemo.reduce((a, b) => a + b, 0);
+            const botoes = gradeOpcoes.querySelectorAll(".voto-card");
+
+            botoes.forEach((btn, idx) => {
+                const qtd = votosDemo[idx] || 0;
+                const pct = total > 0 ? Math.round((qtd / total) * 100) : 0;
+                const barra = btn.querySelector(".voto-card__preenchimento");
+                const pctTexto = btn.querySelector(".voto-card__pct");
+
+                if (barra) barra.style.width = `${pct}%`;
+                if (pctTexto) pctTexto.textContent = `${pct}%`;
+
+                const selecionado = votoSalvo === idx;
+                btn.classList.toggle("voto-card--selecionado", selecionado);
+                btn.setAttribute("aria-checked", String(selecionado));
+            });
+
+            if (contagemEl) {
+                contagemEl.textContent = `👥 ${total.toLocaleString("pt-BR")} votos computados nesta demonstração`;
+            }
+
+            if (votoSalvo !== null && statusEl) {
+                statusEl.textContent = "✓ Seu voto foi registrado!";
+                statusEl.style.color = "var(--cor-sucesso)";
+            }
+        }
