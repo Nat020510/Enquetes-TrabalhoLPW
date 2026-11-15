@@ -325,12 +325,3 @@ body {
     width: 100%;
   }
 
-  .faq-pergunta {
-    font-size: 15px;
-    padding: 16px;
-  }
-
-  .faq-resposta {
-    padding: 0 16px 16px 16px;
-  }
-}
