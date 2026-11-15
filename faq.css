@@ -158,3 +158,13 @@ body {
   background-color: #ff5b00;
   color: #ffffff;
   border-color: #ff5b00;
+  font-weight: bold;
+}
+
+.grid-passos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card-passo {
