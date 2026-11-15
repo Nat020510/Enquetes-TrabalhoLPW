@@ -37,7 +37,6 @@
     { id: "criar", rotulo: "Criar enquete", href: PAGINAS.criar },
   ];
 
-
   const CATEGORIAS_PADRAO = [
     { id: "entretenimento", nome: "Entretenimento", cor: "#ff6a13" },
     { id: "musica", nome: "Música", cor: "#ffb400" },
