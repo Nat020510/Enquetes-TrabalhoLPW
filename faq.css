@@ -218,3 +218,13 @@ body {
   font-size: 15px;
   outline: none;
 }
+
+#campo-busca:focus {
+  border-color: #ff5b00;
+}
+
+.lista-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
