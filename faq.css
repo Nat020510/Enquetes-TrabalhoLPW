@@ -238,3 +238,13 @@ body {
 
 .faq-pergunta {
   width: 100%;
+  background: none;
+  border: none;
+  color: #ffffff;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
