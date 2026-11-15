@@ -307,3 +307,14 @@ body {
   .btn-borda {
     width: 100%;
   }
+
+  .grid-passos {
+    grid-template-columns: 1fr;
+  }
+
+  .card-passo {
+    padding: 20px;
+  }
+
+  .faq-topo {
+    flex-direction: column;
