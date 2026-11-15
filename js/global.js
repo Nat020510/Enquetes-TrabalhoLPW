@@ -802,3 +802,23 @@ function iniciar() {
     }
   };
 
+  /* ========================================================================
+     7. INICIALIZAÇÃO
+     ======================================================================== */
+function iniciar() {
+    Categorias.listar();
+    UI.renderizarLayout();
+    UI.registrarEventos();
+    EasterEgg.registrarGatilhos();
+
+    Autenticacao.verificarSessao();
+}
+
+  window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, EasterEgg, CHAVES, PAGINAS };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})(window, document);
