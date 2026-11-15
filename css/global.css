@@ -737,3 +737,43 @@ h4 {
     scroll-behavior: auto !important;
   }
 }
+
+
+
+/* ==========================================================================
+   14. ADIÇÕES GLOBAIS: EASTER EGG (MODO DJ VOCIFY) 
+   ========================================================================== */
+.rodape__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+}
+
+.rodape__easteregg {
+  cursor: pointer;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--raio-pilula);
+  border: 1px dashed rgba(255, 106, 19, 0.45);
+  background: rgba(255, 106, 19, 0.08);
+  font-size: 0.8rem;
+  transition: all var(--transicao);
+}
+
+.rodape__easteregg:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+/* Notas musicais flutuantes do Easter Egg */
+.easteregg-nota-flutuante {
+  position: fixed;
+  z-index: 9999;
+  width: 42px;
+  height: 42px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255, 106, 19, 0.85));
+  animation: flutuar-nota linear forwards;
+}
+
