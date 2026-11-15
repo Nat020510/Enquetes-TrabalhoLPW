@@ -56,6 +56,10 @@
   --altura-cabecalho: 72px;
 }
 
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
+}
 
 /* ==========================================================================
    2. RESET E BASE
