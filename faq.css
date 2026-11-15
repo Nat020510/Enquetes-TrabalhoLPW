@@ -48,3 +48,13 @@ body {
 }
 
 .logo-img {
+  height: 120px;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  display: block;
+}
+
+.dica-sair {
+  color: #a1a1aa;
+  font-size: 13px;
