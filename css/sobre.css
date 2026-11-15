@@ -198,3 +198,140 @@
   75% { opacity: 0.9; transform: scale(0.35); }
   100% { opacity: 0; transform: scale(0.01); }
 }
+
+
+/* 3. PERSPECTIVA 3D DO CRAWL STAR WARS */
+.sw-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 320px;
+  perspective-origin: 50% 65%;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.sw-crawl {
+  position: absolute;
+  top: 100%;
+  width: min(92%, 760px);
+  transform-origin: 50% 100%;
+  transform: rotateX(25deg);
+  color: var(--sw-amarelo-brilho);
+  text-align: justify;
+  line-height: 1.85;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  animation: rastejar-vocify var(--sw-duracao-crawl) linear 10.5s infinite;
+  animation-fill-mode: forwards;
+}
+
+.sw-crawl.pausado {
+  animation-play-state: paused;
+}
+
+@keyframes rastejar-vocify {
+  0% {
+    top: 92%;
+    opacity: 1;
+    transform: rotateX(25deg) translateY(0);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    top: -2600px;
+    opacity: 0;
+    transform: rotateX(25deg) translateY(-2600px);
+  }
+}
+
+/* Tipografia aumentada e marcante do Crawl */
+.sw-crawl__episodio {
+  font-family: var(--fonte-titulo);
+  text-align: center;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  color: var(--cor-primaria);
+  margin-bottom: var(--espaco-2);
+}
+
+.sw-crawl__titulo {
+  font-family: var(--fonte-titulo);
+  text-align: center;
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: var(--espaco-6);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.sw-crawl p {
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  margin-bottom: var(--espaco-6);
+  text-indent: 2.2ch;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(254, 218, 74, 0.35);
+}
+
+.sw-crawl__secao {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.3rem, 2.7vw, 1.85rem);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-bottom: 2px solid var(--cor-primaria);
+  padding-bottom: var(--espaco-2);
+  margin-block: var(--espaco-7) var(--espaco-5);
+}
+
+.sw-crawl__destaque {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.sw-crawl__credito-bloco {
+  margin-bottom: var(--espaco-5);
+  text-align: center;
+}
+
+.sw-crawl__nome {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sw-crawl__funcao {
+  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  color: var(--cor-destaque);
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.sw-crawl__detalhe {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: var(--cor-texto-suave);
+  margin-top: 0.2rem;
+}
+
+.sw-crawl__fechamento {
+  font-family: var(--fonte-titulo);
+  text-align: center;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-block: var(--espaco-8) var(--espaco-7);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px rgba(255, 106, 19, 0.8);
+}
