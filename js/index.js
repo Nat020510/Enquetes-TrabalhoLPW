@@ -316,26 +316,6 @@
         }
     }
 
-     // INICIALIZAÇÃO
-    function iniciar() {
-        listaCategorias.addEventListener("click", aoClicarCategoria);
-
-        ajustarChamadaFinal();
-        carregarEnquetes();
-        iniciarDemoVotoRelampago();
-        iniciarBotaoTopo();
-
-        document.addEventListener(
-            "vocify:sessao",
-            ajustarChamadaFinal
-        );
-    }
-
-    iniciar();
-
-})(document, window.Vocify);
-
-
     // VOTO RELÂMPAGO (DEMO INTERATIVA)
     function iniciarDemoVotoRelampago() {
         const CHAVE_DEMO = "vocify:demo-voto";
@@ -382,3 +362,64 @@
                 statusEl.style.color = "var(--cor-sucesso)";
             }
         }
+
+        gradeOpcoes.addEventListener("click", (e) => {
+            const btn = e.target.closest(".voto-card");
+            if (!btn) return;
+
+            const idx = Number(btn.dataset.demoIndice);
+            if (votoSalvo === idx) return;
+
+            if (votoSalvo !== null) {
+                votosDemo[votoSalvo] = Math.max(0, votosDemo[votoSalvo] - 1);
+            }
+            votosDemo[idx] = (votosDemo[idx] || 0) + 1;
+            votoSalvo = idx;
+
+            try {
+                localStorage.setItem(CHAVE_DEMO, JSON.stringify({ votos: votosDemo, escolha: votoSalvo }));
+            } catch (e) {}
+
+            atualizarBarras();
+            UI.toast("Voto demonstrativo registrado!");
+        });
+
+        atualizarBarras();
+    }
+
+    // BOTÃO VOLTAR AO TOPO
+    function iniciarBotaoTopo() {
+        const btnTopo = document.getElementById("btn-topo");
+        if (!btnTopo) return;
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                btnTopo.classList.add("btn-topo--visivel");
+            } else {
+                btnTopo.classList.remove("btn-topo--visivel");
+            }
+        }, { passive: true });
+
+        btnTopo.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    // INICIALIZAÇÃO
+    function iniciar() {
+        listaCategorias.addEventListener("click", aoClicarCategoria);
+
+        ajustarChamadaFinal();
+        carregarEnquetes();
+        iniciarDemoVotoRelampago();
+        iniciarBotaoTopo();
+
+        document.addEventListener(
+            "vocify:sessao",
+            ajustarChamadaFinal
+        );
+    }
+
+    iniciar();
+
+})(document, window.Vocify);
