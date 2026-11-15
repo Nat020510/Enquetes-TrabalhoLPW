@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enquete | VOCIFY</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="Ver-enquete.css">
+
+    <link rel="icon" type="image/png" href="imgs/Favicon.png">
+</head>
+
+<body data-pagina="visualizar">
+
+    <header id="cabecalho-site"></header>
+
+    <main>
+
+        <!-- DISCO DE VINIL -->
+        <section class="coluna-esquerda">
+
+            <button type="button" class="disco-botao" id="discoBotao"
+                aria-label="Reproduzir efeito de notas musicais">
+
+                <span class="disco-base"></span>
+
+                <img
+                    src="imgs/DiscoVinil.png"
+                    alt="Disco de vinil"
+                    class="disco-vinil"
+                >
+
+            </button>
+
+            <div id="efeitosNotas"></div>
+
+        </section>
+
+
+        <!-- CONTEÚDO DA ENQUETE -->
+        <section class="coluna-direita">
+
+            <h1>E aí? Compartilhe sua opinião!</h1>
+
+            <article class="conteudo-enquete" id="conteudoEnquete">
+
+                <span id="categoriaEnquete" class="categoria-enquete"></span>
+
+                <h2 id="tituloEnquete"></h2>
+
+                <p id="descricaoEnquete"></p>
+
+                <div id="imagemContainer" class="imagem-container" hidden>
+                    <img id="imagemEnquete" alt="Imagem da enquete">
+                </div>
+
+                <p id="autorEnquete"></p>
+
+                <form id="formVoto">
+
+                    <fieldset id="listaOpcoes">
+                        <legend>Escolha uma alternativa:</legend>
+                    </fieldset>
+
+                    <button type="submit" id="botaoVotar">
+                        Votar
+                    </button>
+
+                </form>
+
+                <section id="resultadosEnquete" hidden>
+
+                    <h3>Resultados</h3>
+
+                    <div id="graficoResultados"></div>
+
+                </section>
+
+                <button type="button" id="botaoExcluir" hidden>
+                    Excluir enquete
+                </button>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <script src="js/global.js" defer></script>
+    <script src="Ver-enquete.js" defer></script>
+
+</body>
+</html>

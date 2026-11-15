@@ -2,6 +2,10 @@
    ESTRUTURA GERAL
 ================================= */
 
+:root {
+    --cor-enquete: var(--cor-primaria);
+}
+
 body {
     margin: 0;
     width: 100%;
@@ -9,14 +13,16 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 360px 500px 55px;
+    grid-template-columns: minmax(0, 1fr) 500px minmax(0, 1fr);
     align-items: center;
     justify-content: center;
-    gap: 0;
 
     width: 100%;
+    max-width: 1200px;
     min-height: 100vh;
+
     padding: 20px;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -27,19 +33,62 @@ main {
 
 .coluna-esquerda {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+
     position: relative;
     z-index: 0;
 }
 
-.coluna-esquerda img {
-    width: 360px;
-    max-width: none;
-    height: auto;
-    object-fit: contain;
-    transform: translateX(15px);
+.disco-botao {
+    position: relative;
+
+    width: 460px;
+    aspect-ratio: 1;
+
+    padding: 0;
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    transform: translateX(50%);
     margin-top: 70px;
+}
+
+.disco-base {
+    position: absolute;
+    inset: -15px;
+
+    border-radius: 50%;
+
+    background-color: var(--cor-enquete);
+
+    z-index: 0;
+}
+
+.disco-vinil {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    z-index: 1;
+
+    animation: girarDisco 5s linear infinite;
+}
+
+@keyframes girarDisco {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 
@@ -77,7 +126,7 @@ main {
 
 
 /* =================================
-   PAINEL LARANJA
+   PAINEL DA ENQUETE
 ================================= */
 
 .conteudo-enquete {
@@ -88,9 +137,11 @@ main {
 
     width: 100%;
     max-width: 500px;
+
     box-sizing: border-box;
 
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-enquete);
+
     padding: 40px;
     border-radius: 18px;
 }
@@ -101,11 +152,15 @@ main {
 ================================= */
 
 .conteudo-enquete input,
-.conteudo-enquete textarea {
+.conteudo-enquete textarea,
+.conteudo-enquete select {
     width: 100%;
     box-sizing: border-box;
+
     padding: 12px;
     font-size: 16px;
+
+    color: black;
 }
 
 
@@ -117,6 +172,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     width: 100%;
 }
 
@@ -128,12 +184,17 @@ main {
 #adicionarOpcao {
     background: none;
     border: none;
+
     color: var(--cor-fundo);
     text-decoration: underline;
+
     font-size: 14px;
+
     cursor: pointer;
     padding: 5px;
+
     align-self: flex-start;
+
     transition: 0.15s;
 }
 
@@ -145,43 +206,10 @@ main {
     transform: translateY(2px);
 }
 
-/* =================================
-   INPUTS
-================================= */
-
-input, textarea, #removerImagem {
-    color: black;
-}
 
 /* =================================
    ÁREA DE IMAGEM
 ================================= */
-
-#imagem {
-    display: none;
-}
-
-.area-imagem {
-    width: 100%;
-    min-height: 100px;
-    box-sizing: border-box;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px dashed var(--cor-fundo);
-    border-radius: 10px;
-
-    color: var(--cor-fundo);
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.area-imagem:hover {
-    background-color: rgba(255, 255, 255, 0.35);
-}
 
 .imagem-container {
     width: 100%;
@@ -197,15 +225,26 @@ input, textarea, #removerImagem {
     align-items: center;
 
     position: relative;
+
     width: 100%;
     height: 180px;
 
     overflow: hidden;
     box-sizing: border-box;
 
+    background-color: rgba(255, 255, 255, 0.2);
+
     border: 2px dashed var(--cor-fundo);
     border-radius: 10px;
+
+    color: var(--cor-fundo);
+
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.area-imagem:hover {
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 .area-imagem img {
@@ -222,6 +261,7 @@ input, textarea, #removerImagem {
 #removerImagem {
     margin-top: 8px;
     cursor: pointer;
+    color: black;
 }
 
 [hidden] {
@@ -236,22 +276,29 @@ input, textarea, #removerImagem {
 .direita-direita {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+
     gap: 15px;
-    padding: 40px;
     margin-top: 70px;
+    padding: 15px;
+}
+
+.paleta-cores {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .paleta-cores button {
     width: 55px;
     height: 55px;
+
+    padding: 0;
     border: none;
     border-radius: 50%;
-    cursor: pointer;
-    padding: -50px;
-}
 
-.paleta-cores button {
+    cursor: pointer;
+
     transition: transform 0.15s;
 }
 
@@ -259,16 +306,185 @@ input, textarea, #removerImagem {
     transform: scale(1.1);
 }
 
-/* CORES */
 
-#Laranja { background-color: var(--cor-primaria);}
+/* =================================
+   CORES
+================================= */
 
-#Roxo    { background-color: #8956B8;}
+#Laranja {
+    background-color: var(--cor-primaria);
+}
 
-#Azul    { background-color: #3979B9;}
+#Roxo {
+    background-color: #8956B8;
+}
 
-#Verde   { background-color: #648B70;}
+#Azul {
+    background-color: #3979B9;
+}
 
-#Rosa    { background-color: #E58BAF;}
+#Verde {
+    background-color: #648B70;
+}
 
-#Amarelo { background-color: #E8B94F;}
+#Rosa {
+    background-color: #E58BAF;
+}
+
+#Amarelo {
+    background-color: #E8B94F;
+}
+
+/* =================================
+   NOTAS MUSICAIS
+================================= */
+
+#efeitosNotas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.nota-flutuante {
+    position: absolute;
+
+    width: 75px;
+    height: auto;
+
+    object-fit: contain;
+
+    animation: notaFlutuando 1.5s ease-out forwards;
+}
+
+@keyframes notaFlutuando {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.5) rotate(-15deg);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(10deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-110px) scale(0.8) rotate(25deg);
+    }
+}
+
+/* =================================
+   BOTAO PUBLICAR
+================================= */
+
+#publicarEnquete {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#publicarEnquete:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+/* TABLETS E TELAS MENORES */
+
+@media (max-width: 900px) {
+
+    main {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .coluna-esquerda {
+        justify-content: center;
+    }
+
+    .disco-botao {
+        width: min(40vw, 300px);
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .coluna-direita {
+        width: 100%;
+    }
+
+    .direita-direita {
+        align-items: center;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .paleta-cores {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .disco-botao {
+        width: 220px;
+    }
+
+    .coluna-direita {
+        gap: 15px;
+    }
+
+    .coluna-direita h1 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .conteudo-enquete {
+        padding: 22px;
+        gap: 15px;
+    }
+
+    .conteudo-enquete input,
+    .conteudo-enquete textarea {
+        font-size: 14px;
+    }
+
+    .area-imagem {
+        height: 150px;
+    }
+
+    .paleta-cores button {
+        width: 42px;
+        height: 42px;
+    }
+
+}

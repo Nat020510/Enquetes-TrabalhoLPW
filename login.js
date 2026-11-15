@@ -1,35 +1,41 @@
-
 const formLogin = document.getElementById("formLogin");
 
-
-formLogin.addEventListener("submit", function(event) {
-
-    
+formLogin.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-   
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("senha").value;
 
-    // Verifica se os campos foram preenchidos
     if (email === "" || senha === "") {
         alert("Preencha todos os campos!");
         return;
     }
 
-   
-    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    try {
+        const resposta = await fetch("api/login.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            })
+        });
 
-    
-    const usuarioEncontrado = usuarios.find(function(usuario) {
-        return usuario.email === email && usuario.senha === senha;
-    });
+        const resultado = await resposta.json();
 
-    if (usuarioEncontrado) {
-    alert("Login realizado com sucesso! Bem-vindo(a), " + usuarioEncontrado.nome + "!");
+        if (!resposta.ok) {
+            alert(resultado.mensagem);
+            return;
+        }
 
-    window.location.href = "index.html";
-} else {
-    alert("E-mail ou senha incorretos!");
-}
+        alert("Bem-vindo(a), " + resultado.usuario.nome + "!");
+
+        window.location.href = "index.html";
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível conectar ao servidor.");
+    }
 });
