@@ -335,6 +335,11 @@ main {
     background-color: #E8B94F;
 }
 
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
+}
+
 /* =================================
    NOTAS MUSICAIS
 ================================= */
