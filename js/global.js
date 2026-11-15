@@ -31,7 +31,7 @@
   };
 
 
-  const PASTA_IMG = "img/";
+  const PASTA_IMG = "imgs/";
 
   const MENU = [
     { id: "inicio", rotulo: "Início", href: PAGINAS.inicio },
@@ -296,7 +296,7 @@
       return `
         <div class="container cabecalho__interno">
           <a class="marca" href="index.html" aria-label="Vocify - página inicial">
-            <img class="marca__icone" src="${PASTA_IMG}favicon-64.png" alt="" width="44" height="44">
+            <img class="marca__icone" src="${PASTA_IMG}LogoVocify.png" alt="Logo VOCIFY" width="44" height="44">
             <span class="marca__nome">Vocify</span>
           </a>
 
