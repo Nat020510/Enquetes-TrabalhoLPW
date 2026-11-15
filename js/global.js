@@ -206,7 +206,6 @@
         }
     },
 
-    
       async sair() {
           try {
               const resposta = await fetch("api/logout.php", {
