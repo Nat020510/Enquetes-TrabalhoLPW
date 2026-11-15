@@ -348,6 +348,59 @@ formVoto.addEventListener("submit", async function (evento) {
 
 
 // =====================================
+// EXCLUIR ENQUETE
+// =====================================
+
+botaoExcluir.addEventListener("click", async function () {
+
+    const confirmar = confirm(
+        "Tem certeza de que deseja excluir esta enquete? Essa ação não poderá ser desfeita."
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    botaoExcluir.disabled = true;
+
+    try {
+
+        const resposta = await fetch("api/excluir-enquete.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                id: idEnquete
+            })
+
+        });
+
+        const resultado = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(resultado.mensagem);
+        }
+
+        alert(resultado.mensagem);
+
+        window.location.href = "enquetes.html";
+
+    }
+    catch (erro) {
+
+        alert(erro.message);
+        botaoExcluir.disabled = false;
+
+    }
+
+});
+
+
+// =====================================
 // INICIALIZAÇÃO
 // =====================================
 

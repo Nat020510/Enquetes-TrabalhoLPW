@@ -1,5 +1,3 @@
-
-
 (function (window, document) {
   "use strict";
 
@@ -441,7 +439,6 @@
      ======================================================================== */
 function iniciar() {
     Categorias.listar();
-    Enquetes.carregarDemo();
     UI.renderizarLayout();
     UI.registrarEventos();
 

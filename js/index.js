@@ -1,207 +1,334 @@
 
 (function (document, Vocify) {
-  "use strict";
+    "use strict";
 
-  const { Categorias, Enquetes, Autenticacao, UI, PAGINAS } = Vocify;
+    const { Autenticacao, UI, PAGINAS } = Vocify;
 
-  const LIMITE_DESTAQUES = 6;   
-  const OPCOES_NO_HERO = 3;    
+    const LIMITE_DESTAQUES = 6;
+    const OPCOES_NO_HERO = 3;
 
+    const listaCategorias = document.getElementById("lista-categorias");
+    const listaDestaques = document.getElementById("lista-destaques");
 
-  /* ========================================================================
-     1. REFERÊNCIAS E ESTADO
-     ======================================================================== */
-  const listaCategorias = document.getElementById("lista-categorias");
-  const listaDestaques = document.getElementById("lista-destaques");
+    let enquetes = [];
+    let categoriaSelecionada = "todas";
 
-
-  let categoriaSelecionada = "todas";
-
-  function ordenarPorVotos(lista) {
-    return lista.slice().sort((a, b) => Enquetes.totalVotos(b) - Enquetes.totalVotos(a));
-  }
-
-
-  /* ========================================================================
-     2. HERO
-     ======================================================================== */
-  function animarBarras() {
-    const barras = document.querySelectorAll(".barra__preenchimento");
-
-
-    requestAnimationFrame(() => {
-      barras.forEach((barra) => {
-        barra.style.width = `${barra.dataset.largura}%`;
-      });
-    });
-  }
-
-  function criarBarra(opcao, totalVotos) {
-    const porcentagem = Math.round(((Number(opcao.votos) || 0) / totalVotos) * 100);
-    const preenchimento = UI.criar("span", { classe: "barra__preenchimento" });
-    preenchimento.dataset.largura = porcentagem;
-
-    return UI.criar("div", { classe: "barra" }, [
-      UI.criar("span", { classe: "barra__rotulo", texto: opcao.texto }),
-      UI.criar("span", { classe: "barra__trilho" }, [preenchimento]),
-      UI.criar("span", { classe: "barra__pct", texto: `${porcentagem}%` }),
-    ]);
-  }
-
-  function renderizarHero() {
-    const cartao = document.getElementById("hero-resultado");
-    const maisVotada = ordenarPorVotos(Enquetes.listar())[0];
-
-
-    if (!maisVotada || !maisVotada.opcoes) return;
-
-    const totalVotos = Enquetes.totalVotos(maisVotada) || 1;
-    document.getElementById("hero-pergunta").textContent = maisVotada.titulo;
-    document.getElementById("hero-barras").replaceChildren(
-      ...maisVotada.opcoes.slice(0, OPCOES_NO_HERO).map((opcao) => criarBarra(opcao, totalVotos))
-    );
-
-    cartao.hidden = false;
-    animarBarras();
-  }
-
-
-  /* ========================================================================
-     3. ESTATÍSTICAS
-     ======================================================================== */
-  function renderizarEstatisticas() {
-    const enquetes = Enquetes.listar();
-    const valores = {
-      enquetes: enquetes.length,
-      votos: enquetes.reduce((soma, enquete) => soma + Enquetes.totalVotos(enquete), 0),
-      categorias: Categorias.listar().length,
-    };
-
-    document.querySelectorAll("[data-estatistica]").forEach((elemento) => {
-      elemento.textContent = valores[elemento.dataset.estatistica].toLocaleString("pt-BR");
-    });
-  }
-
-
-  /* ========================================================================
-     4. CATEGORIAS
-     ======================================================================== */
-  function criarChip(rotulo, id, cor) {
-    const chip = UI.criar("button", {
-      classe: "chip",
-      texto: rotulo,
-      atributos: {
-        type: "button",
-        "aria-pressed": String(id === categoriaSelecionada),
-        "data-categoria": id,
-      },
-    });
-
-    if (cor) chip.style.setProperty("--cor-cat", cor);
-    return chip;
-  }
-
-  function renderizarCategorias() {
-    listaCategorias.replaceChildren(
-      criarChip("Todas", "todas", null),
-      ...Categorias.listar().map((categoria) => criarChip(categoria.nome, categoria.id, categoria.cor))
-    );
-  }
-
-  function aoClicarCategoria(evento) {
-    const chip = evento.target.closest(".chip");
-    if (!chip) return;
-
-    categoriaSelecionada = chip.dataset.categoria;
-    listaCategorias.querySelectorAll(".chip").forEach((item) => {
-      item.setAttribute("aria-pressed", String(item === chip));
-    });
-    renderizarDestaques();
-  }
-
-
-  /* ========================================================================
-     5. ENQUETES EM DESTAQUE
-     ======================================================================== */
-  function criarCardEnquete(enquete) {
-    const categoria = Categorias.obter(enquete.categoriaId);
-    const total = Enquetes.totalVotos(enquete);
-
-    const card = UI.criar(
-      "a",
-      {
-        classe: "card card--interativo enquete-card",
-        atributos: { href: `${PAGINAS.enquetes}?id=${encodeURIComponent(enquete.id)}` },
-      },
-      [
-        UI.criar("span", { classe: "etiqueta", texto: categoria ? categoria.nome : "Sem categoria" }),
-        UI.criar("h3", { classe: "enquete-card__titulo", texto: enquete.titulo }),
-        UI.criar("div", { classe: "enquete-card__rodape" }, [
-          UI.criar("span", { texto: `${total.toLocaleString("pt-BR")} ${total === 1 ? "voto" : "votos"}` }),
-          UI.criar("span", { classe: "enquete-card__ir", texto: "Votar" }),
-        ]),
-      ]
-    );
-
-    if (categoria) card.style.setProperty("--cor-cat", categoria.cor);
-    return card;
-  }
-
-  function renderizarDestaques() {
-    const destaques = ordenarPorVotos(
-      Enquetes.listar().filter(
-        (enquete) => categoriaSelecionada === "todas" || enquete.categoriaId === categoriaSelecionada
-      )
-    ).slice(0, LIMITE_DESTAQUES);
-
-    if (destaques.length === 0) {
-      listaDestaques.replaceChildren(
-        UI.criar("div", { classe: "estado-vazio" }, [
-          UI.criar("p", { texto: "Nenhuma enquete nesta categoria ainda." }),
-          UI.criar("a", { classe: "link-ver-todas", texto: "Criar a primeira enquete", atributos: { href: PAGINAS.criar } }),
-        ])
-      );
-      return;
+    function totalVotos(enquete) {
+        return (enquete.opcoes || []).reduce(function (soma, opcao) {
+            return soma + Number(opcao.votos || 0);
+        }, 0);
     }
 
-    listaDestaques.replaceChildren(...destaques.map(criarCardEnquete));
-  }
+    function ordenarPorVotos(lista) {
+        return lista.slice().sort(function (a, b) {
+            return totalVotos(b) - totalVotos(a);
+        });
+    }
 
+    // HERO
+    function animarBarras() {
+        const barras = document.querySelectorAll(".barra__preenchimento");
 
-  /* ========================================================================
-     6. CHAMADA FINAL
-     ======================================================================== */
-  function ajustarChamadaFinal() {
-    const sessao = Autenticacao.sessaoAtual();
-    const titulo = document.getElementById("cta-titulo");
-    const botaoCadastro = document.getElementById("cta-cadastro");
+        requestAnimationFrame(function () {
+            barras.forEach(function (barra) {
+                barra.style.width = `${barra.dataset.largura}%`;
+            });
+        });
+    }
 
-    titulo.textContent = sessao
-      ? `Bora, ${sessao.nome.split(" ")[0]}? Sua enquete está esperando.`
-      : "Sua opinião merece um palco.";
-    botaoCadastro.hidden = Boolean(sessao);
-  }
+    function criarBarra(opcao, total) {
+        const votos = Number(opcao.votos || 0);
+        const porcentagem = total > 0
+            ? Math.round((votos / total) * 100)
+            : 0;
 
+        const preenchimento = UI.criar("span", {
+            classe: "barra__preenchimento"
+        });
 
-  /* ========================================================================
-     7. [RESERVADO] RESULTADOS / GRÁFICOS
-     Escreva aqui gráficos exibidos na index (ex.: Google Charts em #area-resultados).
-     ======================================================================== */
+        preenchimento.dataset.largura = porcentagem;
 
+        return UI.criar("div", { classe: "barra" }, [
+            UI.criar("span", {
+                classe: "barra__rotulo",
+                texto: opcao.texto
+            }),
+            UI.criar("span", { classe: "barra__trilho" }, [
+                preenchimento
+            ]),
+            UI.criar("span", {
+                classe: "barra__pct",
+                texto: `${porcentagem}%`
+            })
+        ]);
+    }
 
-  /* ========================================================================
-     8. INICIALIZAÇÃO
-     ======================================================================== */
-  function iniciar() {
-    renderizarHero();
-    renderizarEstatisticas();
-    renderizarCategorias();
-    renderizarDestaques();
-    ajustarChamadaFinal();
+    function renderizarHero() {
+        const cartao = document.getElementById("hero-resultado");
+        const maisVotada = ordenarPorVotos(enquetes)[0];
 
-    listaCategorias.addEventListener("click", aoClicarCategoria);
-    document.addEventListener("vocify:sessao", ajustarChamadaFinal);
-  }
+        if (!maisVotada || !maisVotada.opcoes?.length) {
+            cartao.hidden = true;
+            return;
+        }
 
-  iniciar();
+        const total = totalVotos(maisVotada);
+
+        document.getElementById("hero-pergunta").textContent =
+            maisVotada.titulo;
+
+        document.getElementById("hero-barras").replaceChildren(
+            ...maisVotada.opcoes
+                .slice(0, OPCOES_NO_HERO)
+                .map(function (opcao) {
+                    return criarBarra(opcao, total);
+                })
+        );
+
+        cartao.hidden = false;
+        animarBarras();
+    }
+
+    // ESTATÍSTICAS
+    function renderizarEstatisticas() {
+        const categorias = [...new Set(
+            enquetes.map(function (enquete) {
+                return enquete.categoria;
+            })
+        )];
+
+        const valores = {
+            enquetes: enquetes.length,
+            votos: enquetes.reduce(function (soma, enquete) {
+                return soma + totalVotos(enquete);
+            }, 0),
+            categorias: categorias.length
+        };
+
+        document.querySelectorAll("[data-estatistica]").forEach(
+            function (elemento) {
+                elemento.textContent =
+                    valores[elemento.dataset.estatistica].toLocaleString("pt-BR");
+            }
+        );
+    }
+
+    // CATEGORIAS
+    function criarChip(rotulo, cor) {
+        const chip = UI.criar("button", {
+            classe: "chip",
+            texto: rotulo,
+            atributos: {
+                type: "button",
+                "aria-pressed": String(rotulo === categoriaSelecionada),
+                "data-categoria": rotulo
+            }
+        });
+
+        if (cor) {
+            chip.style.setProperty("--cor-cat", cor);
+        }
+
+        return chip;
+    }
+
+    function renderizarCategorias() {
+        const categorias = [];
+
+        enquetes.forEach(function (enquete) {
+            const nome = enquete.categoria;
+
+            if (!categorias.some(function (categoria) {
+                return categoria.nome === nome;
+            })) {
+                categorias.push({
+                    nome: nome,
+                    cor: enquete.cor_categoria
+                });
+            }
+        });
+
+        listaCategorias.replaceChildren(
+            criarChip("Todas", null),
+            ...categorias.map(function (categoria) {
+                return criarChip(categoria.nome, categoria.cor);
+            })
+        );
+    }
+
+    function aoClicarCategoria(evento) {
+        const chip = evento.target.closest(".chip");
+        if (!chip) return;
+
+        categoriaSelecionada = chip.dataset.categoria;
+
+        listaCategorias.querySelectorAll(".chip").forEach(
+            function (item) {
+                item.setAttribute(
+                    "aria-pressed",
+                    String(item === chip)
+                );
+            }
+        );
+
+        renderizarDestaques();
+    }
+
+    // ENQUETES EM DESTAQUE
+    function criarCardEnquete(enquete) {
+        const card = UI.criar("a", {
+            classe: "card card--interativo enquete-card",
+            atributos: {
+                href: `Ver-enquete.html?id=${encodeURIComponent(enquete.id)}`
+            }
+        });
+
+        if (enquete.imagem) {
+            const imagem = UI.criar("img", {
+                atributos: {
+                    src: enquete.imagem,
+                    alt: "Imagem da enquete"
+                }
+            });
+
+            card.append(imagem);
+        }
+
+        const categoria = UI.criar("span", {
+            classe: "etiqueta",
+            texto: enquete.categoria
+        });
+
+        if (enquete.cor_categoria) {
+            categoria.style.setProperty(
+                "--cor-cat",
+                enquete.cor_categoria
+            );
+        }
+
+        const titulo = UI.criar("h3", {
+            classe: "enquete-card__titulo",
+            texto: enquete.titulo
+        });
+
+        const descricao = UI.criar("p", {
+            texto: enquete.descricao || "Sem descrição."
+        });
+
+        const autor = UI.criar("span", {
+            texto: `Por ${enquete.autor}`
+        });
+
+        const total = totalVotos(enquete);
+
+        const rodape = UI.criar("div", {
+            classe: "enquete-card__rodape"
+        }, [
+            UI.criar("span", {
+                texto: `${total.toLocaleString("pt-BR")} ${total === 1 ? "voto" : "votos"}`
+            }),
+            UI.criar("span", {
+                classe: "enquete-card__ir",
+                texto: "Participar"
+            })
+        ]);
+
+        card.append(categoria, titulo, descricao, autor, rodape);
+
+        if (enquete.cor) {
+            card.style.setProperty("--cor-cat", enquete.cor);
+        }
+
+        return card;
+    }
+
+    function renderizarDestaques() {
+        const destaques = ordenarPorVotos(
+            enquetes.filter(function (enquete) {
+                return categoriaSelecionada === "todas" ||
+                    enquete.categoria === categoriaSelecionada;
+            })
+        ).slice(0, LIMITE_DESTAQUES);
+
+        if (destaques.length === 0) {
+            listaDestaques.replaceChildren(
+                UI.criar("div", {
+                    classe: "estado-vazio"
+                }, [
+                    UI.criar("p", {
+                        texto: "Nenhuma enquete nesta categoria ainda."
+                    }),
+                    UI.criar("a", {
+                        classe: "link-ver-todas",
+                        texto: "Criar a primeira enquete",
+                        atributos: {
+                            href: PAGINAS.criar
+                        }
+                    })
+                ])
+            );
+
+            return;
+        }
+
+        listaDestaques.replaceChildren(
+            ...destaques.map(criarCardEnquete)
+        );
+    }
+
+    // CHAMADA FINAL
+    function ajustarChamadaFinal() {
+        const sessao = Autenticacao.sessaoAtual();
+        const titulo = document.getElementById("cta-titulo");
+        const botaoCadastro = document.getElementById("cta-cadastro");
+
+        titulo.textContent = sessao
+            ? `Bora, ${sessao.nome.split(" ")[0]}? Sua enquete está esperando.`
+            : "Sua opinião merece um palco.";
+
+        botaoCadastro.hidden = Boolean(sessao);
+    }
+
+    // CARREGAMENTO DO BANCO DE DADOS
+    async function carregarEnquetes() {
+        try {
+            const resposta = await fetch("api/listar-enquetes.php");
+
+            if (!resposta.ok) {
+                throw new Error("Não foi possível carregar as enquetes.");
+            }
+
+            enquetes = await resposta.json();
+
+            renderizarHero();
+            renderizarEstatisticas();
+            renderizarCategorias();
+            renderizarDestaques();
+
+        } catch (erro) {
+            console.error("Erro ao carregar enquetes:", erro);
+
+            listaDestaques.replaceChildren(
+                UI.criar("p", {
+                    texto: "Não foi possível carregar as enquetes."
+                })
+            );
+        }
+    }
+
+    // INICIALIZAÇÃO
+    function iniciar() {
+        listaCategorias.addEventListener("click", aoClicarCategoria);
+
+        ajustarChamadaFinal();
+        carregarEnquetes();
+
+        document.addEventListener(
+            "vocify:sessao",
+            ajustarChamadaFinal
+        );
+    }
+
+    iniciar();
+
 })(document, window.Vocify);
