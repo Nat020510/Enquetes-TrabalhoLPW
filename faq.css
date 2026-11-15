@@ -108,3 +108,13 @@ body {
 .laranja {
   color: #ff5b00;
 }
+
+.hero p {
+  color: #a1a1aa;
+  max-width: 540px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.hero-botoes {
+  display: flex;
