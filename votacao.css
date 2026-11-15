@@ -5,6 +5,11 @@
     padding: var(--espaco-7) 0;
 }
 
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
+}
+
 /* CABEÇALHO */
 .votacao-cabecalho {
     text-align: center;
