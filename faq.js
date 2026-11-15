@@ -19,3 +19,4 @@ botoesFiltro.forEach(function (botao) {
       }
     });
   });
+});
