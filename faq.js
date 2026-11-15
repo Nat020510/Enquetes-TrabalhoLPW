@@ -48,3 +48,4 @@ campoBusca.addEventListener("input", function () {
     const conteudo = item.textContent.toLowerCase();
     if (conteudo.includes(textoDigitado)) {
       item.style.display = "block";
+    } else {
