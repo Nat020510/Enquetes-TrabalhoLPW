@@ -12,7 +12,6 @@
     demoCarregada: "vocify:demo-carregada",
   };
 
-
   const AUTORES = [
     { nome: "Rodrigo Cesar", funcao: "Página inicial e base do site" },
     { nome: "Natalia", funcao: "Criação de enquetes" },
