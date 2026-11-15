@@ -19,68 +19,68 @@
                 <p>Registre sua opinião e faça sua voz ser ouvida.</p>
             </div>
 
+            <div class="votacao-card">
 
-<div class="votacao-card">
+                <span class="categoria">Entretenimento</span>
 
-    <span class="categoria">Entretenimento</span>
+                <h2>Qual é sua série favorita?</h2>
 
-    <h2>Qual é sua série favorita?</h2>
+                <p class="votacao-descricao">
+                    Escolha uma das opções abaixo para registrar seu voto.
+                </p>
 
-    <p class="votacao-descricao">
-        Escolha uma das opções abaixo para registrar seu voto.
-    </p>
+                <form id="formVotacao">
 
-    <form id="formVotacao">
+                    <div class="opcoes-votacao">
 
-        <div class="opcoes-votacao">
+                        <label class="opcao-voto">
+                            <input type="radio" name="opcao" value="Stranger Things">
+                            <span>Stranger Things</span>
+                        </label>
 
-            <label class="opcao-voto">
-                <input type="radio" name="opcao" value="Stranger Things">
-                <span>Stranger Things</span>
-            </label>
+                        <label class="opcao-voto">
+                            <input type="radio" name="opcao" value="The Chosen">
+                            <span>The Chosen</span>
+                        </label>
 
-            <label class="opcao-voto">
-                <input type="radio" name="opcao" value="The Chosen">
-                <span>The Chosen</span>
-            </label>
+                        <label class="opcao-voto">
+                            <input type="radio" name="opcao" value="Bridgerton">
+                            <span>Bridgerton</span>
+                        </label>
 
-            <label class="opcao-voto">
-                <input type="radio" name="opcao" value="Bridgerton">
-                <span>Bridgerton</span>
-            </label>
+                        <label class="opcao-voto">
+                            <input type="radio" name="opcao" value="Round 6">
+                            <span>Round 6</span>
+                        </label>
 
-            <label class="opcao-voto">
-                <input type="radio" name="opcao" value="Round 6">
-                <span>Round 6</span>
-            </label>
+                    </div>
 
-        </div>
+                    <button type="submit" class="btn btn--primario">
+                        Confirmar voto
+                    </button>
 
-        <section class="resultados" id="resultados" hidden>
+                </form>
 
-    <h2>Resultado da votação</h2>
+                <!-- RESULTADOS -->
+                <section class="resultados" id="resultados" hidden>
 
-    <p class="resultados-descricao">
-        Confira como ficaram os votos desta enquete.
-    </p>
+                    <h2>Resultado da votação</h2>
 
-    <div class="grafico-resultados" id="graficoResultados">
-    </div>
+                    <p class="resultados-descricao">
+                        Confira como ficaram os votos desta enquete.
+                    </p>
 
-</section>
+                    <div class="grafico-resultados" id="graficoResultados">
+                    </div>
 
-        <button type="submit" class="btn btn--primario">
-            Confirmar voto
-        </button>
+                </section>
 
-    </form>
-
-</div>
-
+            </div>
 
         </section>
     </main>
 
     <script src="votacao.js"></script>
+
 </body>
 </html>
