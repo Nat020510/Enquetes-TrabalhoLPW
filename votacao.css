@@ -162,3 +162,26 @@
     border-radius: var(--raio-pilula);
     transition: width 0.5s ease;
 }
+
+
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .votacao-main {
+        padding: var(--espaco-5) 0;
+    }
+
+    .votacao-card,
+    .resultados {
+        padding: var(--espaco-4);
+    }
+
+    .votacao-cabecalho h1 {
+        font-size: var(--texto-xl);
+    }
+
+    .votacao-card h2,
+    .resultados h2 {
+        font-size: var(--texto-lg);
+    }
+}
