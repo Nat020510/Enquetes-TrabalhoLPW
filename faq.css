@@ -118,3 +118,13 @@ body {
 
 .hero-botoes {
   display: flex;
+    gap: 12px;
+  flex-wrap: wrap;
+}
+
+.secao {
+  padding: 48px 0;
+}
+
+.secao h2 {
+  font-size: 26px;
