@@ -526,3 +526,52 @@
   50% { transform: translateY(-4px); }
 }
 
+
+/* ==========================================================================
+   9. FAIXA DE TENDÊNCIAS (TICKER / MARQUEE INFINITO)
+   ========================================================================== */
+.faixa-tendencias {
+  overflow: hidden;
+  background: var(--cor-superficie);
+  border-block: 1px solid var(--cor-borda);
+  padding-block: var(--espaco-3);
+  margin-top: var(--espaco-6);
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tendencias__trilho {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  white-space: nowrap;
+  animation: rolagem-tendencias 38s linear infinite;
+  will-change: transform;
+}
+
+.faixa-tendencias:hover .tendencias__trilho {
+  animation-play-state: paused;
+}
+
+@keyframes rolagem-tendencias {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.tendencias__item {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tendencias__item strong {
+  color: var(--cor-destaque);
+}
+
+.tendencias__sep {
+  color: var(--cor-primaria);
+  font-weight: bold;
+}
