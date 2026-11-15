@@ -20,3 +20,5 @@ botoesFiltro.forEach(function (botao) {
     });
   });
 });
+
+const perguntas = document.querySelectorAll(".faq-pergunta");
