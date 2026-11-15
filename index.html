@@ -34,6 +34,12 @@
     <section class="hero">
       <div class="container hero__grade">
         <div class="hero__texto">
+          <!-- Selo Live / Status -->
+          <div class="hero__badge">
+            <span class="badge__pulso" aria-hidden="true"></span>
+            <span>🎙️ A plataforma onde a sua voz define o debate</span>
+          </div>
+
           <h1 class="hero__titulo">Sua voz em destaque.</h1>
           <p class="hero__descricao">
             Crie enquetes, participe das discussões e descubra o que a galera pensa.
@@ -53,13 +59,33 @@
             <li class="estatistica"><strong class="estatistica__numero" data-estatistica="votos">0</strong><span>votos</span></li>
             <li class="estatistica"><strong class="estatistica__numero" data-estatistica="categorias">0</strong><span>categorias</span></li>
           </ul>
+
+          <!-- Equalizador Sonoro Interativo -->
+          <div class="hero__equalizador" aria-hidden="true" title="Vocify: áudio e votação em sincronia">
+            <span class="eq-barra"></span>
+            <span class="eq-barra"></span>
+            <span class="eq-barra"></span>
+            <span class="eq-barra"></span>
+            <span class="eq-barra"></span>
+            <span class="eq-legenda">Sintonizado na opinião pública</span>
+          </div>
         </div>
 
-        <!-- Arte: logo em "cartaz" + cartão de resultado com barras animadas -->
-        <div class="hero__arte" aria-hidden="true">
-          <div class="cartaz">
-            <img src="imgs/logo.png" alt="" width="450" height="445">
+        <!-- Arte: logo em "cartaz" + Disco de vinil interativo (Easter egg) + cartão de resultado com barras animadas -->
+        <div class="hero__arte" aria-hidden="false">
+          <div class="cartaz-cenario">
+            <div class="cartaz">
+              <img src="imgs/logo.png" alt="Logotipo Vocify" width="450" height="445">
+            </div>
+
+            <!-- Disco de vinil interativo saindo da capa -->
+            <button class="disco-vinil-hero" id="disco-vinil" type="button" aria-label="Tocar disco de vinil (Easter Egg Vocify)" title="Clique para girar o disco e soltar um som!">
+              <img src="imgs/DiscoVinil.png" alt="" class="disco-vinil__img" width="300" height="300">
+              <span class="disco-vinil__brilho"></span>
+              <span class="disco-vinil__badge">🎧 Clique aqui!</span>
+            </button>
           </div>
+
           <div class="resultado-mini" id="hero-resultado" hidden>
             <p class="resultado-mini__rotulo">Mais votada agora</p>
             <p class="resultado-mini__pergunta" id="hero-pergunta"></p>
@@ -68,6 +94,32 @@
         </div>
       </div>
     </section>
+
+    <!-- ================= FAIXA DE TENDÊNCIAS ================= -->
+    <aside class="faixa-tendencias" aria-label="Assuntos e enquetes em alta">
+      <div class="tendencias__trilho">
+        <span class="tendencias__item">🔥 <strong>Em Alta:</strong> Qual o melhor gênero musical de todos os tempos?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">🎮 <strong>Games:</strong> O jogo do ano já está escolhido?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">🍕 <strong>Comida:</strong> Borda recheada é obrigatória?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">⚡ <strong>Vocify:</strong> Enquetes rápidas, anônimas e livres</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">📊 <strong>Gráficos:</strong> Veja as barras mudarem em tempo real</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">🎙️ <strong>Sua Voz:</strong> Crie sua enquete em menos de 1 minuto</span>
+        <span class="tendencias__sep">•</span>
+        <!-- Duplicação para loop contínuo suave -->
+        <span class="tendencias__item">🔥 <strong>Em Alta:</strong> Qual o melhor gênero musical de todos os tempos?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">🎮 <strong>Games:</strong> O jogo do ano já está escolhido?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">🍕 <strong>Comida:</strong> Borda recheada é obrigatória?</span>
+        <span class="tendencias__sep">•</span>
+        <span class="tendencias__item">⚡ <strong>Vocify:</strong> Enquetes rápidas, anônimas e livres</span>
+      </div>
+    </aside>
 
     <!-- ================= DIFERENCIAIS ================= -->
     <section class="container" aria-label="Diferenciais do Vocify">
@@ -97,6 +149,80 @@
           </div>
         </li>
       </ul>
+    </section>
+
+    <!-- ================= VOTO RELÂMPAGO (DEMO INTERATIVA) ================= -->
+    <section class="secao container" aria-labelledby="titulo-voto-relampago">
+      <div class="voto-relampago card">
+        <div class="voto-relampago__conteudo">
+          <div class="voto-relampago__cabecalho">
+            <span class="etiqueta" style="--cor-cat: var(--cor-destaque)">⚡ Teste Rápido</span>
+            <span class="voto-relampago__aviso" id="demo-status">Experimente agora sem cadastro</span>
+          </div>
+
+          <h2 class="voto-relampago__pergunta" id="titulo-voto-relampago">
+            Qual é a melhor forma de ouvir música hoje?
+          </h2>
+          <p class="voto-relampago__descricao">
+            Clique em uma opção abaixo para ver os gráficos e porcentagens do Vocify em ação instantânea!
+          </p>
+
+          <div class="voto-relampago__grade" id="demo-opcoes" role="radiogroup" aria-label="Alternativas da enquete demonstrativa">
+            <button class="voto-card" type="button" data-demo-indice="0" aria-checked="false" role="radio">
+              <span class="voto-card__icone">🎧</span>
+              <div class="voto-card__texto">
+                <span class="voto-card__titulo">Streaming em alta fidelidade</span>
+                <span class="voto-card__sub">Praticidade no bolso</span>
+              </div>
+              <div class="voto-card__trilho">
+                <span class="voto-card__preenchimento" style="width: 44%;"></span>
+              </div>
+              <span class="voto-card__pct">44%</span>
+            </button>
+
+            <button class="voto-card" type="button" data-demo-indice="1" aria-checked="false" role="radio">
+              <span class="voto-card__icone">📻</span>
+              <div class="voto-card__texto">
+                <span class="voto-card__titulo">Disco de Vinil analógico</span>
+                <span class="voto-card__sub">A clássica experiência sonora</span>
+              </div>
+              <div class="voto-card__trilho">
+                <span class="voto-card__preenchimento" style="width: 32%;"></span>
+              </div>
+              <span class="voto-card__pct">32%</span>
+            </button>
+
+            <button class="voto-card" type="button" data-demo-indice="2" aria-checked="false" role="radio">
+              <span class="voto-card__icone">🎸</span>
+              <div class="voto-card__texto">
+                <span class="voto-card__titulo">Ao vivo no meio do show</span>
+                <span class="voto-card__sub">A energia da multidão</span>
+              </div>
+              <div class="voto-card__trilho">
+                <span class="voto-card__preenchimento" style="width: 18%;"></span>
+              </div>
+              <span class="voto-card__pct">18%</span>
+            </button>
+
+            <button class="voto-card" type="button" data-demo-indice="3" aria-checked="false" role="radio">
+              <span class="voto-card__icone">🚗</span>
+              <div class="voto-card__texto">
+                <span class="voto-card__titulo">No rádio do carro na estrada</span>
+                <span class="voto-card__sub">Vento no rosto e volume alto</span>
+              </div>
+              <div class="voto-card__trilho">
+                <span class="voto-card__preenchimento" style="width: 6%;"></span>
+              </div>
+              <span class="voto-card__pct">6%</span>
+            </button>
+          </div>
+
+          <div class="voto-relampago__rodape">
+            <span class="voto-relampago__contagem" id="demo-total-contagem">👥 1.482 votos computados nesta demonstração</span>
+            <a class="btn btn--primario" href="criar-enquete.html">Criar minha própria enquete →</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ================= CATEGORIAS  ================= -->
@@ -141,6 +267,69 @@
       </ol>
     </section>
 
+    <!-- ================= POR QUE O VOCIFY (BENEFÍCIOS) ================= -->
+    <section class="secao container" aria-labelledby="titulo-beneficios">
+      <div class="secao__cabecalho">
+        <h2 class="secao__titulo" id="titulo-beneficios">Por que soltar sua voz aqui?</h2>
+        <a class="link-ver-todas" href="sobre.html">Conheça a história</a>
+      </div>
+      <div class="grade-beneficios">
+        <div class="beneficio card">
+          <div class="beneficio__icone" aria-hidden="true">📊</div>
+          <h3 class="beneficio__titulo">Gráficos em Tempo Real</h3>
+          <p class="beneficio__texto">Barras animadas que se ajustam instantaneamente a cada voto, proporcionando uma leitura visual imediata do resultado.</p>
+        </div>
+        <div class="beneficio card">
+          <div class="beneficio__icone" aria-hidden="true">🎨</div>
+          <h3 class="beneficio__titulo">Cores & Categorias Vivas</h3>
+          <p class="beneficio__texto">Personalize as perguntas com cores temáticas marcantes e organize discussões por tags e interesses.</p>
+        </div>
+        <div class="beneficio card">
+          <div class="beneficio__icone" aria-hidden="true">🔒</div>
+          <h3 class="beneficio__titulo">Votação Íntegra e Segura</h3>
+          <p class="beneficio__texto">Sessões autenticadas e proteção para garantir que cada usuário expresse sua opinião com transparência.</p>
+        </div>
+        <div class="beneficio card">
+          <div class="beneficio__icone" aria-hidden="true">🚀</div>
+          <h3 class="beneficio__titulo">Compartilhamento Rápido</h3>
+          <p class="beneficio__texto">Links diretos e visual responsivo pronto para rodar em smartphones, tablets e desktops com máxima fluidez.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PERGUNTAS FREQUENTES (FAQ) ================= -->
+    <section class="secao container" aria-labelledby="titulo-faq">
+      <div class="secao__cabecalho">
+        <h2 class="secao__titulo" id="titulo-faq">Perguntas Frequentes</h2>
+      </div>
+      <div class="faq-lista">
+        <details class="faq-item card">
+          <summary class="faq-pergunta">Preciso pagar para usar o Vocify?</summary>
+          <div class="faq-resposta">
+            <p>Não! O Vocify é uma plataforma 100% gratuita desenvolvida como projeto acadêmico de Web para conectar opiniões e gerar debates saudáveis.</p>
+          </div>
+        </details>
+        <details class="faq-item card">
+          <summary class="faq-pergunta">Como funcionam as cores e categorias das enquetes?</summary>
+          <div class="faq-resposta">
+            <p>Ao criar uma enquete, você escolhe uma categoria (Música, Entretenimento, Escola, etc.) com uma cor de destaque personalizada, facilitando a identificação visual rápida na listagem.</p>
+          </div>
+        </details>
+        <details class="faq-item card">
+          <summary class="faq-pergunta">Posso votar mais de uma vez na mesma enquete?</summary>
+          <div class="faq-resposta">
+            <p>Para manter a fidelidade e confiabilidade dos resultados, cada usuário autenticado pode registrar apenas um voto por enquete.</p>
+          </div>
+        </details>
+        <details class="faq-item card">
+          <summary class="faq-pergunta">Quem são os desenvolvedores do Vocify?</summary>
+          <div class="faq-resposta">
+            <p>O projeto foi desenvolvido por Rodrigo Cesar, Natália, Yasmin e Vinicius. Você pode conferir todos os detalhes na nossa <a href="sobre.html" class="link-destaque">página de créditos e história galáctica</a>!</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- ================= CHAMADA FINAL (ajustada por js/index.js conforme o login) ================= -->
     <section class="secao container" aria-labelledby="cta-titulo">
       <div class="cta">
@@ -153,10 +342,10 @@
       </div>
     </section>
 
-    <!-- [RESERVADO] Resultados / gráficos na index (ex.: gráfico da enquete mais votada).
-         Oculto enquanto estiver vazio (.area-reservada:empty). Login, cadastro e criação
-         de enquetes têm páginas próprias (login.html, cadastro.html, criar-enquete.html). -->
     <div class="area-reservada" id="area-resultados"></div>
+
+    <!-- Botão de Voltar ao Topo -->
+    <button class="btn-topo" id="btn-topo" type="button" aria-label="Voltar ao topo da página" title="Voltar ao topo">↑</button>
 
   </main>
 
