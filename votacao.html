@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação | VOCIFY</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="votacao.css">
+</head>
+<body>
+
+    <main class="votacao-main">
+        <section class="container">
+
+            <div class="votacao-cabecalho">
+                <h1>Participe da votação!</h1>
+                <p>Registre sua opinião e faça sua voz ser ouvida.</p>
+            </div>
+
+
+<div class="votacao-card">
+
+    <span class="categoria">Entretenimento</span>
+
+    <h2>Qual é sua série favorita?</h2>
+
+    <p class="votacao-descricao">
+        Escolha uma das opções abaixo para registrar seu voto.
+    </p>
+
+    <form id="formVotacao">
+
+        <div class="opcoes-votacao">
+
+            <label class="opcao-voto">
+                <input type="radio" name="opcao" value="Stranger Things">
+                <span>Stranger Things</span>
+            </label>
+
+            <label class="opcao-voto">
+                <input type="radio" name="opcao" value="The Chosen">
+                <span>The Chosen</span>
+            </label>
+
+            <label class="opcao-voto">
+                <input type="radio" name="opcao" value="Bridgerton">
+                <span>Bridgerton</span>
+            </label>
+
+            <label class="opcao-voto">
+                <input type="radio" name="opcao" value="Round 6">
+                <span>Round 6</span>
+            </label>
+
+        </div>
+
+        <button type="submit" class="btn btn--primario">
+            Confirmar voto
+        </button>
+
+    </form>
+
+</div>
+
+
+        </section>
+    </main>
+
+    <script src="votacao.js"></script>
+</body>
+</html>
