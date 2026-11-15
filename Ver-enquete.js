@@ -24,6 +24,8 @@ const botaoExcluir = document.getElementById("botaoExcluir");
 const discoBotao = document.getElementById("discoBotao");
 const efeitosNotas = document.getElementById("efeitosNotas");
 
+let graficoVotos = null;
+
 
 // =====================================
 // IDENTIFICAR A ENQUETE
@@ -159,55 +161,111 @@ function criarAlternativas(opcoes) {
 // MOSTRAR RESULTADOS
 // =====================================
 
+
 function mostrarResultados(enquete) {
 
     resultadosEnquete.hidden = false;
     graficoResultados.innerHTML = "";
 
+    // Evita acumular gráficos quando a enquete é atualizada.
+    if (graficoVotos) {
+        graficoVotos.destroy();
+        graficoVotos = null;
+    }
+
     const totalVotos = Number(enquete.total_votos);
 
-    enquete.opcoes.forEach(function (opcao) {
+    const alternativas = enquete.opcoes;
+    const textos = alternativas.map(opcao => opcao.texto);
+    const votos = alternativas.map(opcao => Number(opcao.votos));
 
-        const quantidadeVotos = Number(opcao.votos);
+    const canvas = document.createElement("canvas");
+    canvas.style.maxHeight = "320px";
 
-        const porcentagem = totalVotos > 0
-            ? (quantidadeVotos / totalVotos) * 100
-            : 0;
+    graficoResultados.appendChild(canvas);
 
-        const linha = document.createElement("div");
-        linha.classList.add("resultado-opcao");
+    const corDestaque = getComputedStyle(document.documentElement)
+        .getPropertyValue("--cor-destaque")
+        .trim() || "#ffb400";
 
-        const texto = document.createElement("p");
-        texto.classList.add("texto-resultado");
+    graficoVotos = new Chart(canvas, {
 
-        texto.textContent =
-            `${opcao.texto} — ${porcentagem.toFixed(1)}% (${quantidadeVotos} votos)`;
+        type: "bar",
 
-        const barra = document.createElement("div");
-        barra.classList.add("barra-resultado");
+        data: {
+            labels: textos,
 
-        const preenchimento = document.createElement("div");
-        preenchimento.classList.add("preenchimento-resultado");
+            datasets: [{
+                label: "Votos",
+                data: votos,
+                backgroundColor: corDestaque,
+                borderColor: corDestaque,
+                borderWidth: 1,
+                borderRadius: 8
+            }]
+        },
 
-        preenchimento.style.width = `${porcentagem}%`;
-        preenchimento.style.backgroundColor = "var(--cor-destaque)";
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
 
-        barra.appendChild(preenchimento);
+            plugins: {
+                legend: {
+                    display: false
+                },
 
-        linha.appendChild(texto);
-        linha.appendChild(barra);
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
 
-        graficoResultados.appendChild(linha);
+                            const quantidade = context.parsed.x;
+
+                            const porcentagem = totalVotos > 0
+                                ? (quantidade / totalVotos) * 100
+                                : 0;
+
+                            return `${quantidade} votos (${porcentagem.toFixed(1)}%)`;
+                        }
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                        color: "#000000"
+                    },
+                    grid: {
+                        color: "#444444"
+                    }
+                },
+
+                y: {
+                    ticks: {
+                        color: "#000000",
+                        font: {
+                            size: 14
+                        }
+                    },
+                    grid: {
+                        color: "#444444"
+                    }
+                }
+            }
+        }
 
     });
 
     const total = document.createElement("p");
     total.classList.add("total-votos");
-
     total.textContent = `Total de votos: ${totalVotos}`;
 
     graficoResultados.appendChild(total);
 }
+
 
 // =====================================
 // MENSAGEM DE ERRO
