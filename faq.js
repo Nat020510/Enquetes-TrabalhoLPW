@@ -32,4 +32,4 @@ perguntas.forEach(function (pergunta) {
 
     if (item.classList.contains("aberto")) {
         sinal.textContent = "-";
-      
+    } else {      
