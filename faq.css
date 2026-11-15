@@ -98,3 +98,13 @@ body {
   background: radial-gradient(circle at top right, #4a1c04, #0a0a0c 60%);
   border-bottom: 1px solid #26262b;
 }
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.laranja {
+  color: #ff5b00;
+}
