@@ -500,3 +500,94 @@
   border-radius: var(--raio-sm);
   color: var(--cor-texto-suave);
 }
+
+
+/* ==========================================================================
+   FICHA TÉCNICA E BASTIDORES
+   ========================================================================== */
+.grade-bastidores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espaco-5);
+  margin-top: var(--espaco-6);
+}
+
+.bastidor-card {
+  padding: var(--espaco-5);
+}
+
+.bastidor-card__icone {
+  font-size: 2rem;
+  margin-bottom: var(--espaco-3);
+}
+
+.bastidor-card__titulo {
+  font-size: var(--texto-lg);
+  margin-bottom: var(--espaco-2);
+}
+
+.bastidor-card__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.bastidor-card__lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bastidor-card__lista li::before {
+  content: "▹";
+  color: var(--cor-primaria);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .grade-autores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grade-bastidores {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .holo-projetor {
+    height: 560px;
+  }
+
+  .sw-viewport {
+    perspective: 280px;
+  }
+
+  .sw-crawl p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 560px) {
+  .grade-autores {
+    grid-template-columns: 1fr;
+  }
+
+  .holo-projetor {
+    height: 480px;
+  }
+
+  .controle-btn {
+    flex: 1 1 45%;
+    justify-content: center;
+    font-size: 0.78rem;
+    padding: 0.45rem 0.8rem;
+  }
+}
