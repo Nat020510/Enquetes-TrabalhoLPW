@@ -16,3 +16,4 @@ botoesFiltro.forEach(function (botao) {
         card.style.display = "block";
       } else {
         card.style.display = "none";
+      }
