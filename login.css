@@ -96,22 +96,9 @@
     box-shadow: var(--sombra-brilho);
 }
 
-/* BOTÃO ENTRAR */
-#formLogin button {
-    background-color: #F47721;
-    color: #FFFFFF;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 12px;
-    transition: 0.3s;
-}
-
-#formLogin button:hover {
-    background-color: #D95F10;
+.login-botao {
+    width: 100%;
+    margin-top: var(--espaco-3);
 }
 
 /* LINK DE CADASTRO */
