@@ -27,3 +27,5 @@ perguntas.forEach(function (pergunta) {
   pergunta.addEventListener("click", function () {
     const item = pergunta.parentElement;
     const sinal = pergunta.querySelector(".sinal");
+
+    item.classList.toggle("aberto");
