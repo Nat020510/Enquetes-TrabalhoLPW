@@ -38,3 +38,13 @@ body {
 .logo-link {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.logo-link:hover {
+  transform: scale(1.03);
+}
+
+.logo-img {
