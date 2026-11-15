@@ -26,10 +26,11 @@
     cadastro: "cadastro.html",
     criar: "criar-enquete.html",
     enquetes: "enquetes.html",
+    sobre: "sobre.html",
   };
 
 
-  const PASTA_IMG = "img/";
+  const PASTA_IMG = "imgs/";
 
   const MENU = [
     { id: "inicio", rotulo: "Início", href: PAGINAS.inicio },
@@ -277,7 +278,10 @@
         rodape.innerHTML = `
           <div class="container rodape__interno">
             <p>&copy; ${new Date().getFullYear()} Vocify. Projeto acadêmico de Web.</p>
-            <button class="rodape__link" type="button" data-acao="abrir-sobre">Sobre o projeto</button>
+            <div class="rodape__links">
+              <a class="rodape__link" href="${PAGINAS.sobre}">Sobre o projeto</a>
+              <button class="rodape__link rodape__easteregg" type="button" data-easteregg="dj" title="Tocar um som estilo DJ!">💿 Modo DJ</button>
+            </div>
           </div>`;
       }
 
@@ -301,7 +305,7 @@
           <nav class="menu" id="menu-principal" aria-label="Principal">
             <ul class="menu__lista">
               ${links}
-              <li><button class="menu__link" type="button" data-acao="abrir-sobre">Sobre</button></li>
+              <li><a class="menu__link${paginaAtual === 'sobre' ? ' aria-current="page"' : ''}" href="${PAGINAS.sobre}">Sobre</a></li>
             </ul>
           </nav>
 
@@ -415,7 +419,7 @@
 
         switch (botao.dataset.acao) {
           case "abrir-sobre":
-            UI.abrirModal("modal-sobre");
+            window.location.href = PAGINAS.sobre;
             break;
           case "fechar-modal":
             botao.closest("dialog").close();
@@ -435,26 +439,6 @@
 
 
   /* ========================================================================
-     7. INICIALIZAÇÃO
-     ======================================================================== */
-function iniciar() {
-    Categorias.listar();
-    UI.renderizarLayout();
-    UI.registrarEventos();
-
-    Autenticacao.verificarSessao();
-}
-
-  window.Vocify = { Armazenamento, Categorias, Enquetes, Autenticacao, UI, CHAVES, PAGINAS };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", iniciar);
-  } else {
-    iniciar();
-  }
-})(window, document);
-
-/* ========================================================================
      8. EASTER EGG: MODO DJ VOCIFY (Web Audio API Synthesizer & Vinil Player)
      ======================================================================== */
   const EasterEgg = {
@@ -622,7 +606,7 @@ function iniciar() {
       }
     },
 
-     iniciarLoop() {
+    iniciarLoop() {
       if (this.tempoLoop) return;
       this.passo = 0;
       const intervaloMs = (60 / this.bpm / 4) * 1000;
@@ -802,6 +786,7 @@ function iniciar() {
     }
   };
 
+
   /* ========================================================================
      7. INICIALIZAÇÃO
      ======================================================================== */
@@ -822,3 +807,4 @@ function iniciar() {
     iniciar();
   }
 })(window, document);
+
