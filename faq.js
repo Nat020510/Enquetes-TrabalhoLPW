@@ -51,3 +51,4 @@ campoBusca.addEventListener("input", function () {
     } else {
       item.style.display = "none";
     }
+  });
