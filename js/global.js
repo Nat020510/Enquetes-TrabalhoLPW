@@ -453,3 +453,79 @@ function iniciar() {
     iniciar();
   }
 })(window, document);
+
+/* ========================================================================
+     8. EASTER EGG: MODO DJ VOCIFY (Web Audio API Synthesizer & Vinil Player)
+     ======================================================================== */
+  const EasterEgg = {
+    ativo: false,
+    audioCtx: null,
+    tempoLoop: null,
+    passo: 0,
+    bpm: 118,
+
+    obterContexto() {
+      if (!this.audioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+          this.audioCtx = new AudioCtx();
+        }
+      }
+      if (this.audioCtx && this.audioCtx.state === "suspended") {
+        this.audioCtx.resume();
+      }
+      return this.audioCtx;
+    },
+
+    /* Scratch analógico realista gerado via Web Audio API */
+    tocarScratch() {
+      const ctx = this.obterContexto();
+      if (!ctx) return;
+
+      try {
+        const agora = ctx.currentTime;
+        const tamanho = Math.floor(ctx.sampleRate * 0.16);
+        const buffer = ctx.createBuffer(1, tamanho, ctx.sampleRate);
+        const dados = buffer.getChannelData(0);
+        for (let i = 0; i < tamanho; i++) {
+          dados[i] = (Math.random() * 2 - 1) * Math.exp(-i / (tamanho * 0.45));
+        }
+
+        const fonteRuido = ctx.createBufferSource();
+        fonteRuido.buffer = buffer;
+
+        const filtro = ctx.createBiquadFilter();
+        filtro.type = "bandpass";
+        filtro.frequency.setValueAtTime(1100, agora);
+        filtro.frequency.exponentialRampToValueAtTime(3400, agora + 0.06);
+        filtro.frequency.exponentialRampToValueAtTime(750, agora + 0.15);
+        filtro.Q.setValueAtTime(4.5, agora);
+
+        const ganho = ctx.createGain();
+        ganho.gain.setValueAtTime(0.35, agora);
+        ganho.gain.exponentialRampToValueAtTime(0.001, agora + 0.16);
+
+        fonteRuido.connect(filtro);
+        filtro.connect(ganho);
+        ganho.connect(ctx.destination);
+        fonteRuido.start(agora);
+
+        /* Sweep tonal do atrito */
+        const osc = ctx.createOscillator();
+        const ganhoOsc = ctx.createGain();
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(280, agora);
+        osc.frequency.exponentialRampToValueAtTime(720, agora + 0.05);
+        osc.frequency.exponentialRampToValueAtTime(160, agora + 0.15);
+
+        ganhoOsc.gain.setValueAtTime(0.2, agora);
+        ganhoOsc.gain.exponentialRampToValueAtTime(0.001, agora + 0.15);
+
+        osc.connect(ganhoOsc);
+        ganhoOsc.connect(ctx.destination);
+        osc.start(agora);
+        osc.stop(agora + 0.16);
+      } catch (e) {
+        console.warn("[Vocify] Áudio indisponível:", e);
+      }
+    },
