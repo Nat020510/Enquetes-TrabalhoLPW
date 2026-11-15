@@ -7,4 +7,7 @@ botoesFiltro.forEach(function (botao) {
       b.classList.remove("ativa");
     });
       botao.classList.add("ativa");
+    
     const filtro = botao.getAttribute("data-filtro");
+
+    cardsPasso.forEach(function (card) {
