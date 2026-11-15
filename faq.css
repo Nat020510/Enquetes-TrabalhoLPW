@@ -248,3 +248,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.faq-pergunta:hover {
+  background-color: #1b1b20;
+}
+
+.sinal {
+  color: #ff5b00;
