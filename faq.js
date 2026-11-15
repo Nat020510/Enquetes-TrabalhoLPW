@@ -11,3 +11,4 @@ botoesFiltro.forEach(function (botao) {
     const filtro = botao.getAttribute("data-filtro");
 
     cardsPasso.forEach(function (card) {
+      const grupo = card.getAttribute("data-grupo");
