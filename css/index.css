@@ -575,3 +575,150 @@
   color: var(--cor-primaria);
   font-weight: bold;
 }
+
+
+/* ==========================================================================
+   10. VOTO RELÂMPAGO (DEMO INTERATIVA)
+   ========================================================================== */
+.voto-relampago {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--cor-superficie), #141414);
+  border: 1px solid var(--cor-borda);
+  border-left: 6px solid var(--cor-primaria);
+}
+
+.voto-relampago::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 106, 19, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+.voto-relampago__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.voto-relampago__aviso {
+  font-size: 0.8rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+  background: rgba(255, 180, 0, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--raio-sm);
+}
+
+.voto-relampago__pergunta {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+}
+
+.voto-relampago__descricao {
+  margin-top: var(--espaco-2);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.voto-relampago__grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-5);
+}
+
+.voto-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  color: var(--cor-texto);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transicao);
+}
+
+.voto-card:hover {
+  border-color: var(--cor-primaria);
+  transform: translateY(-2px);
+  background: #222222;
+}
+
+.voto-card--selecionado {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 2px rgba(255, 106, 19, 0.35);
+  background: rgba(255, 106, 19, 0.08);
+}
+
+.voto-card__icone {
+  font-size: 1.5rem;
+}
+
+.voto-card__texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.voto-card__titulo {
+  font-size: var(--texto-sm);
+  font-weight: 700;
+}
+
+.voto-card__sub {
+  font-size: 0.78rem;
+  color: var(--cor-texto-suave);
+}
+
+.voto-card__pct {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--cor-destaque);
+}
+
+.voto-card__trilho {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.voto-card__preenchimento {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cor-primaria), var(--cor-destaque));
+  border-radius: var(--raio-pilula);
+  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.voto-relampago__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-5);
+  padding-top: var(--espaco-4);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.voto-relampago__contagem {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+}
+
