@@ -55,3 +55,146 @@
   line-height: 1.6;
 }
 
+.holo-teatro {
+  position: relative;
+  background: var(--sw-cinema-bg);
+  border: 1px solid var(--cor-borda);
+  border-top: 4px solid var(--cor-primaria);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-card), 0 0 35px rgba(255, 106, 19, 0.2);
+  overflow: hidden;
+  margin-block: var(--espaco-6);
+}
+
+/* Topo do projetor */
+.holo-teatro__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-3) var(--espaco-5);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+}
+
+.holo-teatro__luzes {
+  display: flex;
+  gap: 6px;
+}
+
+.luz-indicadora {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cor-borda);
+}
+
+.luz-indicadora--vermelha { background: #ff4d4d; }
+.luz-indicadora--amarela { background: #ffb400; }
+.luz-indicadora--verde { background: #2fbf71; box-shadow: 0 0 8px #2fbf71; }
+
+.holo-teatro__status {
+  font-family: monospace;
+  letter-spacing: 0.08em;
+  color: var(--cor-destaque);
+}
+
+/* Área de Projeção Cósmica */
+.holo-projetor {
+  position: relative;
+  height: 680px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: radial-gradient(ellipse at bottom, #110d0a 0%, #050505 80%);
+}
+
+/* Estrelas de fundo */
+.estatisticas-espaciais {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1.5px 1.5px at 30px 40px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 70px 120px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 150px 60px, #ffd700, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 240px 180px, #ff6a13, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 350px 250px, #4da3ff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 480px 100px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 620px 290px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 740px 170px, #ffd700, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 880px 320px, #ff6a13, rgba(0,0,0,0));
+  background-size: 450px 450px;
+  opacity: 0.85;
+}
+
+/* Gradiente que faz as letras sumirem no horizonte do topo */
+.fade-topo-cosmos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(180deg, var(--sw-cinema-bg) 35%, transparent 100%);
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* 1. Frase Azul de Intro */
+.sw-intro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--espaco-6);
+  font-size: clamp(1.4rem, 3.5vw, 2.3rem);
+  font-weight: 700;
+  color: var(--sw-azul-intro);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
+  animation: intro-vocify 5.5s ease-in-out forwards;
+}
+
+@keyframes intro-vocify {
+  0% { opacity: 0; transform: scale(0.96); }
+  25% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.04); }
+}
+
+/* 2. Logo Zoom */
+.sw-logo-zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  pointer-events: none;
+  opacity: 0;
+  animation: logo-vocify 8.5s cubic-bezier(0.25, 1, 0.5, 1) 5.3s forwards;
+}
+
+.sw-logo-zoom__texto {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(4.5rem, 16vw, 13rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 4px var(--cor-destaque);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 35px rgba(255, 180, 0, 0.7);
+}
+
+@keyframes logo-vocify {
+  0% { opacity: 0; transform: scale(2.4); }
+  20% { opacity: 1; transform: scale(1.2); }
+  75% { opacity: 0.9; transform: scale(0.35); }
+  100% { opacity: 0; transform: scale(0.01); }
+}
