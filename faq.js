@@ -40,3 +40,5 @@ perguntas.forEach(function (pergunta) {
 
 const campoBusca = document.getElementById("campo-busca");
 const itensFaq = document.querySelectorAll(".faq-item");
+
+campoBusca.addEventListener("input", function () {
