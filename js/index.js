@@ -316,12 +316,14 @@
         }
     }
 
-    // INICIALIZAÇÃO
+     // INICIALIZAÇÃO
     function iniciar() {
         listaCategorias.addEventListener("click", aoClicarCategoria);
 
         ajustarChamadaFinal();
         carregarEnquetes();
+        iniciarDemoVotoRelampago();
+        iniciarBotaoTopo();
 
         document.addEventListener(
             "vocify:sessao",
