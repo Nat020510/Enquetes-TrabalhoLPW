@@ -1,6 +1,7 @@
 const formVotacao = document.getElementById("formVotacao");
 const areaResultados = document.getElementById("resultados");
 const graficoResultados = document.getElementById("graficoResultados");
+const btnVerResultados = document.getElementById("btnVerResultados");
 
 const opcoes = document.querySelectorAll('input[name="opcao"]');
 
