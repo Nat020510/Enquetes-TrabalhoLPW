@@ -757,3 +757,48 @@ function iniciar() {
         this.desativar();
       });
     },
+
+    registrarGatilhos() {
+      document.addEventListener("click", (e) => {
+        const btnEasterEgg = e.target.closest('[data-easteregg="dj"]') || e.target.closest("#disco-vinil");
+        if (btnEasterEgg) {
+          e.preventDefault();
+          this.ativar("disco");
+        }
+      });
+
+      let cliquesLogo = 0;
+      let timerLogo = null;
+      document.addEventListener("click", (e) => {
+        const marca = e.target.closest(".marca");
+        if (!marca) return;
+        cliquesLogo++;
+        clearTimeout(timerLogo);
+        timerLogo = setTimeout(() => { cliquesLogo = 0; }, 800);
+        if (cliquesLogo >= 3) {
+          cliquesLogo = 0;
+          this.ativar("logo");
+        }
+      });
+
+      const konami = [
+        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+        "b", "a"
+      ];
+      let posicaoKonami = 0;
+      window.addEventListener("keydown", (e) => {
+        const tecla = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        if (tecla === konami[posicaoKonami].toLowerCase()) {
+          posicaoKonami++;
+          if (posicaoKonami === konami.length) {
+            posicaoKonami = 0;
+            this.ativar("konami");
+          }
+        } else {
+          posicaoKonami = 0;
+        }
+      });
+    }
+  };
+
