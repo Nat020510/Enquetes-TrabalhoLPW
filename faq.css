@@ -87,3 +87,14 @@ body {
   font-size: 15px;
   display: inline-block;
   text-align: center;
+}
+
+.btn-borda:hover {
+  background-color: rgba(255, 91, 0, 0.15);
+}
+
+.hero {
+  padding: 64px 0;
+  background: radial-gradient(circle at top right, #4a1c04, #0a0a0c 60%);
+  border-bottom: 1px solid #26262b;
+}
