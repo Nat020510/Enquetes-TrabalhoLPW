@@ -47,3 +47,4 @@ campoBusca.addEventListener("input", function () {
   itensFaq.forEach(function (item) {
     const conteudo = item.textContent.toLowerCase();
     if (conteudo.includes(textoDigitado)) {
+      item.style.display = "block";
