@@ -185,3 +185,8 @@
         font-size: var(--texto-lg);
     }
 }
+
+
+#btnVerResultados {
+    margin-top: var(--espaco-3);
+}
