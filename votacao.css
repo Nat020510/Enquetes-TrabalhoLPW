@@ -89,3 +89,15 @@
     font-weight: 600;
     margin-bottom: var(--espaco-4);
 }
+
+
+
+/* TÍTULO DA ENQUETE */
+.votacao-card h2 {
+    color: var(--cor-texto);
+    font-family: var(--fonte-titulo);
+    font-size: var(--texto-xl);
+    margin-bottom: var(--espaco-2);
+}
+
+
