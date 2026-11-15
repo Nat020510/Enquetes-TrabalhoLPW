@@ -92,8 +92,8 @@
 
 
 #formLogin input:focus {
-    border-color: #F47721;
-    box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.12);
+    border-color: var(--cor-primaria);
+    box-shadow: var(--sombra-brilho);
 }
 
 /* BOTÃO ENTRAR */
