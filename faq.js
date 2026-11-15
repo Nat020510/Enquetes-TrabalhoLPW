@@ -17,3 +17,5 @@ botoesFiltro.forEach(function (botao) {
       } else {
         card.style.display = "none";
       }
+    });
+    
