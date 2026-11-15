@@ -1,12 +1,14 @@
-
-
-
 /* ÁREA PRINCIPAL */
 .login-main {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--espaco-6) var(--espaco-4);
+}
+
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
 }
 
 /* CONTAINER DO LOGIN */
