@@ -268,3 +268,13 @@ body {
   color: #a1a1aa;
   font-size: 15px;
 }
+
+.faq-item.aberto .faq-resposta {
+  display: block;
+}
+
+.faq-item.aberto {
+  border-color: #ff5b00;
+}
+
+.rodape {
