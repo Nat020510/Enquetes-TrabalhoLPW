@@ -1,10 +1,122 @@
-
 // =====================================
-// ADICIONAR ALTERNATIVAS
+// ELEMENTOS DA PÁGINA
 // =====================================
 
 const listaOpcoes = document.getElementById("listaOpcoes");
 const botaoAdicionar = document.getElementById("adicionarOpcao");
+
+const botoesCores = document.querySelectorAll(".paleta-cores button");
+const painel = document.querySelector(".conteudo-enquete");
+
+const campoImagem = document.getElementById("imagem");
+const previaImagem = document.getElementById("previaImagem");
+const textoImagem = document.getElementById("textoImagem");
+const removerImagem = document.getElementById("removerImagem");
+
+const discoBotao = document.getElementById("discoBotao");
+const efeitosNotas = document.getElementById("efeitosNotas");
+
+const formulario = document.getElementById("formEnquete");
+
+let corSelecionada = "#ff6a13";
+let imagemAnterior = null;
+
+
+// =====================================
+// RASCUNHO AUTOMÁTICO
+// =====================================
+
+const CHAVE_RASCUNHO = "vocify:rascunho-enquete";
+
+function salvarRascunho() {
+
+    const rascunho = {
+        titulo: document.getElementById("titulo").value,
+        descricao: document.getElementById("descricao").value,
+        categoria: document.getElementById("categoria").value,
+
+        opcoes: Array.from(
+            document.querySelectorAll(".opcoes")
+        ).map(campo => campo.value),
+
+        cor: corSelecionada
+    };
+
+    Vocify.Armazenamento.gravar(CHAVE_RASCUNHO, rascunho);
+}
+
+function restaurarRascunho() {
+
+    const rascunho = Vocify.Armazenamento.ler(
+        CHAVE_RASCUNHO,
+        null
+    );
+
+    if (!rascunho) {
+        return;
+    }
+
+    document.getElementById("titulo").value = rascunho.titulo || "";
+    document.getElementById("descricao").value = rascunho.descricao || "";
+    document.getElementById("categoria").value = rascunho.categoria || "";
+
+    if (Array.isArray(rascunho.opcoes)) {
+
+        const quantidadeAtual = document.querySelectorAll(".opcoes").length;
+
+        for (
+            let i = quantidadeAtual;
+            i < rascunho.opcoes.length && i < 10;
+            i++
+        ) {
+
+            const novaOpcao = document.createElement("input");
+
+            novaOpcao.type = "text";
+            novaOpcao.classList.add("opcoes");
+            novaOpcao.placeholder = "Alternativa " + (i + 1);
+            novaOpcao.required = true;
+
+            listaOpcoes.appendChild(novaOpcao);
+        }
+
+        const campos = document.querySelectorAll(".opcoes");
+
+        campos.forEach(function (campo, indice) {
+            campo.value = rascunho.opcoes[indice] || "";
+        });
+    }
+
+    if (rascunho.cor) {
+
+        corSelecionada = rascunho.cor;
+
+        painel.style.backgroundColor = corSelecionada;
+
+        document.documentElement.style.setProperty(
+            "--cor-enquete",
+            corSelecionada
+        );
+
+        botoesCores.forEach(function (botao) {
+
+            botao.style.outline =
+                botao.dataset.cor === corSelecionada
+                    ? "3px solid white"
+                    : "none";
+
+            botao.style.outlineOffset = "3px";
+        });
+    }
+}
+
+formulario.addEventListener("input", salvarRascunho);
+formulario.addEventListener("change", salvarRascunho);
+
+
+// =====================================
+// ADICIONAR ALTERNATIVAS
+// =====================================
 
 botaoAdicionar.addEventListener("click", function () {
 
@@ -23,6 +135,8 @@ botaoAdicionar.addEventListener("click", function () {
     novaOpcao.required = true;
 
     listaOpcoes.appendChild(novaOpcao);
+
+    salvarRascunho();
 });
 
 
@@ -30,20 +144,20 @@ botaoAdicionar.addEventListener("click", function () {
 // ALTERAR COR DO PAINEL
 // =====================================
 
-const botoesCores = document.querySelectorAll(".paleta-cores button");
-const painel = document.querySelector(".conteudo-enquete");
-let corSelecionada = "#ff6a13";
-
 botoesCores.forEach(function (botao) {
 
     botao.addEventListener("click", function () {
 
         const corEscolhida = botao.dataset.cor;
+
         corSelecionada = corEscolhida;
 
         painel.style.backgroundColor = corEscolhida;
 
-        document.documentElement.style.setProperty("--cor-enquete", corEscolhida);
+        document.documentElement.style.setProperty(
+            "--cor-enquete",
+            corEscolhida
+        );
 
         botoesCores.forEach(function (outroBotao) {
             outroBotao.style.outline = "none";
@@ -52,21 +166,14 @@ botoesCores.forEach(function (botao) {
         botao.style.outline = "3px solid white";
         botao.style.outlineOffset = "3px";
 
+        salvarRascunho();
     });
-
 });
 
 
 // =====================================
 // SELECIONAR, EXIBIR E REMOVER IMAGEM
 // =====================================
-
-const campoImagem = document.getElementById("imagem");
-const previaImagem = document.getElementById("previaImagem");
-const textoImagem = document.getElementById("textoImagem");
-const removerImagem = document.getElementById("removerImagem");
-
-let imagemAnterior = null;
 
 campoImagem.addEventListener("change", function () {
 
@@ -112,12 +219,10 @@ removerImagem.addEventListener("click", function () {
     }
 });
 
+
 // =====================================
 // EASTER EGG DO DISCO
 // =====================================
-
-const discoBotao = document.getElementById("discoBotao");
-const efeitosNotas = document.getElementById("efeitosNotas");
 
 const imagensNotas = [
     "imgs/notaMusical.png",
@@ -173,18 +278,14 @@ function criarNota() {
 }
 
 discoBotao.addEventListener("click", function () {
-
     tocarSom();
     criarNota();
-
 });
 
 
-/* =====================================
-   SALVAR ENQUETE NO BANCO DE DADOS
-   ===================================== */
-
-const formulario = document.getElementById("formEnquete");
+// =====================================
+// PUBLICAR ENQUETE NO BANCO DE DADOS
+// =====================================
 
 formulario.addEventListener("submit", function (evento) {
 
@@ -207,11 +308,15 @@ formulario.addEventListener("submit", function (evento) {
     async function salvarDados(imagem) {
 
         try {
+
             const resposta = await fetch("api/criar-enquete.php", {
+
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     titulo: titulo,
                     descricao: descricao,
@@ -220,6 +325,7 @@ formulario.addEventListener("submit", function (evento) {
                     opcoes: opcoes,
                     imagem: imagem
                 })
+
             });
 
             const resultado = await resposta.json();
@@ -237,9 +343,15 @@ formulario.addEventListener("submit", function (evento) {
 
             alert(resultado.mensagem);
 
+            // Apagar o rascunho após publicar com sucesso.
+            Vocify.Armazenamento.remover(CHAVE_RASCUNHO);
+
             window.location.href = "enquetes.html";
 
-        } catch (erro) {
+        } 
+        
+        catch (erro) {
+
             console.error(erro);
             alert("Não foi possível conectar ao servidor.");
         }
@@ -258,11 +370,16 @@ formulario.addEventListener("submit", function (evento) {
         };
 
         leitor.readAsDataURL(arquivoImagem);
-
-    } else {
-
+    } 
+    
+    else {
         salvarDados(null);
-
     }
 
 });
+
+// =====================================
+// RESTAURAR RASCUNHO AO ABRIR A PÁGINA
+// =====================================
+
+restaurarRascunho();

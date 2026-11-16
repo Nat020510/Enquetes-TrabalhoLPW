@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocify - Tutorial e FAQ</title>
+  <link rel="icon" type="image/png" href="imgs/favicon-64.png">
+  <link rel="stylesheet" href="faq.css">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container topo">
+      <a href="index.html" class="logo-link" title="Voltar para a página inicial">
+        <img src="imgs/LogoVocify.png" alt="Vocify" class="logo-img">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Como usar o <span class="laranja">Vocify.</span></h1>
+        <p>Acabou de chegar? Aqui eu te explico rapidinho como criar sua conta, montar suas enquetes e tirar aquelas dúvidas básicas sobre o site. Para voltar, é só clicar no logo do Vocify que está centralizado no topo da página.</p>
+        <div class="hero-botoes">
+          <a href="#tutorial" class="btn-laranja">Ver o passo a passo</a>
+          <a href="#faq" class="btn-borda">Ir para o FAQ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="tutorial">
+      <div class="container">
+        <h2>Passo a passo</h2>
+        <p class="subtitulo">É bem simples, dá uma olhada em como tudo funciona:</p>
+
+        <div class="filtros-tutorial">
+          <button type="button" class="pill ativa" data-filtro="todos">Tudo</button>
+          <button type="button" class="pill" data-filtro="conta">Criar conta</button>
+          <button type="button" class="pill" data-filtro="enquete">Criar enquete</button>
+        </div>
+
+        <div class="grid-passos">
+          <article class="card-passo" data-grupo="conta">
+            <span class="etapa">Passo 1 • Conta</span>
+            <h3>Crie sua conta</h3>
+            <p>Vai na tela de <strong>Cadastro</strong>, escolhe um <strong>nome de usuário</strong>, coloca o seu <strong>e-mail</strong> e cria uma <strong>senha</strong>. Pronto, sua conta já tá feita.</p>
+          </article>
+
+          <article class="card-passo" data-grupo="conta">
+            <span class="etapa">Passo 2 • Login</span>
+            <h3>Entre no site</h3>
+            <p>Depois de cadastrar, é só ir na tela de <strong>Login</strong>, colocar o e-mail e a senha que você criou e entrar pra liberar tudo.</p>
+          </article>
+
+          <article class="card-passo" data-grupo="enquete">
+            <span class="etapa">Passo 3 • Enquete</span>
+            <h3>Coloque o tópico e a descrição</h3>
+            <p>Na hora de criar uma enquete, escreve o <strong>tópico</strong> principal (a sua pergunta) e coloca uma <strong>descrição</strong> explicando melhor sobre o que é.</p>
+          </article>
+
+          <article class="card-passo" data-grupo="enquete">
+            <span class="etapa">Passo 4 • Foto e opções</span>
+            <h3>Adicione foto e as opções de voto</h3>
+            <p>Se quiser, dá pra colocar uma <strong>foto</strong> pra deixar a enquete mais legal. Depois, é só adicionar <strong>duas ou mais opções</strong> pro pessoal votar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="faq">
+      <div class="container">
+        <div class="faq-topo">
+          <div>
+            <h2>Perguntas Frequentes (FAQ)</h2>
+            <p class="subtitulo">Algumas dúvidas bem óbvias (ou nem tanto) respondidas direto ao ponto.</p>
+          </div>
+          <input type="text" id="campo-busca" placeholder="Pesquisar alguma dúvida...">
+        </div>
+
+        <div class="lista-faq">
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Como faço pra sair desta página?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>É só clicar na logo do Vocify lá no topo da página que você volta direto pra tela inicial.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Preciso de internet pra usar o site?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>Sim. Como o site funciona na internet, você precisa estar conectado pra abrir as páginas e registrar seus votos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Se eu desligar o celular ou o PC, o site fecha?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>Sim. Quando você desliga o aparelho, o navegador encerra tudo até você ligar de novo e abrir o site outra vez.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Como faço pra clicar nos botões da página?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>No computador, é só levar a setinha do mouse até o botão e clicar. No celular, é só tocar direto na tela com o dedo.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Dá pra votar de olhos fechados?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>Até dá, mas aí você corre o risco de clicar na opção errada sem querer.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Se eu fizer uma enquete sobre comida, eu ganho um lanche?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>Infelizmente não. O site serve só pra ver o que a galera prefere, o lanche fica por sua conta.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-pergunta">
+              <span>Quantas opções eu preciso colocar se eu quiser duas escolhas?</span>
+              <span class="sinal">+</span>
+            </button>
+            <div class="faq-resposta">
+              <p>Duas opções mesmo: uma pra primeira escolha e outra pra segunda.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Vocify &copy; 2026 - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="faq.js"></script>
+</body>
+</html>

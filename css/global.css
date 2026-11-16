@@ -1,7 +1,4 @@
 
-
-
-
 /* ==========================================================================
    1. TOKENS
    Mude as cores/medidas aqui e o site inteiro acompanha.
@@ -56,6 +53,10 @@
   --altura-cabecalho: 72px;
 }
 
+::selection {
+    background-color: #ff6a13;
+    color: aliceblue;
+}
 
 /* ==========================================================================
    2. RESET E BASE
@@ -734,5 +735,201 @@ h4 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+
+
+/* ==========================================================================
+   14. ADIÇÕES GLOBAIS: EASTER EGG (MODO DJ VOCIFY) 
+   ========================================================================== */
+.rodape__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+}
+
+.rodape__easteregg {
+  cursor: pointer;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--raio-pilula);
+  border: 1px dashed rgba(255, 106, 19, 0.45);
+  background: rgba(255, 106, 19, 0.08);
+  font-size: 0.8rem;
+  transition: all var(--transicao);
+}
+
+.rodape__easteregg:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+/* Notas musicais flutuantes do Easter Egg */
+.easteregg-nota-flutuante {
+  position: fixed;
+  z-index: 9999;
+  width: 42px;
+  height: 42px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255, 106, 19, 0.85));
+  animation: flutuar-nota linear forwards;
+}
+
+
+
+@keyframes flutuar-nota {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.1) rotate(15deg);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translateY(-220px) scale(1) rotate(-15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-340px) scale(0.7) rotate(30deg);
+  }
+}
+
+/* Mini Player do Modo DJ */
+.dj-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-3) var(--espaco-4);
+  background: rgba(21, 21, 21, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--raio-pilula);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 106, 19, 0.35);
+  animation: dj-player-entrada 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes dj-player-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dj-player__capa {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.dj-player__disco {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dj-player__disco--girando {
+  animation: girar-disco 2.5s linear infinite;
+}
+
+@keyframes girar-disco {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dj-player__info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.dj-player__rotulo {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--cor-destaque);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.dj-player__faixa {
+  font-size: 0.8rem;
+  color: var(--cor-texto);
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dj-player__acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dj-player__btn {
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--raio-pilula);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transicao);
+}
+
+.dj-player__btn:hover {
+  background: var(--cor-borda);
+  transform: translateY(-1px);
+}
+
+.dj-player__btn--destaque {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  border-color: var(--cor-primaria);
+}
+
+.dj-player__btn--destaque:hover {
+  background: var(--cor-primaria-hover);
+}
+
+.dj-player__fechar {
+  background: transparent;
+  border: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.dj-player__fechar:hover {
+  color: var(--cor-texto);
+}
+
+@media (max-width: 600px) {
+  .dj-player {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    justify-content: space-between;
+  }
+  .dj-player__faixa {
+    max-width: 110px;
   }
 }

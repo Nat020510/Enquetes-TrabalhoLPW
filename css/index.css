@@ -1,6 +1,3 @@
-
-
-
 /* ==========================================================================
    1. HERO
    ========================================================================== */
@@ -371,3 +368,550 @@
     flex: 1 1 100%;
   }
 }
+
+/* ==========================================================================
+   8. ADIÇÕES VISUAIS
+   ========================================================================== */
+
+/* Badge com pulso no topo do Hero */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: 0.4rem 0.95rem;
+  margin-bottom: var(--espaco-4);
+  background: rgba(255, 106, 19, 0.1);
+  border: 1px solid rgba(255, 106, 19, 0.35);
+  border-radius: var(--raio-pilula);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  color: var(--cor-destaque);
+  width: fit-content;
+}
+
+.badge__pulso {
+  width: 9px;
+  height: 9px;
+  background-color: var(--cor-primaria);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(255, 106, 19, 0.7);
+  animation: pulso-badge 1.8s infinite;
+}
+
+@keyframes pulso-badge {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 106, 19, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 8px rgba(255, 106, 19, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 106, 19, 0);
+  }
+}
+
+/* Equalizador animado no Hero */
+.hero__equalizador {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin-top: var(--espaco-5);
+  padding: var(--espaco-2) var(--espaco-3);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  width: fit-content;
+}
+
+.eq-barra {
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--cor-destaque), var(--cor-primaria));
+  border-radius: 2px;
+  animation: saltar-equalizador 1s ease-in-out infinite alternate;
+}
+
+.eq-barra:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+.eq-barra:nth-child(2) { height: 20px; animation-delay: 0.3s; }
+.eq-barra:nth-child(3) { height: 14px; animation-delay: 0.5s; }
+.eq-barra:nth-child(4) { height: 24px; animation-delay: 0.2s; }
+.eq-barra:nth-child(5) { height: 16px; animation-delay: 0.4s; }
+
+@keyframes saltar-equalizador {
+  0% { transform: scaleY(0.3); opacity: 0.6; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.eq-legenda {
+  margin-left: var(--espaco-2);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Cenário do Cartaz + Disco de Vinil interativo */
+.cartaz-cenario {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartaz-cenario .cartaz {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.disco-vinil-hero {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  z-index: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 250px;
+  height: 250px;
+  transition: right 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.45s ease;
+  filter: drop-shadow(-5px 10px 18px rgba(0, 0, 0, 0.75));
+}
+
+.disco-vinil__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.cartaz-cenario:hover .disco-vinil-hero,
+.disco-vinil-hero:focus-visible {
+  right: -85px;
+}
+
+.disco-vinil-hero.disco-vinil--girando .disco-vinil__img {
+  animation: vinil-girando 2.2s linear infinite;
+}
+
+@keyframes vinil-girando {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.disco-vinil__badge {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--raio-pilula);
+  box-shadow: 0 4px 12px rgba(255, 106, 19, 0.5);
+  pointer-events: none;
+  animation: flutuar-badge 2s ease-in-out infinite;
+}
+
+@keyframes flutuar-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+
+/* ==========================================================================
+   9. FAIXA DE TENDÊNCIAS (TICKER / MARQUEE INFINITO)
+   ========================================================================== */
+.faixa-tendencias {
+  overflow: hidden;
+  background: var(--cor-superficie);
+  border-block: 1px solid var(--cor-borda);
+  padding-block: var(--espaco-3);
+  margin-top: var(--espaco-6);
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tendencias__trilho {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  white-space: nowrap;
+  animation: rolagem-tendencias 38s linear infinite;
+  will-change: transform;
+}
+
+.faixa-tendencias:hover .tendencias__trilho {
+  animation-play-state: paused;
+}
+
+@keyframes rolagem-tendencias {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.tendencias__item {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tendencias__item strong {
+  color: var(--cor-destaque);
+}
+
+.tendencias__sep {
+  color: var(--cor-primaria);
+  font-weight: bold;
+}
+
+
+/* ==========================================================================
+   10. VOTO RELÂMPAGO (DEMO INTERATIVA)
+   ========================================================================== */
+.voto-relampago {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--cor-superficie), #141414);
+  border: 1px solid var(--cor-borda);
+  border-left: 6px solid var(--cor-primaria);
+}
+
+.voto-relampago::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 106, 19, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+.voto-relampago__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.voto-relampago__aviso {
+  font-size: 0.8rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+  background: rgba(255, 180, 0, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--raio-sm);
+}
+
+.voto-relampago__pergunta {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+}
+
+.voto-relampago__descricao {
+  margin-top: var(--espaco-2);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.voto-relampago__grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-5);
+}
+
+.voto-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  color: var(--cor-texto);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transicao);
+}
+
+.voto-card:hover {
+  border-color: var(--cor-primaria);
+  transform: translateY(-2px);
+  background: #222222;
+}
+
+.voto-card--selecionado {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 2px rgba(255, 106, 19, 0.35);
+  background: rgba(255, 106, 19, 0.08);
+}
+
+.voto-card__icone {
+  font-size: 1.5rem;
+}
+
+.voto-card__texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.voto-card__titulo {
+  font-size: var(--texto-sm);
+  font-weight: 700;
+}
+
+.voto-card__sub {
+  font-size: 0.78rem;
+  color: var(--cor-texto-suave);
+}
+
+.voto-card__pct {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--cor-destaque);
+}
+
+.voto-card__trilho {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.voto-card__preenchimento {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cor-primaria), var(--cor-destaque));
+  border-radius: var(--raio-pilula);
+  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.voto-relampago__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-5);
+  padding-top: var(--espaco-4);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.voto-relampago__contagem {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+}
+
+
+/* ==========================================================================
+   11. POR QUE O VOCIFY (GRADE DE BENEFÍCIOS)
+   ========================================================================== */
+.grade-beneficios {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaco-5);
+}
+
+.beneficio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  transition: transform var(--transicao), border-color var(--transicao);
+}
+
+.beneficio:hover {
+  transform: translateY(-4px);
+  border-color: var(--cor-primaria);
+}
+
+.beneficio__icone {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  background: rgba(255, 106, 19, 0.12);
+  border-radius: var(--raio-md);
+  border: 1px solid rgba(255, 106, 19, 0.25);
+}
+
+.beneficio__titulo {
+  font-size: var(--texto-lg);
+  font-weight: 700;
+}
+
+.beneficio__texto {
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-suave);
+}
+
+
+/* ==========================================================================
+   12. PERGUNTAS FREQUENTES (FAQ)
+   ========================================================================== */
+.faq-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.faq-item {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  transition: border-color var(--transicao);
+}
+
+.faq-item[open] {
+  border-color: var(--cor-primaria);
+}
+
+.faq-pergunta {
+  padding: var(--espaco-4) var(--espaco-5);
+  font-size: var(--texto-base);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-pergunta::-webkit-details-marker {
+  display: none;
+}
+
+.faq-pergunta::after {
+  content: "+";
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  color: var(--cor-primaria);
+  transition: transform var(--transicao);
+}
+
+.faq-item[open] .faq-pergunta::after {
+  content: "−";
+  transform: rotate(180deg);
+}
+
+.faq-resposta {
+  padding: 0 var(--espaco-5) var(--espaco-4);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+  border-top: 1px dashed var(--cor-borda);
+  padding-top: var(--espaco-3);
+}
+
+.link-destaque {
+  color: var(--cor-primaria);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.link-destaque:hover {
+  color: var(--cor-destaque);
+}
+
+
+/* ==========================================================================
+   13. BOTÃO VOLTAR AO TOPO
+   ========================================================================== */
+.btn-topo {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-primaria);
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-topo--visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-topo:hover {
+  background: var(--cor-primaria);
+  color: #0a0a0a;
+}
+
+
+/* ==========================================================================
+   14. RESPONSIVIDADE DAS ADIÇÕES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .grade-beneficios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .voto-relampago__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .disco-vinil-hero {
+    width: 200px;
+    height: 200px;
+    right: -25px;
+  }
+
+  .cartaz-cenario:hover .disco-vinil-hero {
+    right: -50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grade-beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  .disco-vinil-hero {
+    width: 160px;
+    height: 160px;
+    right: -15px;
+  }
+
+  .btn-topo {
+    left: 14px;
+    bottom: 14px;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
+

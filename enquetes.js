@@ -5,6 +5,7 @@
 
 const listaEnquetes = document.getElementById("listaEnquetes");
 const filtroCategoria = document.getElementById("filtroCategoria");
+const campoPesquisa = document.getElementById("campoPesquisa");
 const mensagemVazia = document.getElementById("mensagemVazia");
 
 let enquetes = [];
@@ -20,13 +21,34 @@ function mostrarEnquetes() {
 
     const categoriaEscolhida = filtroCategoria.value;
 
+    const textoPesquisa = campoPesquisa.value
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
     const enquetesFiltradas = enquetes.filter(function (enquete) {
 
-        if (categoriaEscolhida === "todas") {
-            return true;
-        }
+        const titulo = enquete.titulo
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
 
-        return enquete.categoria === categoriaEscolhida;
+        const descricao = (enquete.descricao || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+        const correspondeCategoria =
+            categoriaEscolhida === "todas" ||
+            enquete.categoria === categoriaEscolhida;
+
+        const correspondePesquisa =
+            titulo.includes(textoPesquisa) ||
+            descricao.includes(textoPesquisa);
+
+        return correspondeCategoria && correspondePesquisa;
+
     });
 
     if (enquetesFiltradas.length === 0) {
@@ -39,17 +61,13 @@ function mostrarEnquetes() {
     enquetesFiltradas.forEach(function (enquete) {
 
         const cartao = document.createElement("article");
+        cartao.classList.add("cartao-enquete");
+
         cartao.style.cursor = "pointer";
 
         cartao.addEventListener("click", function () {
             window.location.href = `Ver-enquete.html?id=${enquete.id}`;
-        });cartao.style.cursor = "pointer";
-
-        cartao.addEventListener("click", function () {
-            window.location.href = `Ver-enquete.html?id=${enquete.id}`;
         });
-        
-        cartao.classList.add("cartao-enquete");
 
         if (enquete.imagem) {
 
@@ -164,12 +182,12 @@ async function carregarEnquetes() {
 
 
 // =====================================
-// FILTRAR ENQUETES
+// EVENTOS DOS FILTROS
 // =====================================
 
-filtroCategoria.addEventListener("change", function () {
-    mostrarEnquetes();
-});
+filtroCategoria.addEventListener("change", mostrarEnquetes);
+
+campoPesquisa.addEventListener("input", mostrarEnquetes);
 
 
 // =====================================

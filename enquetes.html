@@ -30,11 +30,28 @@
 
         <section class="filtros-enquetes">
 
-            <label for="filtroCategoria">Filtrar por categoria:</label>
+            <div class="campo">
+                <label for="campoPesquisa" class="campo__rotulo">
+                    Pesquisar enquete:
+                </label>
 
-            <select id="filtroCategoria">
-                <option value="todas">Todas as categorias</option>
-            </select>
+                <input
+                    type="text"
+                    id="campoPesquisa"
+                    class="campo__entrada"
+                    placeholder="Digite o nome da enquete..."
+                >
+            </div>
+
+            <div class="campo">
+                <label for="filtroCategoria" class="campo__rotulo">
+                    Filtrar por categoria:
+                </label>
+
+                <select id="filtroCategoria" class="campo__entrada">
+                    <option value="todas">Todas as categorias</option>
+                </select>
+            </div>
 
         </section>
 
