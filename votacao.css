@@ -210,3 +210,11 @@
     pointer-events: none;
     animation: cairConfete 3s linear forwards;
 }
+
+
+@keyframes cairConfete {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
