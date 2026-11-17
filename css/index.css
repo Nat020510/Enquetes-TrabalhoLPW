@@ -70,6 +70,7 @@
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-md);
   box-shadow: var(--sombra-card);
+  z-index: 3;
 }
 
 .resultado-mini__rotulo {
