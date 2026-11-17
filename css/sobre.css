@@ -3,13 +3,12 @@
    Combina a identidade visual do Vocify com a clássica abertura 3D Star Wars
    ========================================================================== */
 
- 
 :root {
   --sw-amarelo: #ffb400;
   --sw-amarelo-brilho: #feda4a;
   --sw-azul-intro: #4da3ff;
   --sw-cinema-bg: #060608;
-  --sw-duracao-crawl: 75s;
+  --sw-duracao-crawl: 85s;
 }
 
 /* Espaçamento geral da página sobre */
@@ -55,6 +54,9 @@
   line-height: 1.6;
 }
 
+/* ==========================================================================
+   SALA DE PROJEÇÃO / HOLO-TEATRO STAR WARS
+   ========================================================================== */
 .holo-teatro {
   position: relative;
   background: var(--sw-cinema-bg);
@@ -103,7 +105,7 @@
 /* Área de Projeção Cósmica */
 .holo-projetor {
   position: relative;
-  height: 680px;
+  height: clamp(680px, 82vh, 860px);
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -199,7 +201,6 @@
   100% { opacity: 0; transform: scale(0.01); }
 }
 
-
 /* 3. PERSPECTIVA 3D DO CRAWL STAR WARS */
 .sw-viewport {
   position: relative;
@@ -207,8 +208,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  perspective: 320px;
-  perspective-origin: 50% 65%;
+  perspective: 440px;
+  perspective-origin: 50% 70%;
   overflow: hidden;
   z-index: 5;
 }
@@ -216,13 +217,13 @@
 .sw-crawl {
   position: absolute;
   top: 100%;
-  width: min(92%, 760px);
+  width: min(95%, 960px);
   transform-origin: 50% 100%;
-  transform: rotateX(25deg);
+  transform: rotateX(23deg);
   color: var(--sw-amarelo-brilho);
   text-align: justify;
-  line-height: 1.85;
-  letter-spacing: 0.08em;
+  line-height: 1.75;
+  letter-spacing: 0.05em;
   opacity: 0;
   animation: rastejar-vocify var(--sw-duracao-crawl) linear 10.5s infinite;
   animation-fill-mode: forwards;
@@ -234,17 +235,17 @@
 
 @keyframes rastejar-vocify {
   0% {
-    top: 92%;
+    top: 96%;
     opacity: 1;
-    transform: rotateX(25deg) translateY(0);
+    transform: rotateX(23deg) translateY(0);
   }
-  88% {
+  90% {
     opacity: 1;
   }
   100% {
-    top: -2600px;
+    top: -4200px;
     opacity: 0;
-    transform: rotateX(25deg) translateY(-2600px);
+    transform: rotateX(23deg) translateY(-4200px);
   }
 }
 
@@ -252,88 +253,90 @@
 .sw-crawl__episodio {
   font-family: var(--fonte-titulo);
   text-align: center;
-  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
   font-weight: 800;
   letter-spacing: 0.28em;
   color: var(--cor-primaria);
-  margin-bottom: var(--espaco-2);
+  margin-bottom: var(--espaco-3);
 }
 
 .sw-crawl__titulo {
   font-family: var(--fonte-titulo);
   text-align: center;
-  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  font-size: clamp(2.4rem, 5.2vw, 4.2rem);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  line-height: 1.25;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
   color: #ffffff;
-  margin-bottom: var(--espaco-6);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+  margin-bottom: var(--espaco-7);
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
 }
 
 .sw-crawl p {
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-  margin-bottom: var(--espaco-6);
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  margin-bottom: var(--espaco-7);
   text-indent: 2.2ch;
-  font-weight: 500;
-  text-shadow: 0 0 8px rgba(254, 218, 74, 0.35);
+  font-weight: 700;
+  line-height: 1.7;
+  text-shadow: 0 0 10px rgba(254, 218, 74, 0.45);
 }
 
 .sw-crawl__secao {
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.3rem, 2.7vw, 1.85rem);
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
   font-weight: 800;
   text-align: center;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #ffffff;
   border-bottom: 2px solid var(--cor-primaria);
-  padding-bottom: var(--espaco-2);
-  margin-block: var(--espaco-7) var(--espaco-5);
+  padding-bottom: var(--espaco-3);
+  margin-block: var(--espaco-8) var(--espaco-6);
 }
 
 .sw-crawl__destaque {
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .sw-crawl__credito-bloco {
-  margin-bottom: var(--espaco-5);
+  margin-bottom: var(--espaco-6);
   text-align: center;
 }
 
 .sw-crawl__nome {
   font-family: var(--fonte-titulo);
-  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .sw-crawl__funcao {
-  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.95rem);
   color: var(--cor-destaque);
-  margin-top: 0.3rem;
-  font-weight: 600;
+  margin-top: 0.4rem;
+  font-weight: 700;
 }
 
 .sw-crawl__detalhe {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
   color: var(--cor-texto-suave);
-  margin-top: 0.2rem;
+  line-height: 1.6;
+  margin-top: 0.4rem;
 }
 
 .sw-crawl__fechamento {
   font-family: var(--fonte-titulo);
   text-align: center;
-  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
   font-weight: 800;
   color: #ffffff;
-  margin-block: var(--espaco-8) var(--espaco-7);
+  margin-block: var(--espaco-8);
   letter-spacing: 0.1em;
-  text-shadow: 0 0 20px rgba(255, 106, 19, 0.8);
+  text-shadow: 0 0 25px rgba(255, 106, 19, 0.85);
 }
 
 /* ==========================================================================
@@ -413,7 +416,6 @@
   color: var(--cor-texto-suave);
   text-shadow: none;
 }
-
 
 /* ==========================================================================
    CARDS DA EQUIPE (PADRÃO VOCIFY)
@@ -501,7 +503,6 @@
   color: var(--cor-texto-suave);
 }
 
-
 /* ==========================================================================
    FICHA TÉCNICA E BASTIDORES
    ========================================================================== */
@@ -562,16 +563,24 @@
 
 @media (max-width: 768px) {
   .holo-projetor {
-    height: 560px;
+    height: 640px;
   }
 
   .sw-viewport {
-    perspective: 280px;
+    perspective: 360px;
+  }
+
+  .sw-crawl {
+    width: 94%;
   }
 
   .sw-crawl p {
-    font-size: 1.15rem;
-    line-height: 1.7;
+    font-size: 1.35rem;
+    line-height: 1.65;
+  }
+
+  .sw-crawl__titulo {
+    font-size: 2.1rem;
   }
 }
 
@@ -581,7 +590,20 @@
   }
 
   .holo-projetor {
-    height: 480px;
+    height: 560px;
+  }
+
+  .sw-viewport {
+    perspective: 320px;
+  }
+
+  .sw-crawl p {
+    font-size: 1.22rem;
+    line-height: 1.6;
+  }
+
+  .sw-crawl__titulo {
+    font-size: 1.75rem;
   }
 
   .controle-btn {
