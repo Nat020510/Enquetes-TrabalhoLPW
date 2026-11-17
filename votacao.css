@@ -195,3 +195,18 @@
 #btnVerResultados {
     margin-top: var(--espaco-3);
 }
+
+
+
+
+
+
+.confete {
+    position: fixed;
+    top: -15px;
+    width: 9px;
+    height: 13px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: cairConfete 3s linear forwards;
+}
