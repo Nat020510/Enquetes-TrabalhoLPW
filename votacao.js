@@ -30,7 +30,7 @@ formVotacao.addEventListener("submit", function(event) {
 
 soltarConfetes();
 
-
+mostrarResultados();
 
     formVotacao.hidden = true;
     areaResultados.hidden = false;
