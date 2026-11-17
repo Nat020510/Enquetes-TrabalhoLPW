@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=utf-8");
 session_set_cookie_params([
     "httponly" => true,
     "samesite" => "Lax",
-    "secure" => false
+    "secure" => true
 ]);
 
 session_start();
