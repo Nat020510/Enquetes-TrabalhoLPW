@@ -28,7 +28,9 @@ formVotacao.addEventListener("submit", function(event) {
 
     votos[opcaoSelecionada.value]++;
 
-    mostrarResultados();
+soltarConfetes();
+
+mostrarResultados();
 
     formVotacao.hidden = true;
     areaResultados.hidden = false;
@@ -76,5 +78,27 @@ function mostrarResultados() {
         `;
 
         graficoResultados.appendChild(resultado);
+    }
+}
+
+
+// ANIMAÇÃO DE CONFETES
+function soltarConfetes() {
+    const cores = ["#ff8c00", "#3498db", "#ff4d6d", "#f1c40f", "#9b59b6"];
+
+    for (let i = 0; i < 50; i++) {
+        const confete = document.createElement("div");
+
+        confete.classList.add("confete");
+        confete.style.left = Math.random() * 100 + "vw";
+        confete.style.backgroundColor =
+            cores[Math.floor(Math.random() * cores.length)];
+        confete.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+        document.body.appendChild(confete);
+
+        setTimeout(function() {
+            confete.remove();
+        }, 4000);
     }
 }
