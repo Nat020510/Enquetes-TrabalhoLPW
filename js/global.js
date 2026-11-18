@@ -291,7 +291,7 @@
       return `
         <div class="container cabecalho__interno">
           <a class="marca" href="index.html" aria-label="Vocify - página inicial">
-            <img class="marca__icone" src="${PASTA_IMG}LogoVocify.png" alt="Logo VOCIFY" width="44" height="44">
+            <img class="marca__icone" src="${PASTA_IMG}Favicon.png" alt="Logo VOCIFY" width="44" height="44">
             <span class="marca__nome">Vocify</span>
           </a>
 
